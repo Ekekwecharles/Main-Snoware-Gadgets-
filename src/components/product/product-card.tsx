@@ -29,6 +29,7 @@ export function ProductCard({ product, priority, className }: { product: Product
           {off > 0 && product.inStock && <span className="rounded-full bg-brand-600 px-2.5 py-1 text-[11px] font-bold text-white">-{off}%</span>}
           {product.badge && product.inStock && <span className="rounded-full bg-ink px-2.5 py-1 text-[11px] font-semibold text-white">{product.badge}</span>}
           {!product.inStock && <span className="rounded-full bg-white px-2.5 py-1 text-[11px] font-semibold text-muted ring-1 ring-line">Sold out</span>}
+          {product.onOrderOnly && <span className="rounded-full bg-amber-50 px-2.5 py-1 text-[11px] font-semibold text-amber-800 ring-1 ring-amber-200">On order</span>}
         </div>
       </Link>
 
@@ -38,7 +39,7 @@ export function ProductCard({ product, priority, className }: { product: Product
           {hasUsed && (
             <>
               {product.brand && <span aria-hidden>·</span>}
-              <span className="text-navy-700">{usedOnly ? conditionLabel(product.conditions[0]) : "New & Used"}</span>
+              <span className="text-navy-700">{usedOnly ? conditionLabel(product.conditions[0]) : "New & Pre-owned"}</span>
             </>
           )}
         </div>

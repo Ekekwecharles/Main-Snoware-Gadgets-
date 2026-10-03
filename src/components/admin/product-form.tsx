@@ -7,18 +7,21 @@ import { toast } from "sonner";
 import type { Category, Product, ProductVariant } from "@/db/schema";
 import { deleteProduct, saveProduct, saveProductImages, type ProductFormInput } from "@/app/actions/admin";
 import { ImageManager, type PhotoItem } from "./image-manager";
-import { conditions } from "@/lib/site";
+import { availabilityOptions, conditions, onOrderLeadTime, type AvailabilityValue, type ConditionValue } from "@/lib/site";
+import { cn } from "@/lib/utils";
 import { buttonClass, Card, inputClass, Label, secondaryButtonClass, textareaClass } from "./ui";
 
 type VariantRow = {
   key: string;
   id?: number;
-  condition: "new" | "uk-used" | "us-used" | "nigeria-used";
+  condition: ConditionValue;
   storage: string;
   color: string;
   colorHex: string;
   price: string;
   compareAtPrice: string;
+  availability: AvailabilityValue;
+  /** Optional quantity; "" = no limit. */
   stock: string;
   sku: string;
 };
@@ -31,7 +34,8 @@ const newRow = (partial: Partial<VariantRow> = {}): VariantRow => ({
   colorHex: "#1d1d1f",
   price: "",
   compareAtPrice: "",
-  stock: "1",
+  availability: "in_stock",
+  stock: "",
   sku: "",
   ...partial,
 });
@@ -68,7 +72,8 @@ export function ProductForm({ categories, brands, product, images = [] }: Props)
             colorHex: v.colorHex ?? "#1d1d1f",
             price: String(v.price),
             compareAtPrice: v.compareAtPrice ? String(v.compareAtPrice) : "",
-            stock: String(v.stock),
+            availability: v.availability,
+            stock: v.stock == null ? "" : String(v.stock),
             sku: v.sku ?? "",
           }),
         )
@@ -101,7 +106,8 @@ export function ProductForm({ categories, brands, product, images = [] }: Props)
         colorHex: v.color ? v.colorHex : null,
         price: Number(v.price),
         compareAtPrice: v.compareAtPrice ? Number(v.compareAtPrice) : null,
-        stock: Number(v.stock || 0),
+        availability: v.availability,
+        stock: v.stock === "" ? null : Number(v.stock),
         sku: v.sku,
       })),
     };
@@ -199,15 +205,19 @@ export function ProductForm({ categories, brands, product, images = [] }: Props)
 
       <Card>
         <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
-          <h2 className="text-[17px] font-bold">Variants, prices &amp; stock</h2>
+          <h2 className="text-[17px] font-bold">Variants, prices &amp; availability</h2>
           <button type="button" onClick={() => setVariants((v) => [...v, newRow()])} className={secondaryButtonClass}>
             <Plus className="h-4 w-4" /> Add variant
           </button>
         </div>
-        <p className="mb-5 text-[13px] text-muted">One row per combination customers can buy — e.g. 256GB · Black · UK Used. Prices are in naira.</p>
+        <p className="mb-5 text-[13px] text-muted">One row per combination customers can buy — e.g. 256GB · Black · UK Used. Prices are in naira. For <b>Open Box</b>, say in the description (or Badge) whether it's unused or lightly used.
+          <br />
+          <b>Availability:</b> <i>In stock</i> = ready to ship · <i>Available on order</i> = you source it after purchase (customers see “ships in {onOrderLeadTime}”) · <i>Sold out</i> = can't be bought.
+          <br />
+          <b>Qty:</b> leave empty for no limit (bulk orders welcome). Enter a number to cap orders at it — customers see “18 in stock” or “Only 3 left”, it goes down with each paid order, and the item shows as sold out at 0.</p>
         <div className="space-y-3">
           {variants.map((v) => (
-            <div key={v.key} className="grid grid-cols-2 gap-3 rounded-xl bg-mist/70 p-3 sm:grid-cols-4 xl:grid-cols-[1.1fr_1fr_1.3fr_1fr_1fr_0.7fr_auto]">
+            <div key={v.key} className="grid grid-cols-2 gap-3 rounded-xl bg-mist/70 p-3 sm:grid-cols-4 xl:grid-cols-[1.1fr_0.9fr_1.3fr_1fr_1fr_1.25fr_0.8fr_auto]">
               <select aria-label="Condition" value={v.condition} onChange={(e) => setVariant(v.key, { condition: e.target.value as VariantRow["condition"] })} className={inputClass}>
                 {conditions.map((c) => (
                   <option key={c.value} value={c.value}>{c.label}</option>
@@ -220,7 +230,29 @@ export function ProductForm({ categories, brands, product, images = [] }: Props)
               </div>
               <input aria-label="Price" inputMode="numeric" placeholder="Price ₦" required value={v.price} onChange={(e) => setVariant(v.key, { price: e.target.value.replace(/\D/g, "") })} className={inputClass} />
               <input aria-label="Compare-at price" inputMode="numeric" placeholder="Was ₦ (optional)" value={v.compareAtPrice} onChange={(e) => setVariant(v.key, { compareAtPrice: e.target.value.replace(/\D/g, "") })} className={inputClass} />
-              <input aria-label="Stock" inputMode="numeric" placeholder="Stock" value={v.stock} onChange={(e) => setVariant(v.key, { stock: e.target.value.replace(/\D/g, "") })} className={inputClass} />
+              <select
+                aria-label="Availability"
+                value={v.availability}
+                onChange={(e) => setVariant(v.key, { availability: e.target.value as AvailabilityValue })}
+                className={cn(
+                  inputClass,
+                  v.availability === "on_order" && "border-amber-300 bg-amber-50 text-amber-900",
+                  v.availability === "sold_out" && "border-brand-200 bg-brand-50 text-brand-800",
+                )}
+              >
+                {availabilityOptions.map((a) => (
+                  <option key={a.value} value={a.value}>{a.label}</option>
+                ))}
+              </select>
+              <input
+                aria-label="Quantity available (leave empty for no limit)"
+                title="Quantity available — leave empty for no limit"
+                inputMode="numeric"
+                placeholder="Qty (no limit)"
+                value={v.stock}
+                onChange={(e) => setVariant(v.key, { stock: e.target.value.replace(/\D/g, "") })}
+                className={inputClass}
+              />
               <div className="flex gap-1">
                 <button type="button" title="Duplicate" onClick={() => setVariants((rows) => [...rows, newRow({ ...v, id: undefined, key: undefined })])} className="flex h-11 w-11 items-center justify-center rounded-xl hover:bg-white" aria-label="Duplicate variant">
                   <Copy className="h-4 w-4" />

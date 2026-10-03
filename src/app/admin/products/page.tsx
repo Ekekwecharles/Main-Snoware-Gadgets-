@@ -44,14 +44,19 @@ export default async function AdminProductsPage(props: PageProps<"/admin/product
                 <th className="px-4 py-3 font-semibold">Product</th>
                 <th className="px-4 py-3 font-semibold">Category</th>
                 <th className="px-4 py-3 font-semibold">Price</th>
-                <th className="px-4 py-3 font-semibold">Stock</th>
+                <th className="px-4 py-3 font-semibold">Availability</th>
                 <th className="px-4 py-3 font-semibold">Status</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-line">
               {list.map((p) => {
                 const prices = p.variants.map((v) => v.price);
-                const stock = p.variants.reduce((n, v) => n + v.stock, 0);
+                // A variant whose optional quantity hit 0 counts as sold out, whatever its availability says.
+                const status = (v: (typeof p.variants)[number]) => (v.stock === 0 ? "sold_out" : v.availability);
+                const count = (a: string) => p.variants.filter((v) => status(v) === a).length;
+                const [inStock, onOrder, soldOut] = [count("in_stock"), count("on_order"), count("sold_out")];
+                const tracked = p.variants.filter((v) => v.stock != null && v.stock > 0);
+                const qtyLeft = tracked.reduce((n, v) => n + (v.stock ?? 0), 0);
                 return (
                   <tr key={p.id} className="hover:bg-mist/60">
                     <td className="px-4 py-3">
@@ -68,7 +73,12 @@ export default async function AdminProductsPage(props: PageProps<"/admin/product
                     <td className="px-4 py-3 text-muted">{p.category.name}</td>
                     <td className="px-4 py-3">{prices.length ? (Math.min(...prices) === Math.max(...prices) ? formatNaira(prices[0]) : `${formatNaira(Math.min(...prices))} – ${formatNaira(Math.max(...prices))}`) : "—"}</td>
                     <td className="px-4 py-3">
-                      <span className={stock === 0 ? "font-semibold text-brand-700" : stock <= 5 ? "font-semibold text-amber-700" : ""}>{stock}</span>
+                      <div className="flex flex-wrap gap-1 text-[12px] font-semibold">
+                        {inStock > 0 && <span className="rounded-full bg-emerald-50 px-2 py-0.5 text-success">{inStock} in stock</span>}
+                        {onOrder > 0 && <span className="rounded-full bg-amber-50 px-2 py-0.5 text-amber-800">{onOrder} on order</span>}
+                        {soldOut > 0 && <span className="rounded-full bg-brand-50 px-2 py-0.5 text-brand-700">{soldOut} sold out</span>}
+                      </div>
+                      {tracked.length > 0 && <p className="mt-1 text-[12px] text-muted">{qtyLeft} units left (limited variants)</p>}
                     </td>
                     <td className="px-4 py-3">
                       <span className={`rounded-full px-2.5 py-0.5 text-[12px] font-semibold ${p.isActive ? "bg-emerald-50 text-success" : "bg-mist text-muted"}`}>{p.isActive ? "Live" : "Hidden"}</span>

@@ -74,7 +74,9 @@ export const verificationTokens = pgTable(
 
 /* ───────────────────────── Catalogue ───────────────────────── */
 
-export const conditionEnum = pgEnum("condition", ["new", "uk-used", "us-used", "nigeria-used"]);
+export const availabilityEnum = pgEnum("availability", ["in_stock", "on_order", "sold_out"]);
+
+export const conditionEnum = pgEnum("condition", ["new", "open-box", "boxed", "uk-used", "us-used", "nigeria-used"]);
 
 export const categories = pgTable(
   "categories",
@@ -139,7 +141,13 @@ export const productVariants = pgTable(
     /** Whole naira */
     price: integer("price").notNull(),
     compareAtPrice: integer("compare_at_price"),
-    stock: integer("stock").notNull().default(0),
+    /** in_stock | on_order (sourced after purchase) | sold_out — drives what customers can buy. */
+    availability: availabilityEnum("availability").notNull().default("in_stock"),
+    /**
+     * Optional quantity available. null = no limit (customers can order any amount).
+     * When set, orders are capped at it, it's shown to customers, and it decreases on each paid order.
+     */
+    stock: integer("stock"),
     sku: text("sku"),
   },
   (t) => [index("variants_product_idx").on(t.productId)],
@@ -258,6 +266,8 @@ export const orderItems = pgTable("order_items", {
   image: text("image"),
   unitPrice: integer("unit_price").notNull(),
   quantity: integer("quantity").notNull(),
+  /** True when the variant was "available on order" at purchase time — the admin needs to source it. */
+  onOrder: boolean("on_order").notNull().default(false),
 });
 
 export const newsletterSubscribers = pgTable("newsletter_subscribers", {

@@ -94,15 +94,17 @@ export const megaMenu: MenuGroup[] = [
     promo: { text: "Pure Android, best-in-class camera — plus Pixel Buds & Pixel Watch", href: "/c/google-pixel", tone: "blue" },
   },
   {
-    label: "Used Phones",
+    label: "Pre-owned",
     href: "/used",
     items: [
+      { label: "Boxed (like new)", href: "/used?condition=boxed", icon: "phone-used" },
+      { label: "Open Box", href: "/used?condition=open-box", icon: "phone-used" },
       { label: "UK Used", href: "/used?condition=uk-used", icon: "phone-used" },
       { label: "US Used", href: "/used?condition=us-used", icon: "phone-used" },
       { label: "Nigerian Used", href: "/used?condition=nigeria-used", icon: "phone-used" },
-      { label: "All Used Devices", href: "/used", icon: "grid" },
+      { label: "All Pre-owned", href: "/used", icon: "grid" },
     ],
-    promo: { text: "Every used device is inspected, graded and comes with warranty", href: "/warranty", tone: "red" },
+    promo: { text: "Boxed phones: brand-new condition, 100% battery, inspected & under warranty", href: "/used?condition=boxed", tone: "red" },
   },
   {
     label: "Computers",
@@ -169,12 +171,47 @@ export const megaMenu: MenuGroup[] = [
 
 export const conditions = [
   { value: "new", label: "Brand New" },
+  { value: "open-box", label: "Open Box" },
+  { value: "boxed", label: "Boxed" },
   { value: "uk-used", label: "UK Used" },
   { value: "us-used", label: "US Used" },
   { value: "nigeria-used", label: "Nigerian Used" },
 ] as const;
 
 export type ConditionValue = (typeof conditions)[number]["value"];
+
+export const availabilityOptions = [
+  { value: "in_stock", label: "In stock" },
+  { value: "on_order", label: "Available on order" },
+  { value: "sold_out", label: "Sold out" },
+] as const;
+
+export type AvailabilityValue = (typeof availabilityOptions)[number]["value"];
+export const availabilityValues = availabilityOptions.map((a) => a.value) as [AvailabilityValue, ...AvailabilityValue[]];
+
+/** How long "available on order" items take before dispatch — shown on product pages, cart and emails. */
+export const onOrderLeadTime = "1–3 business days";
+
+/** Upper bound for the quantity box when a variant has no quantity limit (keeps input sane, allows bulk orders). */
+export const UNLIMITED_QTY = 9999;
+
+/** At or below this many units left, customers see "Only N left — order soon". */
+export const LOW_STOCK_THRESHOLD = 5;
+
+/** Max quantity a customer can order for a variant: its stock if set, otherwise effectively unlimited. */
+export function maxOrderQty(stock: number | null | undefined) {
+  return stock == null ? UNLIMITED_QTY : Math.max(stock, 0);
+}
+
+/** Customer-facing stock text, or null when no quantity is tracked. */
+export function stockText(stock: number | null | undefined) {
+  if (stock == null) return null;
+  if (stock <= 0) return null;
+  return stock <= LOW_STOCK_THRESHOLD ? `Only ${stock} left — order soon` : `${stock} in stock`;
+}
+
+/** Tuple of condition values, in display order — for zod enums and sorting. Must match `conditionEnum` in the DB schema. */
+export const conditionValues = conditions.map((c) => c.value) as [ConditionValue, ...ConditionValue[]];
 
 export function conditionLabel(value: string) {
   return conditions.find((c) => c.value === value)?.label ?? value;

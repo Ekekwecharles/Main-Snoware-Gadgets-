@@ -4,8 +4,8 @@ import { ListingView, parseFilters } from "@/components/listing/listing-view";
 import { conditionLabel } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "UK Used, US Used & Nigerian Used Phones",
-  description: "Inspected, graded UK-used, US-used and Nigerian-used iPhones, Samsung, Pixel and more — with warranty — at Snoware Gadgets.",
+  title: "Pre-owned Phones — Boxed, Open Box, UK, US & Nigerian Used",
+  description: "Inspected, graded pre-owned iPhones, Samsung, Pixel and more — Boxed (like new), Open Box, UK-used, US-used and Nigerian-used — with warranty at Snoware Gadgets.",
 };
 
 export default async function UsedPage(props: PageProps<"/used">) {
@@ -16,9 +16,9 @@ export default async function UsedPage(props: PageProps<"/used">) {
 
   return (
     <ListingView
-      title={single ? `${single} devices` : "Used phones & devices"}
-      description="Every used device is checked for battery health, Face ID / fingerprint, cameras, speakers and screen before sale — and covered by our warranty."
-      crumbs={[{ label: "Used devices", href: "/used" }]}
+      title={single ? `${single} devices` : "Pre-owned phones & devices"}
+      description="From Boxed (brand-new condition, 100% battery) and Open Box to UK, US and Nigerian used — every device is checked for battery health, Face ID / fingerprint, cameras, speakers and screen before sale, and covered by our warranty."
+      crumbs={[{ label: "Pre-owned", href: "/used" }]}
       cards={cards}
       facets={{ ...facets, conditions: facets.conditions.filter((c) => c.value !== "new") }}
       filters={filters}

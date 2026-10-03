@@ -22,7 +22,7 @@ export function ProductTabs({
   const tabs = [
     { id: "overview", label: "Overview" },
     ...(specs.length ? [{ id: "specs", label: "Specifications" }] : []),
-    ...(hasUsed ? [{ id: "grading", label: "Used grading" }] : []),
+    ...(hasUsed ? [{ id: "grading", label: "Condition guide" }] : []),
     { id: "delivery", label: "Delivery & returns" },
   ];
   const [active, setActive] = useState("overview");
@@ -102,7 +102,7 @@ export function ProductTabs({
         {active === "grading" && (
           <div className="prose-snow">
             <p>
-              Every used device we sell passes a multi-point inspection before
+              Every pre-owned device we sell passes a multi-point inspection before
               it goes on sale. We test:
             </p>
             <ul>
@@ -114,13 +114,23 @@ export function ProductTabs({
               <li>iCloud / Google account lock — always removed</li>
             </ul>
             <h3>What the conditions mean</h3>
-            <p>
-              <b>UK Used</b> and <b>US Used</b> devices are imported pre-owned
-              units, typically in very good to excellent cosmetic condition.{" "}
-              <b>Nigerian Used</b> devices are locally pre-owned and offer the
-              lowest prices; minor signs of use are possible. All used devices
-              include our used-device warranty.
-            </p>
+            <ul>
+              <li>
+                <b>Boxed</b> — pre-owned and repackaged, in brand-new condition: the body looks like new, battery health is 100%, and
+                everything works with all features intact.
+              </li>
+              <li>
+                <b>Open Box</b> — the box has been opened and the device is unused or only lightly used. The product description says
+                which.
+              </li>
+              <li>
+                <b>UK Used</b> and <b>US Used</b> — imported pre-owned units, typically in very good to excellent cosmetic condition.
+              </li>
+              <li>
+                <b>Nigerian Used</b> — locally pre-owned at our lowest prices; minor signs of use are possible.
+              </li>
+            </ul>
+            <p>All pre-owned devices include our pre-owned device warranty.</p>
           </div>
         )}
 

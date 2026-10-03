@@ -11,7 +11,7 @@ export default function WarrantyPage() {
         <h2>Warranty cover</h2>
         <ul>
           <li><b>Brand-new devices:</b> 12 months against manufacturing defects.</li>
-          <li><b>UK-used &amp; US-used devices:</b> 6 months against hardware faults.</li>
+          <li><b>Boxed, Open Box, UK-used &amp; US-used devices:</b> 6 months against hardware faults.</li>
           <li><b>Nigerian-used devices:</b> 3 months against hardware faults.</li>
           <li><b>Accessories:</b> 30 days for original chargers, cables and earbuds.</li>
         </ul>
@@ -33,6 +33,8 @@ export default function WarrantyPage() {
         </ul>
 
         <h2>Condition labels</h2>
+        <p><b>Boxed:</b> pre-owned and repackaged, in brand-new condition — like-new body, 100% battery health, everything working and intact.</p>
+        <p><b>Open Box:</b> the box has been opened; the device is unused or only lightly used. Each product description says which.</p>
         <p><b>UK Used / US Used:</b> imported pre-owned units, typically in very good to excellent cosmetic condition, with only light signs of use.</p>
         <p><b>Nigerian Used:</b> locally pre-owned devices at our lowest prices. They work perfectly but may show visible marks.</p>
 

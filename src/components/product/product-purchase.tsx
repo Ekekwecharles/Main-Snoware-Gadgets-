@@ -5,7 +5,16 @@ import { useRouter } from "next/navigation";
 import { Check, ShoppingBag, Zap } from "lucide-react";
 import { toast } from "sonner";
 import { useCart } from "@/store/cart";
-import { conditionLabel, whatsappMessageLink } from "@/lib/site";
+import {
+  conditionLabel,
+  conditionValues,
+  LOW_STOCK_THRESHOLD,
+  maxOrderQty,
+  onOrderLeadTime,
+  stockText,
+  whatsappMessageLink,
+  type AvailabilityValue,
+} from "@/lib/site";
 import { cn, discountPercent, formatNaira } from "@/lib/utils";
 import { WhatsAppIcon } from "@/components/brand/social-icons";
 import { QuantityStepper } from "@/components/cart/cart-drawer";
@@ -18,8 +27,15 @@ export type PurchaseVariant = {
   colorHex: string | null;
   price: number;
   compareAtPrice: number | null;
-  stock: number;
+  availability: AvailabilityValue;
+  /** Optional quantity available (null = unlimited). */
+  stock: number | null;
 };
+
+const isBuyable = (v: PurchaseVariant) => v.availability !== "sold_out" && (v.stock == null || v.stock > 0);
+
+/** Ranking used to pick sensible defaults: in stock first, then on order, sold out last. */
+const availabilityRank = (v: PurchaseVariant) => (!isBuyable(v) ? 0 : v.availability === "in_stock" ? 2 : 1);
 
 export type PurchaseProduct = {
   id: number;
@@ -33,7 +49,7 @@ export type PurchaseProduct = {
 type Dim = "condition" | "storage" | "color";
 const DIMS: Dim[] = ["condition", "storage", "color"];
 
-const conditionOrder = ["new", "uk-used", "us-used", "nigeria-used"];
+const conditionOrder: string[] = conditionValues;
 
 function unique<T>(arr: T[]) {
   return [...new Set(arr)];
@@ -49,7 +65,7 @@ export function ProductPurchase({ product, compact = false }: { product: Purchas
   const { variants } = product;
 
   const initial = useMemo(
-    () => [...variants].sort((a, b) => Number(b.stock > 0) - Number(a.stock > 0) || a.price - b.price)[0],
+    () => [...variants].sort((a, b) => availabilityRank(b) - availabilityRank(a) || a.price - b.price)[0],
     [variants],
   );
   const [selected, setSelected] = useState<PurchaseVariant | undefined>(initial);
@@ -68,7 +84,7 @@ export function ProductPurchase({ product, compact = false }: { product: Purchas
     const scored = candidates
       .map((v) => ({
         v,
-        score: others.reduce((s, d) => s + (selected && v[d] === selected[d] ? 2 : 0), 0) + (v.stock > 0 ? 1 : 0),
+        score: others.reduce((s, d) => s + (selected && v[d] === selected[d] ? 3 : 0), 0) + availabilityRank(v),
       }))
       .sort((a, b) => b.score - a.score || a.v.price - b.v.price);
     if (scored[0]) {
@@ -81,7 +97,7 @@ export function ProductPurchase({ product, compact = false }: { product: Purchas
     const others = DIMS.filter((d) => d !== dim);
     const match = variants.find((v) => v[dim] === value && others.every((d) => !selected || v[d] === selected[d]));
     if (!match) return "other"; // exists only with different choices
-    return match.stock > 0 ? "ok" : "soldout";
+    return isBuyable(match) ? "ok" : "soldout";
   };
 
   const priceFor = (dim: Dim, value: string) => {
@@ -91,7 +107,10 @@ export function ProductPurchase({ product, compact = false }: { product: Purchas
 
   if (!selected) return <p className="text-muted">This product is currently unavailable.</p>;
 
-  const inStock = selected.stock > 0;
+  const inStock = isBuyable(selected); // purchasable (in stock or on order, with quantity left)
+  const onOrder = inStock && selected.availability === "on_order";
+  const maxQty = maxOrderQty(selected.stock);
+  const qtyText = stockText(selected.stock);
   const off = discountPercent(selected.price, selected.compareAtPrice);
 
   const addToCart = (buyNow = false) => {
@@ -105,7 +124,8 @@ export function ProductPurchase({ product, compact = false }: { product: Purchas
         image: product.image,
         categorySlug: product.categorySlug,
         price: selected.price,
-        maxStock: selected.stock,
+        onOrder,
+        stock: selected.stock,
       },
       qty,
     );
@@ -131,10 +151,13 @@ export function ProductPurchase({ product, compact = false }: { product: Purchas
             </>
           )}
         </div>
-        <p className={cn("mt-1.5 flex items-center gap-1.5 text-[13.5px] font-medium", inStock ? "text-success" : "text-brand-700")}>
-          <span className={cn("h-2 w-2 rounded-full", inStock ? "bg-success" : "bg-brand-600")} />
-          {inStock ? (selected.stock <= 3 ? `Only ${selected.stock} left — order soon` : "In stock, ready to ship") : "Sold out in this option"}
+        <p className={cn("mt-1.5 flex items-center gap-1.5 text-[13.5px] font-medium", onOrder ? "text-amber-700" : inStock ? "text-success" : "text-brand-700")}>
+          <span className={cn("h-2 w-2 rounded-full", onOrder ? "bg-amber-500" : inStock ? "bg-success" : "bg-brand-600")} />
+          {onOrder ? `Available on order · ships in ${onOrderLeadTime}` : inStock ? "In stock, ready to ship" : "Sold out in this option"}
         </p>
+        {inStock && qtyText && (
+          <p className={cn("mt-1 text-[13px] font-semibold", (selected.stock ?? 0) <= LOW_STOCK_THRESHOLD ? "text-brand-700" : "text-muted")}>{qtyText}</p>
+        )}
       </div>
 
       {options.condition.length > 1 && (
@@ -192,7 +215,7 @@ export function ProductPurchase({ product, compact = false }: { product: Purchas
 
       <div className="space-y-3">
         <div className="flex gap-3">
-          {inStock && <QuantityStepper value={qty} max={selected.stock} onChange={(q) => setQty(Math.max(1, q))} size="md" />}
+          {inStock && <QuantityStepper value={qty} max={maxQty} onChange={(q) => setQty(Math.max(1, Math.min(q, maxQty)))} size="md" />}
           <button
             onClick={() => addToCart(false)}
             disabled={!inStock}

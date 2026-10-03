@@ -25,7 +25,8 @@ export function CardActions({ product }: { product: ProductCardData }) {
       image: product.image,
       categorySlug: product.categorySlug,
       price: product.price,
-      maxStock: product.defaultVariantStock,
+      onOrder: product.defaultVariantOnOrder,
+      stock: product.defaultVariantStock,
     });
     toast.success(`${product.name} added to cart`);
   };

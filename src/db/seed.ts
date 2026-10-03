@@ -12,7 +12,7 @@ config();
 import bcrypt from "bcryptjs";
 import { eq } from "drizzle-orm";
 
-type Condition = "new" | "uk-used" | "us-used" | "nigeria-used";
+type Condition = import("../lib/site").ConditionValue;
 
 type CategoryNode = { name: string; slug: string; icon?: string; description?: string; children?: CategoryNode[] };
 
@@ -214,7 +214,8 @@ const products: P[] = [
     sales: 160,
     variants: matrix(["256GB", "512GB", "1TB"], ["titanium", "black", "white"], (s, c) => {
       const base = { "256GB": 1_650_000, "512GB": 1_950_000, "1TB": 2_250_000 }[s]!;
-      return { new: base, "uk-used": base * 0.78, "us-used": base * 0.76, "nigeria-used": base * 0.7 }[c];
+      const factor: Partial<Record<Condition, number>> = { new: 1, "uk-used": 0.78, "us-used": 0.76, "nigeria-used": 0.7 };
+      return factor[c] ? base * factor[c] : null;
     }, ["new", "uk-used", "us-used", "nigeria-used"]).map((v) => ({ ...v, price: Math.round(v.price / 1000) * 1000, compareAt: v.condition === "new" ? v.price + 150_000 : undefined })),
   },
   {
@@ -839,7 +840,7 @@ async function main() {
         colorHex: v.hex,
         price: v.price,
         compareAtPrice: v.compareAt,
-        stock: v.stock ?? 5,
+        stock: null, // no quantity limit — set one per variant in admin if needed
         sku: `${slug(p.name).slice(0, 18)}-${[v.storage, v.color, v.condition].filter(Boolean).map((x) => slug(x!)).join("-")}`.toUpperCase(),
       })),
     );
@@ -941,7 +942,7 @@ async function syncCatalogue(db: typeof import("./index").db, s: typeof import("
         colorHex: v.hex,
         price: v.price,
         compareAtPrice: v.compareAt,
-        stock: v.stock ?? 5,
+        stock: null, // no quantity limit — set one per variant in admin if needed
         sku: `${productSlug.slice(0, 18)}-${[v.storage, v.color, v.condition].filter(Boolean).map((x) => slug(x!)).join("-")}`.toUpperCase(),
       })),
     );

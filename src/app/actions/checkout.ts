@@ -8,6 +8,7 @@ import { deliveryZones, orderItems, orders, productVariants } from "@/db/schema"
 import { initializeTransaction } from "@/lib/paystack";
 import { variantLabel } from "@/lib/catalog";
 import { absoluteUrl, generateOrderReference } from "@/lib/utils";
+import { UNLIMITED_QTY } from "@/lib/site";
 import { eq } from "drizzle-orm";
 
 const checkoutSchema = z
@@ -22,7 +23,12 @@ const checkoutSchema = z
     state: z.string().trim().optional(),
     notes: z.string().trim().max(1000).optional(),
     items: z
-      .array(z.object({ variantId: z.number().int().positive(), quantity: z.number().int().min(1).max(20) }))
+      .array(
+        z.object({
+          variantId: z.number().int().positive(),
+          quantity: z.number().int().min(1).max(UNLIMITED_QTY, "For orders this large, please contact us on WhatsApp"),
+        }),
+      )
       .min(1, "Your cart is empty"),
   })
   .superRefine((d, ctx) => {
@@ -59,11 +65,12 @@ export async function startCheckout(input: CheckoutInput): Promise<CheckoutResul
   for (const item of data.items) {
     const v = variants.find((x) => x.id === item.variantId);
     if (!v || !v.product.isActive) return { ok: false, error: "An item in your cart is no longer available. Please remove it and try again." };
-    if (v.stock < item.quantity)
-      return {
-        ok: false,
-        error: v.stock === 0 ? `${v.product.name} (${variantLabel(v)}) just sold out.` : `Only ${v.stock} of ${v.product.name} (${variantLabel(v)}) left in stock.`,
-      };
+    const label = `${v.product.name}${variantLabel(v) ? ` (${variantLabel(v)})` : ""}`;
+    if (v.availability === "sold_out" || v.stock === 0)
+      return { ok: false, error: `${label} just sold out. Please remove it from your cart.` };
+    // Only enforce a cap when the admin has set a quantity for this variant.
+    if (v.stock != null && item.quantity > v.stock)
+      return { ok: false, error: `Only ${v.stock} of ${label} left. Please reduce the quantity in your cart.` };
     lines.push({ v, quantity: item.quantity });
   }
 
@@ -109,6 +116,7 @@ export async function startCheckout(input: CheckoutInput): Promise<CheckoutResul
         image: l.v.product.images[0]?.url ?? null,
         unitPrice: l.v.price,
         quantity: l.quantity,
+        onOrder: l.v.availability === "on_order",
       })),
     );
     return o;

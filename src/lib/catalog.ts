@@ -10,6 +10,7 @@ import {
   deliveryZones,
 } from "@/db/schema";
 import type { Category } from "@/db/schema";
+import { conditionLabel } from "@/lib/site";
 
 export type ProductCardData = {
   id: number;
@@ -21,13 +22,18 @@ export type ProductCardData = {
   brand: string | null;
   price: number;
   compareAtPrice: number | null;
+  /** True when at least one variant can be bought (in stock or on order). */
   inStock: boolean;
+  /** Every buyable variant is "available on order". */
+  onOrderOnly: boolean;
   conditions: string[];
   storages: string[];
   colors: { name: string; hex: string | null }[];
   defaultVariantId: number | null;
   defaultVariantLabel: string;
-  defaultVariantStock: number;
+  defaultVariantOnOrder: boolean;
+  /** Optional quantity limit of the default variant (null = unlimited). */
+  defaultVariantStock: number | null;
   salesCount: number;
   createdAt: Date;
 };
@@ -53,16 +59,17 @@ export function variantLabel(v: {
   storage: string | null;
   color: string | null;
 }) {
-  const cond =
-    v.condition === "new"
-      ? null
-      : v.condition.replace("-used", "").toUpperCase() + " Used";
+  const cond = v.condition === "new" ? null : conditionLabel(v.condition);
   return [v.storage, v.color, cond].filter(Boolean).join(" · ");
 }
 
+/** A variant can be bought unless it's marked sold out or its optional quantity has run out. */
+export const isPurchasable = (v: { availability: string; stock: number | null }) =>
+  v.availability !== "sold_out" && (v.stock == null || v.stock > 0);
+
 function toCard(p: ProductWithRelations): ProductCardData {
-  const inStockVariants = p.variants.filter((v) => v.stock > 0);
-  const pool = inStockVariants.length ? inStockVariants : p.variants;
+  const buyable = p.variants.filter(isPurchasable);
+  const pool = buyable.length ? buyable : p.variants;
   const cheapest = [...pool].sort((a, b) => a.price - b.price)[0];
   const colors = new Map<string, string | null>();
   for (const v of p.variants) if (v.color) colors.set(v.color, v.colorHex);
@@ -76,7 +83,8 @@ function toCard(p: ProductWithRelations): ProductCardData {
     brand: p.brand?.name ?? null,
     price: cheapest?.price ?? 0,
     compareAtPrice: cheapest?.compareAtPrice ?? null,
-    inStock: inStockVariants.length > 0,
+    inStock: buyable.length > 0,
+    onOrderOnly: buyable.length > 0 && buyable.every((v) => v.availability === "on_order"),
     conditions: [...new Set(p.variants.map((v) => v.condition))],
     storages: [
       ...new Set(
@@ -86,7 +94,8 @@ function toCard(p: ProductWithRelations): ProductCardData {
     colors: [...colors].map(([name, hex]) => ({ name, hex })),
     defaultVariantId: cheapest?.id ?? null,
     defaultVariantLabel: cheapest ? variantLabel(cheapest) : "",
-    defaultVariantStock: cheapest?.stock ?? 0,
+    defaultVariantOnOrder: cheapest?.availability === "on_order",
+    defaultVariantStock: cheapest?.stock ?? null,
     salesCount: p.salesCount,
     createdAt: p.createdAt,
   };
@@ -303,7 +312,7 @@ export async function getProductsByCategorySlug(slug: string, limit = 8) {
 export async function getUsedHighlights(limit = 8) {
   const rows = await loadProducts();
   return rows
-    .filter((p) => p.variants.some((v) => v.condition !== "new" && v.stock > 0))
+    .filter((p) => p.variants.some((v) => v.condition !== "new" && isPurchasable(v)))
     .map((p) =>
       toCard({
         ...p,

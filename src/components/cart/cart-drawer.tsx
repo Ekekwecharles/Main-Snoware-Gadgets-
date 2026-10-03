@@ -1,11 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Lock, Minus, Plus, ShoppingBag, Trash2, X } from "lucide-react";
 import { useCart, cartCount, cartSubtotal } from "@/store/cart";
 import { ProductImage } from "@/components/product/product-image";
 import { formatNaira } from "@/lib/utils";
+import { maxOrderQty, onOrderLeadTime, stockText } from "@/lib/site";
 
 export function CartDrawer() {
   const { items, isOpen, close, setQuantity, remove, notes, setNotes } = useCart();
@@ -65,10 +66,12 @@ export function CartDrawer() {
                       </button>
                     </div>
                     {item.variantLabel && <p className="mt-0.5 text-[12.5px] text-muted">{item.variantLabel}</p>}
+                    {item.onOrder && <p className="mt-0.5 text-[12px] font-medium text-amber-700">On order · ships in {onOrderLeadTime}</p>}
+                    {stockText(item.stock) && <p className="mt-0.5 text-[12px] font-medium text-brand-700">{stockText(item.stock)}</p>}
                     <div className="mt-auto flex items-end justify-between pt-3">
                       <QuantityStepper
                         value={item.quantity}
-                        max={item.maxStock}
+                        max={maxOrderQty(item.stock)}
                         onChange={(q) => setQuantity(item.variantId, q)}
                       />
                       <p className="text-[15px] font-semibold">{formatNaira(item.price * item.quantity)}</p>
@@ -118,7 +121,8 @@ export function QuantityStepper({ value, max, onChange, size = "sm" }: { value: 
       <button onClick={() => onChange(value - 1)} className="flex h-full w-9 items-center justify-center hover:bg-mist" aria-label="Decrease quantity">
         <Minus className="h-3.5 w-3.5" />
       </button>
-      <span className="w-8 text-center text-[14px] font-medium tabular-nums" aria-live="polite">{value}</span>
+      {/* Keyed on value so the draft resets whenever the quantity changes elsewhere (e.g. +/- buttons). */}
+      <QtyInput key={value} value={value} max={max} onCommit={onChange} />
       <button
         onClick={() => onChange(value + 1)}
         disabled={value >= max}
@@ -128,5 +132,33 @@ export function QuantityStepper({ value, max, onChange, size = "sm" }: { value: 
         <Plus className="h-3.5 w-3.5" />
       </button>
     </div>
+  );
+}
+
+/** Typeable quantity (for bulk orders). Commits on blur/Enter; an empty or 0 entry reverts instead of removing the item. */
+function QtyInput({ value, max, onCommit }: { value: number; max: number; onCommit: (v: number) => void }) {
+  const [draft, setDraft] = useState(String(value));
+  const commit = () => {
+    const n = parseInt(draft, 10);
+    if (!n || n < 1) return setDraft(String(value));
+    const clamped = Math.min(n, max);
+    if (clamped !== value) onCommit(clamped);
+    else setDraft(String(value));
+  };
+  return (
+    <input
+      value={draft}
+      inputMode="numeric"
+      aria-label="Quantity"
+      onChange={(e) => setDraft(e.target.value.replace(/\D/g, "").slice(0, 4))}
+      onBlur={commit}
+      onKeyDown={(e) => {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          commit();
+        }
+      }}
+      className="w-11 bg-transparent text-center text-[14px] font-medium tabular-nums outline-none"
+    />
   );
 }

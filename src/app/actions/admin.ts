@@ -20,6 +20,7 @@ import {
 import { cloudinaryConfigured, deleteImage, uploadImage } from "@/lib/cloudinary";
 import { sendOrderStatusUpdate } from "@/lib/mail";
 import { slugify } from "@/lib/utils";
+import { availabilityValues, conditionValues } from "@/lib/site";
 
 async function guard() {
   const session = await requireAdmin();
@@ -35,13 +36,15 @@ function refreshStorefront() {
 
 const variantSchema = z.object({
   id: z.number().int().optional(),
-  condition: z.enum(["new", "uk-used", "us-used", "nigeria-used"]),
+  condition: z.enum(conditionValues),
   storage: z.string().trim().optional().nullable(),
   color: z.string().trim().optional().nullable(),
   colorHex: z.string().trim().optional().nullable(),
   price: z.coerce.number().int().positive("Price must be greater than 0"),
   compareAtPrice: z.coerce.number().int().nonnegative().optional().nullable(),
-  stock: z.coerce.number().int().nonnegative(),
+  availability: z.enum(availabilityValues).default("in_stock"),
+  /** Optional quantity available; null/empty = no limit. */
+  stock: z.coerce.number().int().nonnegative().nullable().default(null),
   sku: z.string().trim().optional().nullable(),
 });
 
@@ -105,6 +108,7 @@ export async function saveProduct(id: number | null, input: ProductFormInput): P
         colorHex: v.colorHex || null,
         price: v.price,
         compareAtPrice: v.compareAtPrice || null,
+        availability: v.availability,
         stock: v.stock,
         sku: v.sku || null,
       };
@@ -204,12 +208,6 @@ export async function saveProductImages(productId: number, input: z.input<typeof
   refreshStorefront();
   revalidatePath(`/admin/products/${productId}`);
   return { ok: true, message: "Photos saved." };
-}
-
-export async function quickUpdateStock(variantId: number, stock: number) {
-  await guard();
-  await db.update(productVariants).set({ stock: Math.max(0, Math.floor(stock)) }).where(eq(productVariants.id, variantId));
-  refreshStorefront();
 }
 
 /* ───────────── Orders ───────────── */

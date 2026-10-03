@@ -1,11 +1,10 @@
 import Link from "next/link";
-import { and, desc, eq, gte, lte, sql } from "drizzle-orm";
+import { and, desc, eq, gte, sql } from "drizzle-orm";
 import { AlertTriangle, ArrowRight, Package, ShoppingCart, TrendingUp, Users } from "lucide-react";
 import { db } from "@/db";
-import { orders, productVariants, products, users } from "@/db/schema";
+import { orderItems, orders, users } from "@/db/schema";
 import { Card, PageHeader, StatusPill } from "@/components/admin/ui";
 import { formatNaira } from "@/lib/utils";
-import { variantLabel } from "@/lib/catalog";
 
 export const dynamic = "force-dynamic";
 
@@ -19,7 +18,7 @@ function dateRanges() {
 export default async function AdminDashboard() {
   const { since30, startOfDay } = dateRanges();
 
-  const [[revenue30], [today], [toFulfil], [customerCount], recent, lowStock] = await Promise.all([
+  const [[revenue30], [today], [toFulfil], [customerCount], recent, toSource] = await Promise.all([
     db
       .select({ total: sql<number>`coalesce(sum(${orders.total}),0)::int`, count: sql<number>`count(*)::int` })
       .from(orders)
@@ -34,13 +33,21 @@ export default async function AdminDashboard() {
       .where(and(eq(orders.paymentStatus, "paid"), sql`${orders.status} in ('paid','processing')`)),
     db.select({ count: sql<number>`count(*)::int` }).from(users).where(eq(users.role, "customer")),
     db.query.orders.findMany({ where: eq(orders.paymentStatus, "paid"), orderBy: [desc(orders.createdAt)], limit: 8 }),
+    // "On order" items in paid orders that haven't shipped yet — what still needs buying from vendors.
     db
-      .select({ id: productVariants.id, productId: products.id, name: products.name, stock: productVariants.stock, condition: productVariants.condition, storage: productVariants.storage, color: productVariants.color })
-      .from(productVariants)
-      .innerJoin(products, eq(products.id, productVariants.productId))
-      .where(and(eq(products.isActive, true), lte(productVariants.stock, 2)))
-      .orderBy(productVariants.stock)
-      .limit(10),
+      .select({
+        id: orderItems.id,
+        name: orderItems.name,
+        variantLabel: orderItems.variantLabel,
+        quantity: orderItems.quantity,
+        orderId: orders.id,
+        reference: orders.reference,
+      })
+      .from(orderItems)
+      .innerJoin(orders, eq(orders.id, orderItems.orderId))
+      .where(and(eq(orderItems.onOrder, true), eq(orders.paymentStatus, "paid"), sql`${orders.status} in ('paid','processing')`))
+      .orderBy(orders.createdAt)
+      .limit(12),
   ]);
 
   const stats = [
@@ -101,23 +108,24 @@ export default async function AdminDashboard() {
         </Card>
 
         <Card>
-          <h2 className="mb-4 flex items-center gap-2 text-[17px] font-bold"><AlertTriangle className="h-4.5 w-4.5 text-amber-600" /> Low stock</h2>
-          {lowStock.length ? (
+          <h2 className="mb-1 flex items-center gap-2 text-[17px] font-bold"><AlertTriangle className="h-4.5 w-4.5 text-amber-600" /> To source from vendors</h2>
+          <p className="mb-3 text-[12.5px] text-muted">“Available on order” items in paid orders that haven&apos;t shipped yet.</p>
+          {toSource.length ? (
             <ul className="divide-y divide-line">
-              {lowStock.map((v) => (
-                <li key={v.id} className="flex items-center justify-between gap-3 py-2.5">
-                  <Link href={`/admin/products/${v.productId}`} className="min-w-0 hover:underline">
-                    <p className="truncate text-[14px] font-medium">{v.name}</p>
-                    <p className="truncate text-[12.5px] text-muted">{variantLabel(v) || "Default"}</p>
+              {toSource.map((item) => (
+                <li key={item.id} className="flex items-center justify-between gap-3 py-2.5">
+                  <Link href={`/admin/orders/${item.orderId}`} className="min-w-0 hover:underline">
+                    <p className="truncate text-[14px] font-medium">{item.name}</p>
+                    <p className="truncate text-[12.5px] text-muted">
+                      {[item.variantLabel, item.reference].filter(Boolean).join(" · ")}
+                    </p>
                   </Link>
-                  <span className={`shrink-0 rounded-full px-2.5 py-0.5 text-[12px] font-bold ${v.stock === 0 ? "bg-brand-50 text-brand-700" : "bg-amber-50 text-amber-700"}`}>
-                    {v.stock === 0 ? "Sold out" : `${v.stock} left`}
-                  </span>
+                  <span className="shrink-0 rounded-full bg-amber-50 px-2.5 py-0.5 text-[12px] font-bold text-amber-800">× {item.quantity}</span>
                 </li>
               ))}
             </ul>
           ) : (
-            <p className="py-8 text-center text-muted">Everything is well stocked.</p>
+            <p className="py-8 text-center text-muted">Nothing to source right now.</p>
           )}
         </Card>
       </div>

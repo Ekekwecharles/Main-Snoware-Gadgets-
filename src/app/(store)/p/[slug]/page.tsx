@@ -57,7 +57,8 @@ export default async function ProductPage(props: PageProps<"/p/[slug]">) {
       }))
     : false;
   const cheapest = Math.min(...product.variants.map((v) => v.price));
-  const anyStock = product.variants.some((v) => v.stock > 0);
+  const anyInStock = product.variants.some((v) => v.availability === "in_stock");
+  const anyOnOrder = product.variants.some((v) => v.availability === "on_order");
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -74,9 +75,11 @@ export default async function ProductPage(props: PageProps<"/p/[slug]">) {
       lowPrice: cheapest,
       highPrice: Math.max(...product.variants.map((v) => v.price)),
       offerCount: product.variants.length,
-      availability: anyStock
+      availability: anyInStock
         ? "https://schema.org/InStock"
-        : "https://schema.org/OutOfStock",
+        : anyOnOrder
+          ? "https://schema.org/BackOrder"
+          : "https://schema.org/OutOfStock",
       url: absoluteUrl(`/p/${product.slug}`),
       seller: { "@type": "Organization", name: site.name },
     },
@@ -177,6 +180,7 @@ export default async function ProductPage(props: PageProps<"/p/[slug]">) {
                     colorHex: v.colorHex,
                     price: v.price,
                     compareAtPrice: v.compareAtPrice,
+                    availability: v.availability,
                     stock: v.stock,
                   })),
                 }}

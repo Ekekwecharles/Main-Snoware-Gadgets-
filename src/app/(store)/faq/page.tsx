@@ -11,8 +11,8 @@ const faqs = [
     a: "Yes. We only sell genuine devices. Every product is checked before it's listed, and used devices go through a full inspection.",
   },
   {
-    q: "What's the difference between UK Used, US Used and Nigerian Used?",
-    a: "UK and US Used devices are imported pre-owned units, usually in very good to excellent condition. Nigerian Used devices are locally pre-owned and cost less, but may show more signs of use. All of them are tested and come with warranty.",
+    q: "What do Boxed, Open Box, UK Used, US Used and Nigerian Used mean?",
+    a: "Boxed devices are pre-owned and repackaged in brand-new condition — like-new body, 100% battery health, everything intact. Open Box means the box was opened and the device is unused or lightly used (the product description says which). UK and US Used devices are imported pre-owned units, usually in very good to excellent condition. Nigerian Used devices are locally pre-owned and cost less, but may show more signs of use. All of them are tested and come with warranty.",
   },
   {
     q: "How do I pay?",

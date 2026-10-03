@@ -1,6 +1,6 @@
 import "server-only";
 import nodemailer from "nodemailer";
-import { site } from "@/lib/site";
+import { onOrderLeadTime, site } from "@/lib/site";
 import { absoluteUrl, formatNaira } from "@/lib/utils";
 import type { Order, OrderItem, OrderStatus } from "@/db/schema";
 
@@ -90,7 +90,7 @@ function itemsTable(items: OrderItem[], order: Order) {
       (i) => `<tr>
         <td style="padding:10px 0;border-bottom:1px solid #eef0f3">${esc(i.name)}${
           i.variantLabel ? `<br/><span style="font-size:12px;color:#667085">${esc(i.variantLabel)}</span>` : ""
-        }</td>
+        }${i.onOrder ? `<br/><span style="font-size:12px;color:#b45309">Available on order · ships in ${onOrderLeadTime}</span>` : ""}</td>
         <td style="padding:10px 0;border-bottom:1px solid #eef0f3;text-align:center">${i.quantity}</td>
         <td style="padding:10px 0;border-bottom:1px solid #eef0f3;text-align:right">${formatNaira(i.unitPrice * i.quantity)}</td>
       </tr>`,

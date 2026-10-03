@@ -258,7 +258,7 @@ export default async function HomePage() {
                 Without the flagship price.
               </h2>
               <p className="mt-4 max-w-md text-[15.5px] leading-relaxed text-white/70">
-                Choose from UK-used, US-used and Nigerian-used devices. Every
+                Choose from Boxed (like new), Open Box, UK-used, US-used and Nigerian-used devices. Every
                 unit is checked for battery health, Face ID, cameras and screen
                 quality before it goes on sale, and comes with our warranty.
               </p>

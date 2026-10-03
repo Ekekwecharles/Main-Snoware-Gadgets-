@@ -8,6 +8,7 @@ import { useHydrated } from "@/lib/use-hydrated";
 import { startCheckout } from "@/app/actions/checkout";
 import { ProductImage } from "@/components/product/product-image";
 import { cn, formatNaira } from "@/lib/utils";
+import { onOrderLeadTime } from "@/lib/site";
 
 type Zone = { id: number; name: string; state: string; fee: number; eta: string };
 
@@ -158,6 +159,7 @@ export function CheckoutForm({ zones, storeAddress, storeHours, defaults, signed
                 <div className="min-w-0 flex-1">
                   <p className="line-clamp-2 text-[14px] font-medium">{i.name}</p>
                   {i.variantLabel && <p className="text-[12px] text-muted">{i.variantLabel}</p>}
+                  {i.onOrder && <p className="text-[12px] font-medium text-amber-700">On order · ships in {onOrderLeadTime}</p>}
                 </div>
                 <p className="text-[14px] font-semibold">{formatNaira(i.price * i.quantity)}</p>
               </li>

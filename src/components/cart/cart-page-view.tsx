@@ -7,6 +7,7 @@ import { useHydrated } from "@/lib/use-hydrated";
 import { ProductImage } from "@/components/product/product-image";
 import { QuantityStepper } from "./cart-drawer";
 import { formatNaira } from "@/lib/utils";
+import { maxOrderQty, onOrderLeadTime, stockText } from "@/lib/site";
 
 export function CartPageView() {
   const hydrated = useHydrated();
@@ -43,12 +44,14 @@ export function CartPageView() {
                   <div>
                     <Link href={`/p/${item.slug}`} className="text-[16px] font-semibold hover:underline">{item.name}</Link>
                     {item.variantLabel && <p className="mt-0.5 text-[13.5px] text-muted">{item.variantLabel}</p>}
+                    {item.onOrder && <p className="mt-0.5 text-[13px] font-medium text-amber-700">Available on order · ships in {onOrderLeadTime}</p>}
+                    {stockText(item.stock) && <p className="mt-0.5 text-[13px] font-medium text-brand-700">{stockText(item.stock)}</p>}
                     <p className="mt-1 text-[14px]">{formatNaira(item.price)}</p>
                   </div>
                   <p className="hidden text-[17px] font-bold sm:block">{formatNaira(item.price * item.quantity)}</p>
                 </div>
                 <div className="mt-auto flex items-center justify-between pt-4">
-                  <QuantityStepper value={item.quantity} max={item.maxStock} onChange={(q) => setQuantity(item.variantId, q)} />
+                  <QuantityStepper value={item.quantity} max={maxOrderQty(item.stock)} onChange={(q) => setQuantity(item.variantId, q)} />
                   <button onClick={() => remove(item.variantId)} className="inline-flex items-center gap-1.5 text-[13.5px] font-medium text-muted hover:text-brand-600">
                     <Trash2 className="h-4 w-4" /> Remove
                   </button>

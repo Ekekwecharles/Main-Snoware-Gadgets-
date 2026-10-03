@@ -1,5 +1,5 @@
 import "server-only";
-import { and, eq, sql } from "drizzle-orm";
+import { and, eq, isNotNull, sql } from "drizzle-orm";
 import { db } from "@/db";
 import { orderItems, orders, productVariants, products } from "@/db/schema";
 import { verifyTransaction } from "@/lib/paystack";
@@ -8,7 +8,7 @@ import { sendAdminNewOrderAlert, sendOrderConfirmation } from "@/lib/mail";
 /**
  * Confirms a Paystack payment and marks the order paid exactly once.
  * Called from both the redirect callback and the webhook — whichever arrives first wins;
- * the conditional UPDATE makes the second call a no-op so stock and emails aren't duplicated.
+ * the conditional UPDATE makes the second call a no-op so stock, sales counts and emails aren't duplicated.
  */
 export async function confirmPayment(reference: string) {
   const order = await db.query.orders.findFirst({ where: eq(orders.reference, reference) });
@@ -39,11 +39,12 @@ export async function confirmPayment(reference: string) {
 
     const items = await trx.select().from(orderItems).where(eq(orderItems.orderId, order.id));
     for (const item of items) {
+      // Decrease the optional quantity only where one is set; NULL (no limit) stays NULL.
       if (item.variantId)
         await trx
           .update(productVariants)
           .set({ stock: sql`GREATEST(${productVariants.stock} - ${item.quantity}, 0)` })
-          .where(eq(productVariants.id, item.variantId));
+          .where(and(eq(productVariants.id, item.variantId), isNotNull(productVariants.stock)));
       if (item.productId)
         await trx
           .update(products)

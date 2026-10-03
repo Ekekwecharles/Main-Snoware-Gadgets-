@@ -37,6 +37,11 @@ export default async function AdminOrderPage(props: PageProps<"/admin/orders/[id
                   <div className="min-w-0 flex-1">
                     {i.productId ? <Link href={`/admin/products/${i.productId}`} className="font-medium hover:underline">{i.name}</Link> : <p className="font-medium">{i.name}</p>}
                     <p className="text-[13px] text-muted">{[i.variantLabel, `${formatNaira(i.unitPrice)} × ${i.quantity}`].filter(Boolean).join(" · ")}</p>
+                    {i.onOrder && (
+                      <span className="mt-1 inline-block rounded-full bg-amber-50 px-2 py-0.5 text-[11.5px] font-semibold text-amber-800 ring-1 ring-amber-200">
+                        On order — source from vendor
+                      </span>
+                    )}
                   </div>
                   <p className="font-semibold">{formatNaira(i.unitPrice * i.quantity)}</p>
                 </li>

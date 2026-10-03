@@ -23,6 +23,7 @@ export async function GET(_req: Request, ctx: RouteContext<"/api/products/[slug]
       colorHex: v.colorHex,
       price: v.price,
       compareAtPrice: v.compareAtPrice,
+      availability: v.availability,
       stock: v.stock,
     })),
   });

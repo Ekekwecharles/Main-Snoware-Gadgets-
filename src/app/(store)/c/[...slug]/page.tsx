@@ -8,7 +8,7 @@ export async function generateMetadata(props: PageProps<"/c/[...slug]">): Promis
   const path = await getCategoryPath(slug);
   if (!path) return {};
   return {
-    title: `${path.current.name} — New & Used, Best Prices in Nigeria`,
+    title: `${path.current.name} — New & Pre-owned, Best Prices in Nigeria`,
     description: path.current.description ?? `Shop ${path.current.name} at Snoware Gadgets. Genuine devices, warranty and fast delivery across Nigeria.`,
   };
 }

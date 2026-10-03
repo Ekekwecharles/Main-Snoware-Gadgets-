@@ -1,7 +1,14 @@
 import "server-only";
 import { and, asc, eq, ilike, inArray, or, type SQL } from "drizzle-orm";
 import { db } from "@/db";
-import { banners, brands, categories, products, settings, deliveryZones } from "@/db/schema";
+import {
+  banners,
+  brands,
+  categories,
+  products,
+  settings,
+  deliveryZones,
+} from "@/db/schema";
 import type { Category } from "@/db/schema";
 
 export type ProductCardData = {
@@ -29,7 +36,9 @@ type ProductWithRelations = Awaited<ReturnType<typeof loadProducts>>[number];
 
 async function loadProducts(where?: SQL) {
   return db.query.products.findMany({
-    where: where ? and(eq(products.isActive, true), where) : eq(products.isActive, true),
+    where: where
+      ? and(eq(products.isActive, true), where)
+      : eq(products.isActive, true),
     with: {
       variants: true,
       images: { orderBy: (img, { asc }) => [asc(img.sortOrder)] },
@@ -39,8 +48,15 @@ async function loadProducts(where?: SQL) {
   });
 }
 
-export function variantLabel(v: { condition: string; storage: string | null; color: string | null }) {
-  const cond = v.condition === "new" ? null : v.condition.replace("-used", "").toUpperCase() + " Used";
+export function variantLabel(v: {
+  condition: string;
+  storage: string | null;
+  color: string | null;
+}) {
+  const cond =
+    v.condition === "new"
+      ? null
+      : v.condition.replace("-used", "").toUpperCase() + " Used";
   return [v.storage, v.color, cond].filter(Boolean).join(" · ");
 }
 
@@ -62,7 +78,11 @@ function toCard(p: ProductWithRelations): ProductCardData {
     compareAtPrice: cheapest?.compareAtPrice ?? null,
     inStock: inStockVariants.length > 0,
     conditions: [...new Set(p.variants.map((v) => v.condition))],
-    storages: [...new Set(p.variants.map((v) => v.storage).filter((s): s is string => !!s))],
+    storages: [
+      ...new Set(
+        p.variants.map((v) => v.storage).filter((s): s is string => !!s),
+      ),
+    ],
     colors: [...colors].map(([name, hex]) => ({ name, hex })),
     defaultVariantId: cheapest?.id ?? null,
     defaultVariantLabel: cheapest ? variantLabel(cheapest) : "",
@@ -75,7 +95,10 @@ function toCard(p: ProductWithRelations): ProductCardData {
 /* ───────────── Categories ───────────── */
 
 export async function getAllCategories() {
-  return db.select().from(categories).orderBy(asc(categories.sortOrder), asc(categories.name));
+  return db
+    .select()
+    .from(categories)
+    .orderBy(asc(categories.sortOrder), asc(categories.name));
 }
 
 export function descendantIds(all: Category[], rootId: number) {
@@ -98,7 +121,9 @@ export async function getCategoryPath(slugs: string[]) {
   const trail: Category[] = [];
   let parentId: number | null = null;
   for (const slug of slugs) {
-    const match = all.find((c) => c.slug === slug && (trail.length === 0 || c.parentId === parentId));
+    const match = all.find(
+      (c) => c.slug === slug && (trail.length === 0 || c.parentId === parentId),
+    );
     if (!match) return null;
     trail.push(match);
     parentId = match.id;
@@ -135,7 +160,11 @@ export type Facets = {
   priceRange: [number, number];
 };
 
-function countBy<T>(cards: ProductCardData[], pick: (c: ProductCardData) => T[], key: (t: T) => string) {
+function countBy<T>(
+  cards: ProductCardData[],
+  pick: (c: ProductCardData) => T[],
+  key: (t: T) => string,
+) {
   const counts = new Map<string, { item: T; count: number }>();
   for (const card of cards)
     for (const item of pick(card)) {
@@ -150,47 +179,88 @@ function countBy<T>(cards: ProductCardData[], pick: (c: ProductCardData) => T[],
  * Loads products for a category set and filters/sorts in memory. The catalogue is a few
  * hundred SKUs, so this keeps faceting simple; move filters into SQL if it grows to thousands.
  */
-export async function listProducts(opts: { categoryIds?: number[]; filters: ListingFilters }) {
+export async function listProducts(opts: {
+  categoryIds?: number[];
+  filters: ListingFilters;
+}) {
   const { filters } = opts;
   const q = filters.q?.trim();
   const rows = await loadProducts(
     and(
-      opts.categoryIds ? inArray(products.categoryId, opts.categoryIds) : undefined,
-      q ? or(ilike(products.name, `%${q}%`), ilike(products.shortDescription, `%${q}%`)) : undefined,
+      opts.categoryIds
+        ? inArray(products.categoryId, opts.categoryIds)
+        : undefined,
+      q
+        ? or(
+            ilike(products.name, `%${q}%`),
+            ilike(products.shortDescription, `%${q}%`),
+          )
+        : undefined,
     ),
   );
 
   let cards = rows
-    .filter((p) => !filters.usedOnly || p.variants.some((v) => v.condition !== "new"))
+    .filter(
+      (p) => !filters.usedOnly || p.variants.some((v) => v.condition !== "new"),
+    )
     .map((p) => {
       if (!filters.usedOnly) return toCard(p);
       // On the "Used" page, price/stock reflect used variants only.
-      return toCard({ ...p, variants: p.variants.filter((v) => v.condition !== "new") });
+      return toCard({
+        ...p,
+        variants: p.variants.filter((v) => v.condition !== "new"),
+      });
     });
 
   const facets: Facets = {
-    brands: countBy(cards, (c) => (c.brand ? [c.brand] : []), (b) => b).map((x) => ({ value: x.item, count: x.count })),
-    conditions: countBy(cards, (c) => c.conditions, (s) => s).map((x) => ({ value: x.item, count: x.count })),
-    storages: countBy(cards, (c) => c.storages, (s) => s).map((x) => ({ value: x.item, count: x.count })),
-    colors: countBy(cards, (c) => c.colors, (c) => c.name).map((x) => ({ value: x.item.name, hex: x.item.hex, count: x.count })),
+    brands: countBy(
+      cards,
+      (c) => (c.brand ? [c.brand] : []),
+      (b) => b,
+    ).map((x) => ({ value: x.item, count: x.count })),
+    conditions: countBy(
+      cards,
+      (c) => c.conditions,
+      (s) => s,
+    ).map((x) => ({ value: x.item, count: x.count })),
+    storages: countBy(
+      cards,
+      (c) => c.storages,
+      (s) => s,
+    ).map((x) => ({ value: x.item, count: x.count })),
+    colors: countBy(
+      cards,
+      (c) => c.colors,
+      (c) => c.name,
+    ).map((x) => ({ value: x.item.name, hex: x.item.hex, count: x.count })),
     priceRange: cards.length
-      ? [Math.min(...cards.map((c) => c.price)), Math.max(...cards.map((c) => c.price))]
+      ? [
+          Math.min(...cards.map((c) => c.price)),
+          Math.max(...cards.map((c) => c.price)),
+        ]
       : [0, 0],
   };
 
-  const has = (list: string[] | undefined, values: string[]) => !list?.length || values.some((v) => list.includes(v));
+  const has = (list: string[] | undefined, values: string[]) =>
+    !list?.length || values.some((v) => list.includes(v));
   cards = cards.filter(
     (c) =>
       has(filters.brand, c.brand ? [c.brand] : []) &&
       has(filters.condition, c.conditions) &&
       has(filters.storage, c.storages) &&
-      has(filters.color, c.colors.map((x) => x.name)) &&
+      has(
+        filters.color,
+        c.colors.map((x) => x.name),
+      ) &&
       (filters.min == null || c.price >= filters.min) &&
       (filters.max == null || c.price <= filters.max) &&
       (!filters.inStock || c.inStock),
   );
 
-  const sorters: Record<NonNullable<ListingFilters["sort"]>, (a: ProductCardData, b: ProductCardData) => number> = {
+  const sorters: Record<
+    NonNullable<ListingFilters["sort"]>,
+    (a: ProductCardData, b: ProductCardData) => number
+  > = {
     "best-selling": (a, b) => b.salesCount - a.salesCount,
     "price-asc": (a, b) => a.price - b.price,
     "price-desc": (a, b) => b.price - a.price,
@@ -207,7 +277,10 @@ export async function getFeaturedProducts(limit = 8) {
   const rows = await loadProducts(eq(products.featured, true));
   return rows
     .map(toCard)
-    .sort((a, b) => Number(b.inStock) - Number(a.inStock) || b.salesCount - a.salesCount)
+    .sort(
+      (a, b) =>
+        Number(b.inStock) - Number(a.inStock) || b.salesCount - a.salesCount,
+    )
     .slice(0, limit);
 }
 
@@ -215,10 +288,15 @@ export async function getProductsByCategorySlug(slug: string, limit = 8) {
   const all = await getAllCategories();
   const root = all.find((c) => c.slug === slug);
   if (!root) return [];
-  const rows = await loadProducts(inArray(products.categoryId, descendantIds(all, root.id)));
+  const rows = await loadProducts(
+    inArray(products.categoryId, descendantIds(all, root.id)),
+  );
   return rows
     .map(toCard)
-    .sort((a, b) => Number(b.inStock) - Number(a.inStock) || b.salesCount - a.salesCount)
+    .sort(
+      (a, b) =>
+        Number(b.inStock) - Number(a.inStock) || b.salesCount - a.salesCount,
+    )
     .slice(0, limit);
 }
 
@@ -226,7 +304,12 @@ export async function getUsedHighlights(limit = 8) {
   const rows = await loadProducts();
   return rows
     .filter((p) => p.variants.some((v) => v.condition !== "new" && v.stock > 0))
-    .map((p) => toCard({ ...p, variants: p.variants.filter((v) => v.condition !== "new") }))
+    .map((p) =>
+      toCard({
+        ...p,
+        variants: p.variants.filter((v) => v.condition !== "new"),
+      }),
+    )
     .sort((a, b) => b.salesCount - a.salesCount)
     .slice(0, limit);
 }
@@ -236,7 +319,10 @@ export async function searchProducts(q: string, limit = 6) {
   const rows = await loadProducts(ilike(products.name, `%${q.trim()}%`));
   return rows
     .map(toCard)
-    .sort((a, b) => Number(b.inStock) - Number(a.inStock) || b.salesCount - a.salesCount)
+    .sort(
+      (a, b) =>
+        Number(b.inStock) - Number(a.inStock) || b.salesCount - a.salesCount,
+    )
     .slice(0, limit);
 }
 
@@ -255,22 +341,35 @@ export async function getProductBySlug(slug: string) {
   if (!product) return null;
   const all = await getAllCategories();
   const trail: Category[] = [];
-  let cursor: Category | undefined = all.find((c) => c.id === product.categoryId);
+  let cursor: Category | undefined = all.find(
+    (c) => c.id === product.categoryId,
+  );
   while (cursor) {
     trail.unshift(cursor);
-    cursor = cursor.parentId ? all.find((c) => c.id === cursor!.parentId) : undefined;
+    cursor = cursor.parentId
+      ? all.find((c) => c.id === cursor!.parentId)
+      : undefined;
   }
   return { ...product, trail };
 }
 
-export type ProductDetail = NonNullable<Awaited<ReturnType<typeof getProductBySlug>>>;
+export type ProductDetail = NonNullable<
+  Awaited<ReturnType<typeof getProductBySlug>>
+>;
 
-export async function getRelatedProducts(productId: number, categoryId: number, limit = 8) {
+export async function getRelatedProducts(
+  productId: number,
+  categoryId: number,
+  limit = 8,
+) {
   const rows = await loadProducts(eq(products.categoryId, categoryId));
   return rows
     .filter((p) => p.id !== productId)
     .map(toCard)
-    .sort((a, b) => Number(b.inStock) - Number(a.inStock) || b.salesCount - a.salesCount)
+    .sort(
+      (a, b) =>
+        Number(b.inStock) - Number(a.inStock) || b.salesCount - a.salesCount,
+    )
     .slice(0, limit);
 }
 
@@ -290,8 +389,9 @@ export async function getBrands() {
 export const settingDefaults = {
   store_address: "Address coming soon — message us on WhatsApp for directions",
   store_hours: "Mon – Sat: 9:00am – 7:00pm",
-  store_map_query: "Lagos, Nigeria",
-  announcement: "Free in-store pickup · Fast delivery nationwide · Pay securely with Paystack",
+  store_map_query: "Port Harcourt, Nigeria",
+  announcement:
+    "Free in-store pickup · Fast delivery nationwide · Pay securely with Paystack",
 };
 
 export type SettingKey = keyof typeof settingDefaults;

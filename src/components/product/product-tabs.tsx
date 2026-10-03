@@ -6,9 +6,19 @@ import { Check } from "lucide-react";
 import type { ProductSpec } from "@/db/schema";
 import { cn } from "@/lib/utils";
 
-type Props = { highlights: string[]; description: string | null; specs: ProductSpec[]; hasUsed: boolean };
+type Props = {
+  highlights: string[];
+  description: string | null;
+  specs: ProductSpec[];
+  hasUsed: boolean;
+};
 
-export function ProductTabs({ highlights, description, specs, hasUsed }: Props) {
+export function ProductTabs({
+  highlights,
+  description,
+  specs,
+  hasUsed,
+}: Props) {
   const tabs = [
     { id: "overview", label: "Overview" },
     ...(specs.length ? [{ id: "specs", label: "Specifications" }] : []),
@@ -19,7 +29,11 @@ export function ProductTabs({ highlights, description, specs, hasUsed }: Props) 
 
   return (
     <section className="mt-16">
-      <div role="tablist" aria-label="Product information" className="no-scrollbar flex gap-1 overflow-x-auto border-b border-line">
+      <div
+        role="tablist"
+        aria-label="Product information"
+        className="no-scrollbar flex gap-1 overflow-x-auto border-b border-line"
+      >
         {tabs.map((t) => (
           <button
             key={t.id}
@@ -30,7 +44,9 @@ export function ProductTabs({ highlights, description, specs, hasUsed }: Props) 
             onClick={() => setActive(t.id)}
             className={cn(
               "relative shrink-0 px-4 py-3.5 text-[15px] font-semibold transition-colors",
-              active === t.id ? "text-ink after:absolute after:inset-x-3 after:-bottom-px after:h-0.5 after:rounded-full after:bg-brand-600" : "text-muted hover:text-ink",
+              active === t.id
+                ? "text-ink after:absolute after:inset-x-3 after:-bottom-px after:h-0.5 after:rounded-full after:bg-brand-600"
+                : "text-muted hover:text-ink",
             )}
           >
             {t.label}
@@ -38,13 +54,21 @@ export function ProductTabs({ highlights, description, specs, hasUsed }: Props) 
         ))}
       </div>
 
-      <div role="tabpanel" id={`panel-${active}`} aria-labelledby={`tab-${active}`} className="max-w-3xl py-8">
+      <div
+        role="tabpanel"
+        id={`panel-${active}`}
+        aria-labelledby={`tab-${active}`}
+        className="max-w-3xl py-8"
+      >
         {active === "overview" && (
           <div className="space-y-6">
             {highlights.length > 0 && (
               <ul className="grid gap-3 sm:grid-cols-2">
                 {highlights.map((h) => (
-                  <li key={h} className="flex gap-3 rounded-2xl bg-mist p-4 text-[14.5px]">
+                  <li
+                    key={h}
+                    className="flex gap-3 rounded-2xl bg-mist p-4 text-[14.5px]"
+                  >
                     <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-ink text-white">
                       <Check className="h-3 w-3" />
                     </span>
@@ -53,14 +77,21 @@ export function ProductTabs({ highlights, description, specs, hasUsed }: Props) 
                 ))}
               </ul>
             )}
-            {description && <div className="prose-snow whitespace-pre-line">{description}</div>}
+            {description && (
+              <div className="prose-snow whitespace-pre-line">
+                {description}
+              </div>
+            )}
           </div>
         )}
 
         {active === "specs" && (
           <dl className="divide-y divide-line overflow-hidden rounded-2xl ring-1 ring-line">
             {specs.map((s) => (
-              <div key={s.label} className="grid grid-cols-[minmax(120px,35%)_1fr] gap-4 px-5 py-3.5 text-[14.5px] odd:bg-mist/60">
+              <div
+                key={s.label}
+                className="grid grid-cols-[minmax(120px,35%)_1fr] gap-4 px-5 py-3.5 text-[14.5px] odd:bg-mist/60"
+              >
                 <dt className="font-semibold">{s.label}</dt>
                 <dd className="text-ink/80">{s.value}</dd>
               </div>
@@ -70,7 +101,10 @@ export function ProductTabs({ highlights, description, specs, hasUsed }: Props) 
 
         {active === "grading" && (
           <div className="prose-snow">
-            <p>Every used device we sell passes a multi-point inspection before it goes on sale. We test:</p>
+            <p>
+              Every used device we sell passes a multi-point inspection before
+              it goes on sale. We test:
+            </p>
             <ul>
               <li>Battery health (we state the percentage on request)</li>
               <li>Face ID / Touch ID / fingerprint sensor</li>
@@ -81,8 +115,10 @@ export function ProductTabs({ highlights, description, specs, hasUsed }: Props) 
             </ul>
             <h3>What the conditions mean</h3>
             <p>
-              <b>UK Used</b> and <b>US Used</b> devices are imported pre-owned units, typically in very good to excellent cosmetic condition.{" "}
-              <b>Nigerian Used</b> devices are locally pre-owned and offer the lowest prices; minor signs of use are possible. All used devices
+              <b>UK Used</b> and <b>US Used</b> devices are imported pre-owned
+              units, typically in very good to excellent cosmetic condition.{" "}
+              <b>Nigerian Used</b> devices are locally pre-owned and offer the
+              lowest prices; minor signs of use are possible. All used devices
               include our used-device warranty.
             </p>
           </div>
@@ -91,13 +127,22 @@ export function ProductTabs({ highlights, description, specs, hasUsed }: Props) 
         {active === "delivery" && (
           <div className="prose-snow">
             <h3>Delivery</h3>
-            <p>Same-day or next-day delivery within Lagos, and 1–5 business days to other states. The exact fee for your location is shown at checkout.</p>
+            <p>
+              Same-day or next-day delivery within Port Harcourt, and 1–5
+              business days to other states. The exact fee for your location is
+              shown at checkout.
+            </p>
             <h3>Free in-store pickup</h3>
-            <p>Choose “Pick up in store” at checkout and collect your order once we message you that it’s ready.</p>
+            <p>
+              Choose “Pick up in store” at checkout and collect your order once
+              we message you that it’s ready.
+            </p>
             <h3>Returns</h3>
             <p>
-              If your device has a fault that isn't due to misuse, report it within 7 days of delivery for a repair, replacement or refund. See our{" "}
-              <Link href="/policies/refund">refund policy</Link> for details.
+              If your device has a fault that isn't due to misuse, report it
+              within 7 days of delivery for a repair, replacement or refund. See
+              our <Link href="/policies/refund">refund policy</Link> for
+              details.
             </p>
           </div>
         )}

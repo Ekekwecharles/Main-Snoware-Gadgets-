@@ -26,7 +26,7 @@ export default async function AdminSettingsPage() {
               </div>
               <div>
                 <Label htmlFor="store_map_query" hint="used for the Google Map on the store page">Map search text</Label>
-                <input id="store_map_query" name="store_map_query" defaultValue={s.store_map_query} placeholder="e.g. 12 Allen Avenue, Ikeja, Lagos" className={inputClass} />
+                <input id="store_map_query" name="store_map_query" defaultValue={s.store_map_query} placeholder="e.g. Artillery, Aba Road, Port Harcourt" className={inputClass} />
               </div>
               <div>
                 <Label htmlFor="announcement" hint="thin bar above the header — leave empty to hide">Announcement bar</Label>

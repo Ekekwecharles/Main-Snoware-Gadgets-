@@ -123,7 +123,7 @@ export function CheckoutForm({ zones, storeAddress, storeHours, defaults, signed
                 {errors.zoneId && <p className="mt-1 text-[12.5px] text-brand-700">{errors.zoneId}</p>}
               </div>
               <Field label="Street address" name="addressLine" placeholder="House number, street, landmark" autoComplete="street-address" error={errors.addressLine} className="sm:col-span-2" />
-              <Field label="City / Area" name="city" placeholder="e.g. Ikeja" autoComplete="address-level2" error={errors.city} />
+              <Field label="City / Area" name="city" placeholder="e.g. GRA Phase 2" autoComplete="address-level2" error={errors.city} />
               <div className="flex items-end">
                 {zone && <p className="rounded-xl bg-mist px-4 py-3 text-[13.5px]"><b>{zone.eta}</b> · {formatNaira(zone.fee)}</p>}
               </div>

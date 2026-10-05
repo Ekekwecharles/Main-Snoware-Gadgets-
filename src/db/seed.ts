@@ -729,17 +729,19 @@ const products: P[] = [
   },
 ];
 
+/** Delivery zones from our Port Harcourt store (Artillery). `state` is the checkout group heading. Fees are starting points — edit in admin. */
 const zones = [
-  { name: "Lagos Mainland", state: "Lagos", fee: 3_000, eta: "Same day / next day" },
-  { name: "Lagos Island & Lekki", state: "Lagos", fee: 4_000, eta: "Same day / next day" },
-  { name: "Ikorodu, Epe & Badagry", state: "Lagos", fee: 5_000, eta: "1–2 business days" },
-  { name: "Ogun State", state: "Ogun", fee: 6_000, eta: "1–2 business days" },
-  { name: "Abuja (FCT)", state: "FCT", fee: 7_000, eta: "1–3 business days" },
-  { name: "Port Harcourt", state: "Rivers", fee: 7_500, eta: "2–3 business days" },
-  { name: "Ibadan", state: "Oyo", fee: 6_500, eta: "1–3 business days" },
-  { name: "Other South-West states", state: "South-West", fee: 7_000, eta: "2–4 business days" },
-  { name: "South-East & South-South", state: "South", fee: 8_000, eta: "2–4 business days" },
-  { name: "Northern states", state: "North", fee: 9_000, eta: "3–5 business days" },
+  { name: "Artillery, Rumuobiakani, Rumuola, Woji, Elelenwo", state: "Port Harcourt", fee: 2_000, eta: "Same day" },
+  { name: "GRA, Old GRA, D-Line, Mile 1–3, Diobu", state: "Port Harcourt", fee: 2_500, eta: "Same day" },
+  { name: "Trans-Amadi, Peter Odili Rd, Eliozu, Rumuokoro, Ada George", state: "Port Harcourt", fee: 2_500, eta: "Same day" },
+  { name: "Choba, Alakahia, Aluu, Rumuosi, Rumuolumeni", state: "Port Harcourt", fee: 3_500, eta: "Same day / next day" },
+  { name: "Eleme, Onne, Oyigbo, Igwuruta, Airport road", state: "Rivers State", fee: 4_500, eta: "1–2 business days" },
+  { name: "Other Rivers State areas", state: "Rivers State", fee: 5_500, eta: "1–2 business days" },
+  { name: "Bayelsa, Akwa Ibom, Abia & Imo", state: "South-South & South-East", fee: 6_500, eta: "1–3 business days" },
+  { name: "Other South-South & South-East states", state: "South-South & South-East", fee: 7_500, eta: "2–4 business days" },
+  { name: "Lagos & South-West states", state: "Lagos & South-West", fee: 8_500, eta: "2–4 business days" },
+  { name: "Abuja (FCT)", state: "FCT", fee: 8_500, eta: "2–3 business days" },
+  { name: "Northern states", state: "North", fee: 9_500, eta: "3–5 business days" },
 ];
 
 const heroBanners = [
@@ -747,6 +749,9 @@ const heroBanners = [
   { eyebrow: "UK & US Used", title: "Premium phones. Smarter prices.", subtitle: "Every used device is inspected, graded and covered by our warranty.", priceText: "Save up to 30%", ctaLabel: "Shop used", ctaHref: "/used", secondaryLabel: "How we grade", secondaryHref: "/warranty", theme: "navy" },
   { eyebrow: "Internet anywhere", title: "Starlink Mini", subtitle: "Fast satellite internet that fits in your backpack.", priceText: "₦285,000", ctaLabel: "Order now", ctaHref: "/p/starlink-mini-kit", secondaryLabel: "Learn more", secondaryHref: "/c/starlink", theme: "light" },
   { eyebrow: "Game on", title: "PlayStation 5", subtitle: "Pick up in-store today or get it delivered to your door.", priceText: "From ₦850,000", ctaLabel: "Shop gaming", ctaHref: "/c/gaming", secondaryLabel: "See PS5 Pro", secondaryHref: "/p/playstation-5-pro", theme: "red" },
+  { eyebrow: "Laptops & MacBooks", title: "Power for work, study & play", subtitle: "MacBooks, student, office and gaming laptops — new and UK-used, tested and under warranty.", priceText: "From ₦430,000", ctaLabel: "Shop laptops", ctaHref: "/c/computers", secondaryLabel: "Shop MacBooks", secondaryHref: "/c/apple/macbook", theme: "blue" },
+  // Brand slide — always last.
+  { eyebrow: "Snoware Gadgets", title: "Genuine gadgets. Honest prices.", subtitle: "Phones, laptops, consoles and audio — delivered from Port Harcourt to every state in Nigeria.", ctaLabel: "Shop all gadgets", ctaHref: "/shop", secondaryLabel: "Browse pre-owned", secondaryHref: "/used", theme: "dark", image: "/cart.png" },
 ];
 
 const promoTiles = [

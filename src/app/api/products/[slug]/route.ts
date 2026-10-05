@@ -12,7 +12,10 @@ export async function GET(_req: Request, ctx: RouteContext<"/api/products/[slug]
     brand: p.brand?.name ?? null,
     categorySlug: p.category.slug,
     shortDescription: p.shortDescription,
+    description: p.description,
     highlights: p.highlights,
+    specs: p.specs,
+    badge: p.badge,
     image: p.images[0]?.url ?? null,
     images: p.images.map((i) => i.url),
     variants: p.variants.map((v) => ({

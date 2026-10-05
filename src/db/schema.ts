@@ -290,6 +290,30 @@ export const wishlist = pgTable(
   (t) => [primaryKey({ columns: [t.userId, t.productId] })],
 );
 
+/** Signed-in shoppers' carts, shared by the website and the mobile app. Guests keep their cart in the browser. */
+export const carts = pgTable("carts", {
+  userId: text("user_id")
+    .primaryKey()
+    .references(() => users.id, { onDelete: "cascade" }),
+  notes: text("notes").notNull().default(""),
+  updatedAt: timestamp("updated_at").notNull().defaultNow(),
+});
+
+export const cartItems = pgTable(
+  "cart_items",
+  {
+    userId: text("user_id")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+    variantId: integer("variant_id")
+      .notNull()
+      .references(() => productVariants.id, { onDelete: "cascade" }),
+    quantity: integer("quantity").notNull(),
+    createdAt: timestamp("created_at").notNull().defaultNow(),
+  },
+  (t) => [primaryKey({ columns: [t.userId, t.variantId] })],
+);
+
 /* ───────────────────────── Relations ───────────────────────── */
 
 export const categoriesRelations = relations(categories, ({ one, many }) => ({
@@ -327,6 +351,10 @@ export const orderItemsRelations = relations(orderItems, ({ one }) => ({
 
 export const wishlistRelations = relations(wishlist, ({ one }) => ({
   product: one(products, { fields: [wishlist.productId], references: [products.id] }),
+}));
+
+export const cartItemsRelations = relations(cartItems, ({ one }) => ({
+  variant: one(productVariants, { fields: [cartItems.variantId], references: [productVariants.id] }),
 }));
 
 export type User = typeof users.$inferSelect;

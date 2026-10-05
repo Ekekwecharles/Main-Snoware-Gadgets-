@@ -3,6 +3,7 @@ import { getSettings } from "@/lib/catalog";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { CartDrawer } from "@/components/cart/cart-drawer";
+import { CartSync } from "@/components/cart/cart-sync";
 import { WhatsAppFab } from "@/components/layout/whatsapp-fab";
 
 export default async function StoreLayout({ children }: LayoutProps<"/">) {
@@ -15,6 +16,7 @@ export default async function StoreLayout({ children }: LayoutProps<"/">) {
       <main className="flex-1">{children}</main>
       <Footer storeAddress={settings.store_address} />
       <CartDrawer />
+      <CartSync userId={session?.user?.id ?? null} />
       <WhatsAppFab />
     </>
   );

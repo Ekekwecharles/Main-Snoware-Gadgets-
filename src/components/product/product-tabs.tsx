@@ -102,8 +102,8 @@ export function ProductTabs({
         {active === "grading" && (
           <div className="prose-snow">
             <p>
-              Every pre-owned device we sell passes a multi-point inspection before
-              it goes on sale. We test:
+              Every pre-owned device we sell passes a multi-point inspection
+              before it goes on sale. We test:
             </p>
             <ul>
               <li>Battery health (we state the percentage on request)</li>
@@ -116,18 +116,21 @@ export function ProductTabs({
             <h3>What the conditions mean</h3>
             <ul>
               <li>
-                <b>Boxed</b> — pre-owned and repackaged, in brand-new condition: the body looks like new, battery health is 100%, and
-                everything works with all features intact.
+                <b>Boxed</b> — pre-owned and repackaged, in brand-new condition:
+                the body looks like new, battery health is 100%, and everything
+                works with all features intact.
               </li>
               <li>
-                <b>Open Box</b> — the box has been opened and the device is unused or only lightly used. The product description says
-                which.
+                <b>Open Box</b> — the box has been opened and the device is
+                unused or only lightly used. The product description says which.
               </li>
               <li>
-                <b>UK Used</b> and <b>US Used</b> — imported pre-owned units, typically in very good to excellent cosmetic condition.
+                <b>UK Used</b> and <b>US Used</b> — imported pre-owned units,
+                typically in very good to excellent cosmetic condition.
               </li>
               <li>
-                <b>Nigerian Used</b> — locally pre-owned at our lowest prices; minor signs of use are possible.
+                <b>Nigerian Used</b> — locally pre-owned at our lowest prices;
+                minor signs of use are possible.
               </li>
             </ul>
             <p>All pre-owned devices include our pre-owned device warranty.</p>
@@ -138,7 +141,7 @@ export function ProductTabs({
           <div className="prose-snow">
             <h3>Delivery</h3>
             <p>
-              Same-day or next-day delivery within Port Harcourt, and 1–5
+              Same-day or next-day delivery within Port Harcourt, and 1–3
               business days to other states. The exact fee for your location is
               shown at checkout.
             </p>

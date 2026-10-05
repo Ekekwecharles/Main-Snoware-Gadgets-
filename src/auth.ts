@@ -2,11 +2,10 @@ import NextAuth, { CredentialsSignin, type DefaultSession } from "next-auth";
 import Google from "next-auth/providers/google";
 import Credentials from "next-auth/providers/credentials";
 import { DrizzleAdapter } from "@auth/drizzle-adapter";
-import bcrypt from "bcryptjs";
 import { eq } from "drizzle-orm";
-import { z } from "zod";
 import { db } from "@/db";
 import { accounts, sessions, users, verificationTokens } from "@/db/schema";
+import { verifyCredentials } from "@/lib/auth-core";
 
 declare module "next-auth" {
   interface Session {
@@ -17,11 +16,6 @@ declare module "next-auth" {
 class EmailNotVerified extends CredentialsSignin {
   code = "email_not_verified";
 }
-
-const credentialsSchema = z.object({
-  email: z.email().transform((v) => v.toLowerCase().trim()),
-  password: z.string().min(1),
-});
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   adapter: DrizzleAdapter(db, {
@@ -42,13 +36,12 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     Credentials({
       credentials: { email: {}, password: {} },
       async authorize(raw) {
-        const parsed = credentialsSchema.safeParse(raw);
-        if (!parsed.success) return null;
-        const user = await db.query.users.findFirst({ where: eq(users.email, parsed.data.email) });
-        if (!user?.passwordHash) return null;
-        const ok = await bcrypt.compare(parsed.data.password, user.passwordHash);
-        if (!ok) return null;
-        if (!user.emailVerified) throw new EmailNotVerified();
+        const result = await verifyCredentials(raw);
+        if (!result.ok) {
+          if (result.reason === "email_not_verified") throw new EmailNotVerified();
+          return null;
+        }
+        const { user } = result;
         return { id: user.id, name: user.name, email: user.email, image: user.image };
       },
     }),

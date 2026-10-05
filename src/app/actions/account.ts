@@ -1,24 +1,21 @@
 "use server";
 
 import bcrypt from "bcryptjs";
-import { and, eq } from "drizzle-orm";
+import { eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
 import { auth } from "@/auth";
 import { db } from "@/db";
-import { users, wishlist } from "@/db/schema";
-import type { FormState } from "./auth";
+import { users } from "@/db/schema";
+import { updateProfile, type FormState } from "@/lib/auth-core";
+import { toggleWishlistItem } from "@/lib/wishlist";
 
 export async function updateProfileAction(_prev: FormState, formData: FormData): Promise<FormState> {
   const session = await auth();
   if (!session?.user) return { ok: false, message: "Please sign in again." };
-  const parsed = z
-    .object({ name: z.string().trim().min(2, "Enter your name"), phone: z.string().trim().max(20).optional() })
-    .safeParse(Object.fromEntries(formData));
-  if (!parsed.success) return { ok: false, message: parsed.error.issues[0].message };
-  await db.update(users).set({ name: parsed.data.name, phone: parsed.data.phone || null }).where(eq(users.id, session.user.id));
-  revalidatePath("/account", "layout");
-  return { ok: true, message: "Profile updated." };
+  const result = await updateProfile(session.user.id, Object.fromEntries(formData));
+  if (result?.ok) revalidatePath("/account", "layout");
+  return result;
 }
 
 export async function changePasswordAction(_prev: FormState, formData: FormData): Promise<FormState> {
@@ -44,10 +41,7 @@ export async function changePasswordAction(_prev: FormState, formData: FormData)
 export async function toggleWishlist(productId: number) {
   const session = await auth();
   if (!session?.user) return { ok: false as const, signedIn: false };
-  const where = and(eq(wishlist.userId, session.user.id), eq(wishlist.productId, productId));
-  const existing = await db.query.wishlist.findFirst({ where });
-  if (existing) await db.delete(wishlist).where(where);
-  else await db.insert(wishlist).values({ userId: session.user.id, productId });
+  const saved = await toggleWishlistItem(session.user.id, productId);
   revalidatePath("/account/wishlist");
-  return { ok: true as const, signedIn: true, saved: !existing };
+  return { ok: true as const, signedIn: true, saved };
 }

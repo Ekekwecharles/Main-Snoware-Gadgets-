@@ -49,7 +49,7 @@ export function HeroCarousel({ banners }: { banners: Banner[] }) {
   const [emblaRef, embla] = useEmblaCarousel({ loop: true }, [Autoplay({ delay: 6000, stopOnInteraction: false, stopOnMouseEnter: true })]);
   const [index, setIndex] = useState(0);
   const [playing, setPlaying] = useState(true);
-  const total = banners.length + 1;
+  const total = banners.length;
 
   useEffect(() => {
     if (!embla) return;
@@ -68,46 +68,17 @@ export function HeroCarousel({ banners }: { banners: Banner[] }) {
     setPlaying(autoplay.isPlaying());
   }, [embla]);
 
+  // No active slides in Admin → Banners: render nothing rather than an empty band.
+  if (!total) return null;
+
   return (
     <section aria-roledescription="carousel" aria-label="Featured" className="relative">
       <div className="overflow-hidden" ref={emblaRef}>
         <div className="flex">
-          {/* Brand slide built from the Snoware logo artwork */}
-          <div className="relative min-w-0 flex-[0_0_100%]" aria-roledescription="slide" aria-label={`1 of ${total}`}>
-            <div className={cn("relative overflow-hidden bg-black", slideHeight)}>
-              {/* Phones: show the whole banner (logo + cart) at full width on top, text below.
-                  Tablet/desktop: banner fills the slide. */}
-              <div className="absolute inset-x-0 top-0 aspect-[3/2] md:inset-0 md:aspect-auto">
-                <Image
-                  src="/snoware-hero.png"
-                  alt="Snoware Gadgets — phones, laptops, consoles and audio in a shopping cart"
-                  fill
-                  priority
-                  sizes="100vw"
-                  className="object-contain object-top md:object-cover md:object-center"
-                />
-              </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 via-45% to-transparent to-70% md:bg-gradient-to-r md:from-black/70 md:via-transparent md:via-50% md:to-transparent" />
-              <div className="container-x relative flex h-full flex-col justify-end pb-16 md:pb-20">
-                <p className="max-w-md text-[15px] text-white/80 md:text-[17px]">
-                  Genuine new &amp; UK/US-used phones, laptops, consoles and more — at honest prices, delivered across Nigeria.
-                </p>
-                <div className="mt-6 flex flex-wrap gap-3">
-                  <Link href="/shop" className="rounded-full bg-brand-600 px-7 py-3 text-[15px] font-semibold text-white transition hover:bg-brand-700">
-                    Shop all gadgets
-                  </Link>
-                  <Link href="/used" className="rounded-full px-7 py-3 text-[15px] font-semibold text-white ring-1 ring-white/70 transition hover:bg-white hover:text-ink">
-                    Browse used deals
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-
           {banners.map((b, i) => {
             const t = themes[b.theme] ?? themes.light;
             return (
-              <div key={b.id} className="relative min-w-0 flex-[0_0_100%]" aria-roledescription="slide" aria-label={`${i + 2} of ${total}`}>
+              <div key={b.id} className="relative min-w-0 flex-[0_0_100%]" aria-roledescription="slide" aria-label={`${i + 1} of ${total}`}>
                 <div className={cn("relative overflow-hidden", slideHeight, t.bg)}>
                   {/* Phones: stacked (art on top, text below). md+: two columns. */}
                   <div className="container-x flex h-full flex-col items-center justify-center gap-3 pt-4 pb-16 md:grid md:grid-cols-2 md:gap-6 md:py-0">

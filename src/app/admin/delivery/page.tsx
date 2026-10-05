@@ -54,8 +54,8 @@ export default async function AdminDeliveryPage() {
 function ZoneFields({ zone }: { zone?: DeliveryZone }) {
   return (
     <div className="grid gap-3 sm:grid-cols-2">
-      <div><Label>Area name</Label><input name="name" required defaultValue={zone?.name} placeholder="e.g. Lagos Mainland" className={inputClass} /></div>
-      <div><Label>State / region</Label><input name="state" required defaultValue={zone?.state} placeholder="e.g. Lagos" className={inputClass} /></div>
+      <div><Label>Area name</Label><input name="name" required defaultValue={zone?.name} placeholder="e.g. GRA, Old GRA, D-Line" className={inputClass} /></div>
+      <div><Label>State / region</Label><input name="state" required defaultValue={zone?.state} placeholder="e.g. Port Harcourt (group shown at checkout)" className={inputClass} /></div>
       <div><Label>Fee (₦)</Label><input name="fee" type="number" min={0} required defaultValue={zone?.fee} className={inputClass} /></div>
       <div><Label>Delivery time</Label><input name="eta" required defaultValue={zone?.eta} placeholder="1–2 business days" className={inputClass} /></div>
       <div><Label>Sort order</Label><input name="sortOrder" type="number" defaultValue={zone?.sortOrder ?? 0} className={inputClass} /></div>

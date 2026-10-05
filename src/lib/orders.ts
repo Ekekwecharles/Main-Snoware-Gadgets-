@@ -4,6 +4,7 @@ import { db } from "@/db";
 import { orderItems, orders, productVariants, products } from "@/db/schema";
 import { verifyTransaction } from "@/lib/paystack";
 import { sendAdminNewOrderAlert, sendOrderConfirmation } from "@/lib/mail";
+import { clearCart, publishCart } from "@/lib/cart";
 
 /**
  * Confirms a Paystack payment and marks the order paid exactly once.
@@ -57,6 +58,14 @@ export async function confirmPayment(reference: string) {
   if (!updated) {
     const fresh = await db.query.orders.findFirst({ where: eq(orders.id, order.id) });
     return { ok: true as const, order: fresh ?? order, alreadyPaid: true };
+  }
+
+  // The order is paid, so empty the shopper's account cart on every device (website and app).
+  if (updated.paid.userId) {
+    const userId = updated.paid.userId;
+    await clearCart(userId)
+      .then(() => publishCart(userId, null))
+      .catch((err) => console.error("[orders] clearing cart failed", err));
   }
 
   await Promise.all([sendOrderConfirmation(updated.paid, updated.items), sendAdminNewOrderAlert(updated.paid, updated.items)]);

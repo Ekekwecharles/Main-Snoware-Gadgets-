@@ -7,8 +7,9 @@ import { CardActions } from "./card-actions";
 
 export function ProductCard({ product, priority, className }: { product: ProductCardData; priority?: boolean; className?: string }) {
   const off = discountPercent(product.price, product.compareAtPrice);
-  const usedOnly = product.conditions.every((c) => c !== "new");
-  const hasUsed = product.conditions.some((c) => c !== "new");
+  const hasNew = product.conditions.includes("new");
+  const conditionText =
+    product.conditions.length === 1 ? conditionLabel(product.conditions[0]) : hasNew ? "New & Pre-owned" : "Pre-owned";
 
   return (
     <article
@@ -36,10 +37,10 @@ export function ProductCard({ product, priority, className }: { product: Product
       <div className="flex flex-1 flex-col p-4">
         <div className="mb-1.5 flex items-center gap-2 text-[11.5px] font-medium text-muted">
           {product.brand && <span>{product.brand}</span>}
-          {hasUsed && (
+          {product.conditions.length > 0 && (
             <>
               {product.brand && <span aria-hidden>·</span>}
-              <span className="text-navy-700">{usedOnly ? conditionLabel(product.conditions[0]) : "New & Pre-owned"}</span>
+              <span className={product.conditions.length === 1 && hasNew ? "text-success" : "text-navy-700"}>{conditionText}</span>
             </>
           )}
         </div>

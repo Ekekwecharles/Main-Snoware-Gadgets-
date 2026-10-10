@@ -1,0 +1,462 @@
+{
+  "iphone-17": [
+    "https://cdsassets.apple.com/live/7WUAS350/images/iphone/iphone-17-colors.png"
+  ],
+  "iphone-16-pro": [
+    "https://cdsassets.apple.com/live/7WUAS350/images/iphone/iphone-16-pro-colors.png"
+  ],
+  "iphone-16-plus": [
+    "https://cdsassets.apple.com/live/7WUAS350/images/iphone/iphone-16-plus-colors.png"
+  ],
+  "iphone-15-pro-max": [
+    "https://cdsassets.apple.com/live/7WUAS350/images/iphone/fall-2023-iphone-colors-iphone-15-pro-max.png"
+  ],
+  "iphone-15-pro": [
+    "https://cdsassets.apple.com/live/7WUAS350/images/iphone/fall-2023-iphone-colors-iphone-15-pro.png"
+  ],
+  "iphone-15-plus": [
+    "https://cdsassets.apple.com/live/7WUAS350/images/iphone/fall-2023-iphone-colors-iphone-15-plus.png"
+  ],
+  "iphone-15": [
+    "https://cdsassets.apple.com/live/7WUAS350/images/iphone/fall-2023-iphone-colors-iphone-15.png"
+  ],
+  "iphone-14-pro-max": [
+    "https://cdsassets.apple.com/live/7WUAS350/images/iphone/iphone-14-pro-max-colors.png"
+  ],
+  "iphone-14-pro": [
+    "https://cdsassets.apple.com/live/7WUAS350/images/iphone/iphone-14-pro-colors.png"
+  ],
+  "iphone-14-plus": [
+    "https://cdsassets.apple.com/live/7WUAS350/images/iphone/iphone-14-plus-colors-spring-2023.png"
+  ],
+  "iphone-14": [
+    "https://cdsassets.apple.com/live/7WUAS350/images/iphone/iphone-14-colors-spring-2023.png"
+  ],
+  "iphone-13-pro": [
+    "https://cdsassets.apple.com/live/7WUAS350/images/iphone/2022-spring-iphone13-pro-colors.png"
+  ],
+  "iphone-13": [
+    "https://cdsassets.apple.com/live/7WUAS350/images/iphone/2022-spring-iphone13-colors.png"
+  ],
+  "iphone-12-pro-max": [
+    "https://cdsassets.apple.com/live/7WUAS350/images/iphone/iphone-12-pro-max/iphone12-pro-max-colors.jpg"
+  ],
+  "iphone-12-pro": [
+    "https://cdsassets.apple.com/live/7WUAS350/images/iphone/iphone-12-pro/iphone12-pro-colors.jpg"
+  ],
+  "iphone-12": [
+    "https://cdsassets.apple.com/live/7WUAS350/images/iphone/2021-iphone12-colors.png"
+  ],
+  "iphone-11-pro-max": [
+    "https://cdsassets.apple.com/live/7WUAS350/images/iphone/identify-iphone-11pro-max.jpg"
+  ],
+  "iphone-11-pro": [
+    "https://cdsassets.apple.com/live/7WUAS350/images/iphone/identify-iphone-11pro.jpg"
+  ],
+  "iphone-11": [
+    "https://cdsassets.apple.com/live/7WUAS350/images/iphone/identify-iphone-11-colors.jpg"
+  ],
+  "iphone-xr": [
+    "https://cdsassets.apple.com/live/7WUAS350/images/iphone/iphone-xr/identify-iphone-xr-colors.jpg"
+  ],
+  "ipad-pro-13-inch-m5": [
+    "https://cdsassets.apple.com/live/7WUAS350/images/ipad/fall-2025-ipad-pro-m5-13in.png"
+  ],
+  "ipad-pro-13-inch-m4": [
+    "https://cdsassets.apple.com/live/7WUAS350/images/ipad/spring-2024-1.png"
+  ],
+  "ipad-air-13-inch": [
+    "https://cdsassets.apple.com/live/7WUAS350/images/ipad/spring-2026-ipad-air-13.png"
+  ],
+  "ipad-air-11-inch": [
+    "https://cdsassets.apple.com/live/7WUAS350/images/ipad/spring-2026-ipad-air-11.png"
+  ],
+  "ipad-11th-gen": [
+    "https://cdsassets.apple.com/live/7WUAS350/images/ipad/spring-2025-ipad.png"
+  ],
+  "ipad-mini-7-wi-fi": [
+    "https://cdsassets.apple.com/live/7WUAS350/images/ipad/ipad-mini/ipad-mini-2024-colors.png"
+  ],
+  "ipad-air-5th-gen-m1": [
+    "https://cdsassets.apple.com/live/7WUAS350/images/ipad/ipad-air-5th-gen-colors.png"
+  ],
+  "macbook-pro-14-inch-m4": [
+    "https://cdsassets.apple.com/live/7WUAS350/images/macbook-pro/macbook-pro-14in-2024-m4-colors.png"
+  ],
+  "macbook-air-13-inch-m5": [
+    "https://cdsassets.apple.com/live/7WUAS350/images/macbook-air/macbook-air-13in-m5-colors.png"
+  ],
+  "macbook-air-15-inch-m4": [
+    "https://cdsassets.apple.com/live/7WUAS350/images/macbook-air/2025-macbook-air-15in-colors.png"
+  ],
+  "macbook-air-13-inch-m2": [
+    "https://cdsassets.apple.com/live/7WUAS350/images/macbook-air/2022-macbook-air-m2-colors.png"
+  ],
+  "macbook-air-13-inch-m1": [
+    "https://cdsassets.apple.com/live/7WUAS350/images/macbook-air/macbook-air-2020-late-device.jpg"
+  ],
+  "macbook-neo": [
+    "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/macbook-neo-color-unselect-202603-gallery-1?wid=2000&hei=1280&fmt=jpeg&qlt=90"
+  ],
+  "mac-mini-m4": [
+    "https://cdsassets.apple.com/live/7WUAS350/images/mac-mini/mac-mini-2024.png"
+  ],
+  "macbook-pro-m3-pro": [
+    "https://cdsassets.apple.com/live/7WUAS350/images/macbook-pro/macbook-pro-14in-m3-pro-m3-max-nov-2023-silver-space-black.png"
+  ],
+  "macbook-pro-m1-pro": [
+    "https://cdsassets.apple.com/live/7WUAS350/images/macbook-pro/macbook-pro-2021-14in.png"
+  ],
+  "macbook-pro-13-inch-m1": [
+    "https://cdsassets.apple.com/live/7WUAS350/images/macbook-pro/macbook-pro-2020-late-13in-device.jpg"
+  ],
+  "apple-watch-ultra-2": [
+    "https://cdsassets.apple.com/live/7WUAS350/images/apple-watch/apple-watch-ultra-2-colors.png"
+  ],
+  "apple-watch-ultra-1": [
+    "https://cdsassets.apple.com/live/7WUAS350/images/apple-watch/fall-2022-apple-watch-ultra.png"
+  ],
+  "apple-watch-series-10": [
+    "https://cdsassets.apple.com/live/7WUAS350/images/apple-watch/apple-watch-series-10-aluminum-gps.png"
+  ],
+  "apple-watch-series-9": [
+    "https://cdsassets.apple.com/live/7WUAS350/images/apple-watch/apple-watch-series-9-gps.png"
+  ],
+  "apple-watch-series-8": [
+    "https://cdsassets.apple.com/live/7WUAS350/images/apple-watch/fall-2022-watch-series8-aluminum-gps.png"
+  ],
+  "apple-watch-series-7": [
+    "https://cdsassets.apple.com/live/7WUAS350/images/apple-watch/2021-apple-watch-series7-aluminum-gps.png"
+  ],
+  "apple-watch-series-6": [
+    "https://cdsassets.apple.com/live/7WUAS350/images/apple-watch/apple-watch-series6-aluminum-gps-colors.png"
+  ],
+  "apple-watch-series-5": [
+    "https://cdsassets.apple.com/live/7WUAS350/images/apple-watch/series5-apple-watch-aluminum-gps.png"
+  ],
+  "apple-watch-series-4": [
+    "https://cdsassets.apple.com/live/7WUAS350/images/apple-watch/series4-apple-watch-aluminum-gps.png"
+  ],
+  "airpods-max-2nd-gen": [
+    "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/airpods-max-select-202409-midnight?wid=1000&hei=1000&fmt=jpeg&qlt=90"
+  ],
+  "airpods-5": [
+    "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/airpods-5-select-202609?wid=1000&hei=1000&fmt=jpeg&qlt=90"
+  ],
+  "airpods-pro-2": [
+    "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/MTJV3?wid=1000&hei=1000&fmt=jpeg&qlt=90"
+  ],
+  "airpods-4": [
+    "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/MXP63?wid=1000&hei=1000&fmt=jpeg&qlt=90"
+  ],
+  "magic-keyboard-for-ipad-pro-13-inch-m4-m5": [
+    "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/MWR53?wid=1000&hei=1000&fmt=jpeg&qlt=90",
+    "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/MWR43?wid=1000&hei=1000&fmt=jpeg&qlt=90"
+  ],
+  "magic-keyboard-for-ipad-pro-11-inch-m4-m5": [
+    "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/MWR23?wid=1000&hei=1000&fmt=jpeg&qlt=90"
+  ],
+  "magic-keyboard-folio-for-ipad-10th-11th-gen": [
+    "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/MQDP3?wid=1000&hei=1000&fmt=jpeg&qlt=90"
+  ],
+  "samsung-galaxy-s8": [
+    "https://images.samsung.com/is/image/samsung/uk-galaxy-s8-g950-sm-g950fzkabtu-134230802?$624_624_PNG$"
+  ],
+  "samsung-galaxy-s8-plus": [
+    "https://images.samsung.com/is/image/samsung/uk-galaxy-s8-plus-g955-sm-g955fzkabtu-133926026?$624_624_PNG$"
+  ],
+  "samsung-galaxy-s9": [
+    "https://images.samsung.com/is/image/samsung/uk-galaxy-s9-sm-g960-dual-sim-sm-g960fzkdbtu-133896424?$624_624_PNG$"
+  ],
+  "samsung-galaxy-s9-plus": [
+    "https://images.samsung.com/is/image/samsung/ae-galaxy-s9plus-sm-g965-sm-g965fzkdxsg-frontblack-94418401?$624_624_PNG$"
+  ],
+  "samsung-galaxy-s10e": [
+    "https://images.samsung.com/is/image/samsung/uk-galaxy-s10e-sm-g970-hybrid-sim-sm-g970fzkdbtu-frontprismblack-146851428?$624_624_PNG$"
+  ],
+  "samsung-galaxy-s10": [
+    "https://images.samsung.com/is/image/samsung/uk-galaxy-s10-sm-g973-hybrid-sim-sm-g973fzkdbtu-prismblack-163031236?$624_624_PNG$"
+  ],
+  "samsung-galaxy-s10-plus": [
+    "https://images.samsung.com/is/image/samsung/ae-galaxy-s10-sm-g975-sm-g975fzkdxsg-frontprismblack-148266371?$624_624_PNG$"
+  ],
+  "samsung-galaxy-note-10": [
+    "https://images.samsung.com/is/image/samsung/uk-galaxy-note10-sm-n970-sm-n970fzkdbtu-179669624?$624_624_PNG$"
+  ],
+  "samsung-galaxy-note-10-plus": [
+    "https://images.samsung.com/is/image/samsung/uk-galaxy-note10plus-sm-n975-sm-n975fzkdbtu-179669571?$624_624_PNG$"
+  ],
+  "samsung-galaxy-s20": [
+    "https://images.samsung.com/is/image/samsung/uk-galaxy-s20-sm-g980-sm-g980fzadeua-frontcosmicgray-214107547?$624_624_PNG$"
+  ],
+  "samsung-galaxy-s20-ultra": [
+    "https://images.samsung.com/is/image/samsung/uk-galaxy-s20-ultra-sm-g988-5g-sm-g988bzkdeua-frontcosmicblack-214107293?$624_624_PNG$"
+  ],
+  "samsung-galaxy-s20-fe": [
+    "https://images.samsung.com/is/image/samsung/uk-galaxy-s20-fe-sm-g780-sm-g780fzbdeua-frontcloudnavy-307461529?$624_624_PNG$"
+  ],
+  "samsung-galaxy-note-20": [
+    "https://images.samsung.com/is/image/samsung/uk/galaxy-note20/gallery/uk-galaxy-note20-sm-n980-sm-n980fzngeua-frontmysticbronze-272499418?$624_624_PNG$"
+  ],
+  "samsung-galaxy-note-20-ultra": [
+    "https://images.samsung.com/is/image/samsung/uk-galaxy-note20-ultra-5g-256gb-sm-n986-sm-n986bzkgeua-frontmysticblack-288381518?$624_624_PNG$"
+  ],
+  "samsung-galaxy-s21": [
+    "https://images.samsung.com/is/image/samsung/p6pim/uk/galaxy-s21/gallery/uk-galaxy-s21-5g-g991-sm-g991bzvdeua-368855939?$650_519_PNG$"
+  ],
+  "samsung-galaxy-s21-ultra": [
+    "https://images.samsung.com/is/image/samsung/p6pim/uk/galaxy-s21/gallery/uk-galaxy-s21-ultra-5g-g988-sm-g998bzkdeua-368887916?$650_519_PNG$"
+  ],
+  "samsung-galaxy-s22": [
+    "https://images.samsung.com/is/image/samsung/p6pim/uk/sm-s901bzkdeub/gallery/uk-galaxy-s22-s901-sm-s901bzkdeub-541608283?$650_519_PNG$"
+  ],
+  "samsung-galaxy-s22-ultra": [
+    "https://images.samsung.com/is/image/samsung/p6pim/uk/2202/gallery/uk-galaxy-s22-ultra-s908-sm-s908bzkgeub-530846989?$650_519_PNG$"
+  ],
+  "samsung-galaxy-s23": [
+    "https://images.samsung.com/is/image/samsung/p6pim/uk/2302/gallery/uk-galaxy-s23-s911-sm-s911bzkdeub-534791532?$650_519_PNG$"
+  ],
+  "samsung-galaxy-s23-ultra": [
+    "https://images.samsung.com/is/image/samsung/p6pim/uk/2302/gallery/uk-galaxy-s23-s918-sm-s918bzkdeub-534793350?$650_519_PNG$"
+  ],
+  "samsung-galaxy-s24": [
+    "https://images.samsung.com/is/image/samsung/p6pim/uk/2401/gallery/uk-galaxy-s24-sm-s921bzkdeub-539353772?$650_519_PNG$"
+  ],
+  "samsung-galaxy-s24-ultra": [
+    "https://images.samsung.com/is/image/samsung/p6pim/uk/2401/gallery/uk-galaxy-s24-ultra-491396-sm-s928bztgeub-539464101?$650_519_PNG$"
+  ],
+  "samsung-galaxy-s25": [
+    "https://images.samsung.com/is/image/samsung/p6pim/uk/2501/gallery/uk-galaxy-s25-s931-534000-sm-s931blbdeub-544939689?$650_519_PNG$"
+  ],
+  "samsung-galaxy-s25-ultra": [
+    "https://images.samsung.com/is/image/samsung/p6pim/uk/2501/gallery/uk-galaxy-s25-s938-sm-s938bzbdeub-544815197?$650_519_PNG$"
+  ],
+  "samsung-galaxy-s26": [
+    "https://images.samsung.com/is/image/samsung/p6pim/uk/s2602/gallery/uk-galaxy-s26-s942-578718-sm-s942bzsheub-thumb-550897256?$650_519_PNG$"
+  ],
+  "samsung-galaxy-a57": [
+    "https://images.samsung.com/is/image/samsung/p6pim/uk/sm-a576bdbdeub/gallery/uk-galaxy-a57-5g-sm-a576-sm-a576bdbdeub-thumb-551708604?$650_519_PNG$"
+  ],
+  "samsung-galaxy-a56": [
+    "https://images.samsung.com/is/image/samsung/p6pim/uk/sm-a566bzkceub/gallery/uk-galaxy-a56-5g-sm-a566-sm-a566bzkceub-545178713?$650_519_PNG$"
+  ],
+  "samsung-galaxy-a36": [
+    "https://images.samsung.com/is/image/samsung/p6pim/uk/sm-a366bzkgeub/gallery/uk-galaxy-a36-5g-sm-a366-sm-a366bzkgeub-545177112?$650_519_PNG$"
+  ],
+  "samsung-galaxy-a26": [
+    "https://images.samsung.com/is/image/samsung/p6pim/uk/sm-a266bzkceub/gallery/uk-galaxy-a26-5g-sm-a266-sm-a266bzkceub-545279773?$650_519_PNG$"
+  ],
+  "samsung-galaxy-z-trifold": [
+    "https://images.samsung.com/is/image/samsung/p6pim/us/sm-f968uzkaxaa/gallery/us-galaxy-z-trifold-f968-sm-f968uzkaxaa-551140992?$650_519_PNG$"
+  ],
+  "samsung-galaxy-z-fold-8-ultra": [
+    "https://images.samsung.com/is/image/samsung/p6pim/uk/f2607/gallery/uk-galaxy-z-fold8-ultra-f976-sm-f976bzvbeub-thumb-553681555?$650_519_PNG$"
+  ],
+  "samsung-galaxy-z-fold-8": [
+    "https://images.samsung.com/is/image/samsung/p6pim/uk/f2607/gallery/uk-galaxy-z-fold8-f971-598719-sm-f971blvbeub-thumb-553684947?$650_519_PNG$"
+  ],
+  "samsung-galaxy-z-fold-6": [
+    "https://images.samsung.com/is/image/samsung/p6pim/uk/2407/gallery/uk-galaxy-z-fold6-f956-sm-f956bdbbeub-542659703?$650_519_PNG$"
+  ],
+  "samsung-galaxy-z-fold-5": [
+    "https://images.samsung.com/is/image/samsung/p6pim/uk/2307/gallery/uk-galaxy-z-fold5-f946-466188-sm-f946bzkbeub-537168262?$650_519_PNG$"
+  ],
+  "samsung-galaxy-z-fold-4": [
+    "https://images.samsung.com/is/image/samsung/p6pim/uk/2208/gallery/uk-galaxy-z-fold4-f936-sm-f936bzkbeub-533157603?$650_519_PNG$"
+  ],
+  "samsung-galaxy-z-fold-3": [
+    "https://images.samsung.com/is/image/samsung/p6pim/uk/2108/gallery/uk-galaxy-z-fold3-f926-5g-sm-f926bzkdeua-477352706?$650_519_PNG$"
+  ],
+  "samsung-galaxy-z-flip-8": [
+    "https://images.samsung.com/is/image/samsung/p6pim/uk/f2607/gallery/uk-galaxy-zflip8-f776-598738-sm-f776bligeub-thumb-553687855?$650_519_PNG$"
+  ],
+  "samsung-galaxy-z-flip-7": [
+    "https://images.samsung.com/is/image/samsung/p6pim/uk/f2507/gallery/uk-galaxy-zflip7-f766-sm-f766bzkgeub-547697720?$650_519_PNG$"
+  ],
+  "samsung-galaxy-z-flip-7-fe": [
+    "https://images.samsung.com/is/image/samsung/p6pim/uk/f2507/gallery/uk-galaxy-z-flip7-fe-f761-sm-f761bzkgeub-thumb-547699793?$650_519_PNG$"
+  ],
+  "samsung-galaxy-tab-s11-ultra": [
+    "https://images.samsung.com/is/image/samsung/p6pim/uk/sm-x930nzareub/gallery/uk-galaxy-tab-s11-ultra-sm-x930-sm-x930nzareub-548916190?$650_519_PNG$"
+  ],
+  "samsung-galaxy-tab-s10-ultra": [
+    "https://images.samsung.com/is/image/samsung/p6pim/uk/sm-x926bzareub/gallery/uk-galaxy-tab-s10-ultra-sm-x920-sm-x926bzareub-543691004?$650_519_PNG$"
+  ],
+  "samsung-galaxy-tab-s10-fe": [
+    "https://images.samsung.com/is/image/samsung/p6pim/uk/sm-x520nzareub/gallery/uk-galaxy-tab-s10-fe-sm-x526-sm-x520nzareub-545667963?$650_519_PNG$"
+  ],
+  "samsung-galaxy-tab-a11-plus": [
+    "https://images.samsung.com/is/image/samsung/p6pim/uk/sm-x230nzareub/gallery/uk-galaxy-tab-a11-plus-sm-x230-570754-sm-x230nzareub-thumb-550010015?$650_519_PNG$"
+  ],
+  "samsung-galaxy-tab-a11": [
+    "https://images.samsung.com/is/image/samsung/p6pim/uk/sm-x130nzaaeub/gallery/uk-galaxy-tab-a11-sm-x130-sm-x130nzaaeub-thumb-549348052?$650_519_PNG$"
+  ],
+  "samsung-galaxy-tab-a9-plus": [
+    "https://images.samsung.com/is/image/samsung/p6pim/uk/sm-x210nzaaeub/gallery/uk-galaxy-tab-a9-plus-sm-x210-sm-x210nzaaeub-538905798?$650_519_PNG$"
+  ],
+  "samsung-galaxy-watch-ultra-2-2026": [
+    "https://images.samsung.com/is/image/samsung/p6pim/uk/f2607/gallery/uk-galaxy-watch-ultra2-l710-sm-l715fzsaeub-thumb-553804043?$650_519_PNG$"
+  ],
+  "samsung-galaxy-watch-ultra-1-2025": [
+    "https://images.samsung.com/is/image/samsung/p6pim/us/f2507/gallery/us-galaxy-watch-ultra-2025-l705-sm-l705uzb1xaa-547907812?$650_519_PNG$"
+  ],
+  "samsung-galaxy-watch-9": [
+    "https://images.samsung.com/is/image/samsung/p6pim/uk/f2607/gallery/uk-galaxy-watch9-l340-sm-l340nzkaeub-thumb-553691918?$650_519_PNG$"
+  ],
+  "samsung-galaxy-watch-8-classic": [
+    "https://images.samsung.com/is/image/samsung/p6pim/uk/f2507/gallery/uk-galaxy-watch8-classic-l500-sm-l500nzkaeua-thumb-547707845?$650_519_PNG$"
+  ],
+  "samsung-galaxy-watch-7": [
+    "https://images.samsung.com/is/image/samsung/p6pim/uk/2407/gallery/uk-galaxy-watch7-l310-sm-l310nzgaeua-542217662?$650_519_PNG$"
+  ],
+  "samsung-galaxy-buds-4-pro": [
+    "https://images.samsung.com/is/image/samsung/p6pim/uk/s2602/gallery/uk-galaxy-buds4-r640-579822-sm-r640nzwaeub-551034391?$650_519_PNG$"
+  ],
+  "google-pixel-11-pro-xl": [
+    "https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Pixel-11ProXL_Family-Shot.width-1600.format-webp.webp"
+  ],
+  "google-pixel-10-pro-fold": [
+    "https://lh3.googleusercontent.com/vhWzJI7EGBqM6fOEPH0H9OLEJaKR8dt2ayHgGUscypsN7xQPG0gMEe_PpnoX4kbSwEmiYjjJitNtNJqoS0Af8WIS3gtcgjSw0soS=w1000-rj-sc0xffffffff"
+  ],
+  "google-pixel-10-pro": [
+    "https://lh3.googleusercontent.com/cUnl8qDLSpzTlH9_9fIEpNHq8EiVH-JwF-r0FPGha83zS26d0FO4LYUxYDU-k3CO6VDt9pyMOHWXiSvvFcenGccNM5B1L8TVO-2OtA=w1000-rj-sc0xffffffff"
+  ],
+  "google-pixel-10": [
+    "https://storage.googleapis.com/mannequin/auto//cart/2026-07-13_19h12m_ede259ba-0a06-453f-aad1-42d57c22e2f0/cart-%5Bfrankel,ultra-blue%5D.png"
+  ],
+  "google-pixel-9-pro-xl": [
+    "https://storage.googleapis.com/gweb-uniblog-publish-prod/images/P9P9PThumbnail_16x9_Opt2_2.width-1300.jpg"
+  ],
+  "google-pixel-9-pro": [
+    "https://storage.googleapis.com/gweb-uniblog-publish-prod/images/P9P9PThumbnail_16x9_Opt2_2.width-1300.jpg"
+  ],
+  "google-pixel-8-pro": [
+    "https://lh3.googleusercontent.com/TOcZSwRVklpjJaBQWw5efaj9S0IG8566ayw3R40Rfbqma3o6w5qUOecqmKb9rCZFGl1dEq1an46wpcSuxAwn916MPkaz90odEaw=w1000-rj-sc0xffffffff"
+  ],
+  "google-pixel-8": [
+    "https://lh3.googleusercontent.com/IigjdpP92zuyA1JFiHUMCdnxq0Lo2HtHF5VmSeQDkxmLsHLE85holHTfuFXq21OsMrxxYCwmVmEelST9Xi86j-iGlZTiVHO0NLg=w1000-rj-sc0xffffffff"
+  ],
+  "google-pixel-7-pro": [
+    "https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Hero_Image_Thumbnail.width-1300.jpg"
+  ],
+  "google-pixel-7": [
+    "https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Hero_Image_Thumbnail.width-1300.jpg"
+  ],
+  "google-pixel-7a": [
+    "https://lh3.googleusercontent.com/Cdr1_vY-rGSsXHbiLGIeGMRCsc_9ahC2TkxRDeRIXqHG1AA921U18BQWK2OvX-N47qqAag8eDkABVWbg37vrECVLKOKw1N1wQQ=w1000-rj-sc0xffffffff"
+  ],
+  "google-pixel-6-pro": [
+    "https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Google_Pixel_Portfolio_Shot.width-1600.format-webp.webp"
+  ],
+  "jbl-tune-730": [
+    "https://i5.walmartimages.com/seo/JBL-Tune-730BT-Wireless-Over-Ear-Headphones-Black-Sold-without-manufacturer-warranty_5dac45eb-0983-49a4-abdd-368a1c846a7a.df692b1d432d3c196d936f6f883a310d.jpeg"
+  ],
+  "jbl-tune-530": [
+    "https://i5.walmartimages.com/seo/JBL-Tune-530-Hi-res-Wired-on-Ear-Headphones-JBL-Pure-Bass-Sound-Wide-Compatibility-3-Button-Remote-Microphone-Easy-EQ-presets-Tangle-Free-Flat-Cable_62ae1849-685e-4137-a556-4af21de2dff6.53d90217531e0a05ea4353560591910c.jpeg"
+  ],
+  "jbl-tune-520": [
+    "https://i5.walmartimages.com/seo/JBL-Tune-520BT-Wireless-on-ear-headphones-Black_a349828c-2fb0-4fac-a00a-c78157d0a4fc.0f97370b290d49bdec2e01f0d1ede0a8.jpeg"
+  ],
+  "jbl-tune-510": [
+    "https://i5.walmartimages.com/seo/JBL-Tune-510BT-Wireless-on-ear-headphones-White_376b16af-9f66-461d-9dc4-5d60fdf9c64e.76cba280d4644417a21921eab1e1b963.jpeg"
+  ],
+  "jbl-partybox-310": [
+    "https://i5.walmartimages.com/seo/JBL-Partybox-310-Portable-party-speaker-with-dazzling-lights-and-powerful-JBL-Pro-Sound-Black_3918c17e-5de8-4385-aae2-337995167e57.099eed46ce318752073859113e2eb977.jpeg"
+  ],
+  "jbl-boombox-4": [
+    "https://i5.walmartimages.com/seo/JBL-Boombox-4-Powerful-Portable-Waterproof-Speaker-Massive-Pro-Sound-34-Hours-Playtime-Multi-Speaker-Connection-Auracast-Black_264e25cb-d570-4237-b2ae-0a8d883e2b78.bf9436fe1af7be68d4cee51123b5d065.jpeg"
+  ],
+  "jbl-boombox-3": [
+    "https://i5.walmartimages.com/seo/JBL-Boombox-3-Portable-speaker-Black_50dd268b-b60f-4482-8bd4-eb67c20c012e.08ff047d519d53a354b5341f11e3966a.jpeg"
+  ],
+  "jbl-xtreme-4": [
+    "https://i5.walmartimages.com/seo/JBL-Xtreme-4-Portable-Waterproof-Bluetooth-Speaker-Black_7ad85df7-8895-41f2-85ad-fd00d5b7a922.655dd92be8b0c94ee957d451399b1e33.jpeg"
+  ],
+  "onyx-studio-9": [
+    "https://i5.walmartimages.com/seo/Harman-Kardon-Onyx-Studio-9-Portable-Stereo-Bluetooth-Home-Speaker-Built-in-Battery-USB-Charging-self-Tuning-Multi-Speaker-Connection-Auracast-Black_e50e2a89-0bda-4c09-8066-887d03d2ff7e.3d222c6562fc84aefdfc96e97bdd6616.jpeg"
+  ],
+  "jbl-charge-5": [
+    "https://i5.walmartimages.com/seo/JBL-Charge-5-Portable-Waterproof-Speaker-with-Powerbank-Black_52ff481b-838d-463c-94f5-46d010db04b0.5c6978079da675e4d0e156d205277ffb.jpeg"
+  ],
+  "jbl-grip": [
+    "https://i5.walmartimages.com/seo/JBL-Grip-Black_d743f9d6-70bf-4cf7-a13e-04de6bd829d1.db60e643149ebca8f35e68855cea0352.jpeg"
+  ],
+  "jbl-flip-6": [
+    "https://i5.walmartimages.com/seo/JBL-Flip-6-Portable-Waterproof-Speaker-Black-Sold-without-manufacturer-warranty_8bd17439-21ee-42cc-95e7-24e16eb981ab.e9a0099bf8907e607f84b0167b0a81ff.jpeg"
+  ],
+  "jbl-clip-5": [
+    "https://i5.walmartimages.com/seo/JBL-Clip-5-Ultra-portable-waterproof-speaker-Black_89bd463c-998d-4118-9d06-1e077f8e8fd4.488a6f62b24cd679bfc6f4f6c0fa3a62.jpeg"
+  ],
+  "jbl-clip-4": [
+    "https://i5.walmartimages.com/seo/JBL-Clip-4-Ultra-portable-Waterproof-Speaker-Grey_0d4ec3bc-e8d0-43be-8054-8b6f56a6e8d5.17705d6cfcf7db9a982153319a4978ac.jpeg"
+  ],
+  "jbl-go-4": [
+    "https://i5.walmartimages.com/seo/JBL-Go-4-Ultra-Portable-Bluetooth-Speaker-Black-Sold-without-manufacturer-warranty_e36751d2-4cf6-4df7-b53b-48fbff72d8ef.4bb3676ae1b94d1b89b6e9397c2df82d.jpeg"
+  ],
+  "jbl-go-3": [
+    "https://i5.walmartimages.com/seo/JBL-Go-3-Portable-Mini-Wireless-Bluetooth-Waterproof-Speaker-Gray-with-Cleaning-Cloth-Sold-without-manufacturer-warranty_3d5989c0-8987-4172-ba62-901f43f0986f.5c9f5bb4f9d5c1da1691dc6624df4c56.jpeg"
+  ],
+  "playstation-4-pro-1tb": [
+    "https://i5.walmartimages.com/seo/Sony-PlayStation-4-Pro-Game-console-4K-HDR-1-TB-HDD-jet-black_172b9f7d-8f79-4834-83c8-6b465475e811_1.7d0a69b7ef7565109a354bb7ea809205.jpeg"
+  ],
+  "playstation-4-original": [
+    "https://i5.walmartimages.com/seo/Restored-Sony-Playstation-PS4-500GB-Black-Console-Refurbished_4d736ff8-6481-42eb-a5c6-7e5ddb31c609.b046945a96012f71bdd9064fb4248e7e.jpeg"
+  ],
+  "ea-sports-fc-27": [
+    "https://i5.walmartimages.com/seo/EA-SPORTS-FC-27-PlayStation-5-Game_3ba0e253-3275-48a5-882b-93c050374892.fa3bbb6f606fa0c64fee0f6f1d5f62e2.jpeg"
+  ],
+  "dji-osmo-pocket-4": [
+    "https://i5.walmartimages.com/seo/Osmo-Pocket-4-Standard-Combo-1-CMOS-4K-240fps-Gimbal-Camera-Black_6958aefb-e3af-4d66-a5bf-84fa079f9e7a.f0ed60e6cf5279dc3bccafcdd82fd2e4.jpeg"
+  ],
+  "dell-alienware-16-aurora-rtx-5050": [
+    "https://i5.walmartimages.com/seo/Dell-Alienware-16-Aurora-16-WQXGA-Intel-Core-9-270H-2-7-GHz-32GB-DDR5-1TB-SSD-NVIDIA-GeForce-RTX-5070-Windows-11-Home-Gaming-Laptop-Blue_dd64c6c9-ae40-46d3-b6bc-d1efb1941a7f.94a9e8c7a0a5f4b9c0cab99a29cff743.jpeg"
+  ],
+  "dell-alienware-rtx-5060-gaming-laptop": [
+    "https://i5.walmartimages.com/seo/Dell-Alienware-16-Aurora-16-WQXGA-Intel-Core-9-270H-2-7-GHz-32GB-DDR5-1TB-SSD-NVIDIA-GeForce-RTX-5070-Windows-11-Home-Gaming-Laptop-Blue_dd64c6c9-ae40-46d3-b6bc-d1efb1941a7f.94a9e8c7a0a5f4b9c0cab99a29cff743.jpeg"
+  ],
+  "dell-alienware-15-rtx-4050": [
+    "https://m.media-amazon.com/images/I/7144G1V9qcL._AC_SL1500_.jpg"
+  ],
+  "hp-victus-15-fa2309tx-rtx-5050": [
+    "https://i5.walmartimages.com/seo/HP-Victus-15-6-Gaming-Laptop-Mica-Silver-15-fa0031dx_b5d19f86-cb95-4f7f-8d32-dc9a1873f38c.13dec83544e96fbf7368da9cc611f786.jpeg"
+  ],
+  "hp-victus-15-fa2082wm-rtx-4050": [
+    "https://i5.walmartimages.com/seo/HP-Victus-15-6-inch-FHD-IPS-144Hz-Gaming-Laptop-AMD-Ryzen-5-8645HS-NVIDIA-GeForce-RTX-4050-8GB-DDR5-512GB-SSD-Mica-Silver-2024_04abf048-d9d8-4116-a0bf-68803329aa55.cffd7bcccd71823b93806434d2d23b60.jpeg"
+  ],
+  "hp-victus-15-fa2013dx-rtx-3050": [
+    "https://i5.walmartimages.com/seo/HP-Victus-by-HP-Laptop-Computer-15-6-FHD-AMD-Ryzen-7-16-GB-memory-1-TB-SSD_fba75bc3-70f4-4027-9ef8-fa51f0cdb1e4.517aced7fe094ea885b6324db7a8cdf2.jpeg"
+  ],
+  "hp-omen-16-rtx-5060": [
+    "https://i5.walmartimages.com/seo/HP-Omen-16-WQXGA-IPS-240Hz-Gaming-Notebook-Intel-Core-Ultra-9-285H-16GB-RAM-1TB-SSD-NVIDIA-GeForce-RTX-5070-Shadow-Black_dfba1798-371d-46ee-8d29-9e7f459feb6e.4a61c16cd9bc73ee92f0ff2bb2511641.jpeg"
+  ],
+  "hp-omnibook-3-snapdragon-x-14-inch": [
+    "https://i5.walmartimages.com/seo/HP-OmniBook-3-14-Laptop-Snapdragon-X1-26-100-16GB-256GB-SSD-W11-DR3M5UAABA_59962f79-e28e-43fa-826a-6962f33bacee.b1bd292ca9b5768f7f937fea97d9bbda.jpeg"
+  ],
+  "hp-omnibook-flip-16-16-as0023dx-touch": [
+    "https://i5.walmartimages.com/seo/HP-OmniBook-X-Flip-Copilot-PC-16-2-in-1-Touchscreen-Laptop-AMD-Ryzen-AI-5-340-16GB-RAM-512GB-SSD-Windows-11-Home_4d3fcc12-d26f-4923-bea5-cd04776892f0.6e8ba37bd443043be7b343731d8bac89.png"
+  ],
+  "hp-envy-x360-14-14-es1013dx-touch": [
+    "https://i5.walmartimages.com/seo/HP-Envy-x360-2-in-1-Laptop-2024-14-FHD-IPS-Touchscreen-Intel-5-120U-10-Core-Intel-Graphics-8GB-DDR4-512GB-SSD-Backlit-Keyboard-Fingerprint-Wi-Fi-6E-C_1ae4b7bf-52ed-4b1c-9b67-ceecc24597b1.c0f93c5f86cc42121fc34e5c6916ab3f.jpeg"
+  ],
+  "dell-latitude-7420-touch": [
+    "https://i5.walmartimages.com/seo/DELL-Latitude-7420-Laptop-Intel-Core-i5-1145G7-16GB-LPDDR4x-Memory-256GB-NVMe-SSD-14-0-Windows-11-Pro_373c6958-20cf-4314-8ad1-52fd992aefb4.d782ed5914105dae587a313c665d8003.jpeg"
+  ],
+  "hp-zbook-firefly-14-g7-touch": [
+    "https://i5.walmartimages.com/seo/HP-ZBook-Firefly-14-G7-3V337UT-ABA-14-Mobile-Workstation-Intel-Core-i7-10610U-1-8GHz-16GB-RAM-512GB-SSD-1920-x-1080-Intel-UHD-Graphics-Windows-10-Pro_20d85deb-fa01-4e50-b3f3-0f88f0154f02.777aad849f3a5524853cb98a4538d32a.jpeg"
+  ],
+  "hp-elitebook-830-g6": [
+    "https://i5.walmartimages.com/seo/Restored-HP-EliteBook-830-G6-Laptop-Computer-13-3-Laptop-Intel-Core-i7-8665U-1-9-GHz-16GB-RAM-256GB-SSD-Windows-10-Pro-Refurbished_b665e228-cfc7-4532-80bb-2f0792b8c0fa.f574a81b0b7fe1cd5313f54646d8a6fe.jpeg"
+  ],
+  "hp-elitebook-840-g3": [
+    "https://i5.walmartimages.com/seo/HP-EliteBook-840-G3-Notebook-Intel-Core-i7-6500U-up-to-3-1-GHz-no-OS-HD-Graphics-520-0-GB-RAM-14-Gigabit-Ethernet-CTO_2668dccc-882e-4b2d-b14d-a2a7ff15c1c2_1.d59863f59b383f4ba2a780b0d1299c7f.jpeg"
+  ],
+  "dell-latitude-3190-2-in-1-touch": [
+    "https://i5.walmartimages.com/seo/Dell-Latitude-Touch-3190-2-in-1-PC-Intel-Quad-Core-up-to-2-4Ghz-4GB-64GB-SSD-11-6inch-HD-Touch-Gorilla-Glass-LED-WiFi-Cam-HDMI-W10-Pro-used_72a66f9a-b95b-4d57-b4de-8021f6424f53.06de59d46c560e1af2340da7d02f928b.jpeg"
+  ],
+  "hp-zbook-firefly-14-g8-touch": [
+    "https://i5.walmartimages.com/seo/HP-ZBook-Firefly-G8-15-6-Full-HD-Laptop-Intel-Core-i7-i7-1165G7-16GB-RAM-512GB-SSD-Windows-10-Pro_51c66a70-c74d-4dba-9d55-bef37f23da5e.4b6ae414ba53cb85005baf536eb489a0.jpeg"
+  ],
+  "xiaomi-gaming-monitor": [
+    "https://m.media-amazon.com/images/I/61PkkczRb6L._AC_SL1500_.jpg"
+  ]
+}

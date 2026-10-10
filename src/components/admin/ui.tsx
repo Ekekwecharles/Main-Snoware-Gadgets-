@@ -40,6 +40,8 @@ export function StatusPill({ status }: { status: string }) {
     cancelled: "bg-brand-50 text-brand-700",
     unpaid: "bg-amber-50 text-amber-700",
     failed: "bg-brand-50 text-brand-700",
+    awaiting_transfer: "bg-amber-50 text-amber-700",
+    proof_sent: "bg-orange-100 text-orange-800 ring-1 ring-orange-300",
   };
   return <span className={cn("inline-block rounded-full px-2.5 py-0.5 text-[12px] font-semibold capitalize", tones[status] ?? "bg-mist")}>{status.replace(/_/g, " ")}</span>;
 }

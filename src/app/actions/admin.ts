@@ -18,7 +18,8 @@ import {
   orderStatusEnum,
 } from "@/db/schema";
 import { cloudinaryConfigured, deleteImage, uploadImage } from "@/lib/cloudinary";
-import { sendOrderStatusUpdate } from "@/lib/mail";
+import { sendOrderConfirmation, sendOrderStatusUpdate } from "@/lib/mail";
+import { markOrderPaid } from "@/lib/orders";
 import { slugify } from "@/lib/utils";
 import { availabilityValues, conditionValues } from "@/lib/site";
 
@@ -212,6 +213,20 @@ export async function saveProductImages(productId: number, input: z.input<typeof
 
 /* ───────────── Orders ───────────── */
 
+/** The admin has seen a bank transfer land: mark the order paid (stock, sales, cart) and email the customer. */
+export async function confirmTransferPayment(orderId: number): Promise<AdminResult> {
+  await guard();
+  const order = await db.query.orders.findFirst({ where: eq(orders.id, orderId) });
+  if (!order) return { ok: false, message: "Order not found." };
+  if (order.paymentStatus === "paid") return { ok: true, message: "This order was already marked paid." };
+  const updated = await markOrderPaid(orderId, new Date());
+  if (updated) await sendOrderConfirmation(updated.paid, updated.items);
+  revalidatePath(`/admin/orders/${orderId}`);
+  revalidatePath("/admin/orders");
+  revalidatePath(`/order/${order.reference}`);
+  return { ok: true, message: "Payment confirmed — the customer has been emailed." };
+}
+
 export async function updateOrderStatus(orderId: number, status: (typeof orderStatusEnum.enumValues)[number], notify: boolean) {
   await guard();
   const [order] = await db.update(orders).set({ status }).where(eq(orders.id, orderId)).returning();
@@ -340,7 +355,11 @@ export async function deleteZone(id: number) {
 
 export async function saveSettings(_prev: AdminResult | null, formData: FormData): Promise<AdminResult> {
   await guard();
-  const keys = ["store_address", "store_hours", "store_map_query", "announcement"] as const;
+  const keys = ["store_address", "store_hours", "store_map_query", "announcement", "app_latest_version", "app_min_version"] as const;
+  for (const key of ["app_latest_version", "app_min_version"]) {
+    const value = String(formData.get(key) ?? "").trim();
+    if (value && !/^\d+(\.\d+){0,2}$/.test(value)) return { ok: false, message: "App versions must look like 1.2.0 (or be left empty)." };
+  }
   for (const key of keys) {
     const value = String(formData.get(key) ?? "").trim();
     await db.insert(settings).values({ key, value }).onConflictDoUpdate({ target: settings.key, set: { value } });

@@ -23,3 +23,17 @@ export const statusLabels: Record<string, string> = {
   delivered: "Delivered",
   cancelled: "Cancelled",
 };
+
+type StatusInput = { status: string; paymentStatus: string; paymentMethod: string; paymentProofAt: Date | string | null };
+
+/** Unpaid bank-transfer orders the customer should still see (to pay or upload their screenshot). */
+export const isAwaitingTransfer = (o: StatusInput) => o.paymentMethod === "bank_transfer" && o.paymentStatus !== "paid" && o.status !== "cancelled";
+
+/** Customer-facing status, including the two bank-transfer waiting states. */
+export function orderStatusText(o: StatusInput) {
+  if (isAwaitingTransfer(o)) return o.paymentProofAt ? "Confirming payment" : "Awaiting transfer";
+  return statusLabels[o.status] ?? o.status;
+}
+
+/** Orders shown in "My orders": paid, cancelled, or bank transfers still being paid. */
+export const isVisibleToCustomer = (o: StatusInput) => o.paymentStatus === "paid" || o.status === "cancelled" || isAwaitingTransfer(o);

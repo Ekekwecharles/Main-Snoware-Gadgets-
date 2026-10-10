@@ -1,6 +1,6 @@
 import "server-only";
 import nodemailer from "nodemailer";
-import { onOrderLeadTime, site } from "@/lib/site";
+import { bankAccounts, onOrderLeadTime, site } from "@/lib/site";
 import { absoluteUrl, formatNaira } from "@/lib/utils";
 import type { Order, OrderItem, OrderStatus } from "@/db/schema";
 
@@ -11,7 +11,9 @@ const transporter = nodemailer.createTransport({
   auth: { user: process.env.SMTP_USER, pass: process.env.SMTP_PASS },
 });
 
-async function send(to: string, subject: string, html: string) {
+type Attachment = { filename: string; content: Buffer; contentType: string };
+
+async function send(to: string, subject: string, html: string, attachments?: Attachment[]) {
   if (!process.env.SMTP_USER || !process.env.SMTP_PASS) {
     console.warn(`[mail] SMTP not configured — skipped "${subject}" to ${to}`);
     return;
@@ -22,6 +24,7 @@ async function send(to: string, subject: string, html: string) {
       to,
       subject,
       html,
+      attachments,
     });
   } catch (err) {
     // Email failures must never break checkout or sign-up.
@@ -84,7 +87,7 @@ export async function sendPasswordResetEmail(email: string, token: string) {
   );
 }
 
-function itemsTable(items: OrderItem[], order: Order) {
+function itemsTable(items: OrderItem[], order: Order, totalLabel = "Total paid") {
   const rows = items
     .map(
       (i) => `<tr>
@@ -103,7 +106,7 @@ function itemsTable(items: OrderItem[], order: Order) {
     <tr><td colspan="2">${order.deliveryMethod === "pickup" ? "In-store pickup" : `Delivery (${esc(order.zoneName ?? "")})`}</td><td style="text-align:right">${
       order.deliveryFee ? formatNaira(order.deliveryFee) : "Free"
     }</td></tr>
-    <tr><td colspan="2" style="padding-top:8px;font-weight:700">Total paid</td><td style="padding-top:8px;text-align:right;font-weight:700">${formatNaira(order.total)}</td></tr>
+    <tr><td colspan="2" style="padding-top:8px;font-weight:700">${totalLabel}</td><td style="padding-top:8px;text-align:right;font-weight:700">${formatNaira(order.total)}</td></tr>
   </table>`;
 }
 
@@ -126,6 +129,19 @@ export async function sendOrderConfirmation(order: Order, items: OrderItem[]) {
   );
 }
 
+function customerBlock(order: Order) {
+  const wa = order.whatsapp ?? order.phone;
+  const waLink = `https://wa.me/${wa.replace(/^0/, "234").replace(/^\+/, "")}`;
+  const where = order.deliveryMethod === "pickup" ? "In-store pickup" : esc([order.addressLine, order.city, order.state].filter(Boolean).join(", "));
+  return `<table cellpadding="0" cellspacing="0" style="font-size:14px;line-height:1.7">
+    <tr><td style="color:#667085;padding-right:12px">Customer</td><td><b>${esc(order.fullName)}</b></td></tr>
+    <tr><td style="color:#667085;padding-right:12px">Phone</td><td>${esc(order.phone)}</td></tr>
+    <tr><td style="color:#667085;padding-right:12px">WhatsApp</td><td><a href="${waLink}">${esc(wa)}</a></td></tr>
+    <tr><td style="color:#667085;padding-right:12px">Email</td><td>${esc(order.email)}</td></tr>
+    <tr><td style="color:#667085;padding-right:12px">Fulfilment</td><td>${where}</td></tr>
+  </table>${order.notes ? `<p style="margin-top:12px;font-size:14px"><b>Notes:</b> ${esc(order.notes)}</p>` : ""}`;
+}
+
 export async function sendAdminNewOrderAlert(order: Order, items: OrderItem[]) {
   const to = process.env.ADMIN_EMAIL ?? site.email;
   await send(
@@ -133,9 +149,56 @@ export async function sendAdminNewOrderAlert(order: Order, items: OrderItem[]) {
     `🛒 New paid order ${order.reference} — ${formatNaira(order.total)}`,
     layout(
       "New paid order",
-      `<p>${esc(order.fullName)} · ${esc(order.phone)} · ${esc(order.email)}</p>${itemsTable(items, order)}
+      `${customerBlock(order)}${itemsTable(items, order)}
        <p style="margin:24px 0">${button(absoluteUrl(`/admin/orders/${order.id}`), "Open in admin")}</p>`,
     ),
+  );
+}
+
+function bankDetailsHtml(order: Order) {
+  const accounts = bankAccounts
+    .map(
+      (a, i) => `<tr><td style="padding:12px 14px;border-top:${i ? "1px solid #eef0f3" : "0"}">
+        <span style="font-size:12px;color:#667085">${esc(a.bank)}${i === 0 ? " (main)" : ""}</span><br/>
+        <span style="font-size:20px;font-weight:800;letter-spacing:1px">${a.accountNumber}</span><br/>
+        <span style="font-size:13px">${esc(a.accountName)}</span></td></tr>`,
+    )
+    .join("");
+  return `<table width="100%" cellpadding="0" cellspacing="0" style="background:#f8f9fb;border-radius:12px;margin:16px 0">${accounts}</table>
+    <p style="line-height:1.6">Amount: <b style="font-size:18px">${formatNaira(order.total)}</b><br/>
+    Narration / remark: <b style="font-family:monospace;font-size:15px">${order.reference}</b></p>`;
+}
+
+/** Sent to the customer as soon as a bank-transfer order is placed. */
+export async function sendTransferInstructions(order: Order, items: OrderItem[]) {
+  await send(
+    order.email,
+    `Complete your payment — order ${order.reference}`,
+    layout(
+      `Thanks, ${esc(order.fullName.split(" ")[0])}! One last step`,
+      `<p style="line-height:1.6">Your order is reserved. Transfer <b>exactly ${formatNaira(order.total)}</b> to any of the accounts below and put your order reference in the narration, so we can match your payment quickly.</p>
+       ${bankDetailsHtml(order)}
+       <p style="line-height:1.6">After paying, upload your payment screenshot on your order page. We'll confirm and email you as soon as we see it.</p>
+       <p style="margin:24px 0">${button(absoluteUrl(`/order/${order.reference}`), "Upload payment screenshot")}</p>
+       ${itemsTable(items, order, "Total to pay")}
+       <p style="font-size:13px;color:#667085">Questions? Reply to this email or chat with us on WhatsApp ${site.whatsapp}.</p>`,
+    ),
+  );
+}
+
+/** Sent to the shop the moment a customer uploads their transfer screenshot (attached). */
+export async function sendPaymentProofAlert(order: Order, items: OrderItem[], proof: Attachment) {
+  await send(
+    process.env.ADMIN_EMAIL ?? site.email,
+    `💸 Transfer proof for ${order.reference} — ${formatNaira(order.total)} — ${order.fullName}`,
+    layout(
+      "Payment screenshot received",
+      `<p style="line-height:1.6">Check your account for <b style="font-size:18px">${formatNaira(order.total)}</b> with narration <b style="font-family:monospace">${order.reference}</b>. The screenshot is attached.</p>
+       ${customerBlock(order)}
+       ${itemsTable(items, order, "Total to receive")}
+       <p style="margin:24px 0">${button(absoluteUrl(`/admin/orders/${order.id}`), "Review & confirm payment")}</p>`,
+    ),
+    [proof],
   );
 }
 

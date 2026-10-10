@@ -3,17 +3,28 @@ import { inArray } from "drizzle-orm";
 import { z } from "zod";
 import { db } from "@/db";
 import { deliveryZones, orderItems, orders, productVariants } from "@/db/schema";
-import { initializeTransaction } from "@/lib/paystack";
+import { initializeTransaction, paystackEnabled } from "@/lib/paystack";
+import { sendTransferInstructions } from "@/lib/mail";
+import { clearCart, publishCart } from "@/lib/cart";
 import { variantLabel } from "@/lib/catalog";
 import { absoluteUrl, generateOrderReference } from "@/lib/utils";
 import { UNLIMITED_QTY } from "@/lib/site";
 import { eq } from "drizzle-orm";
 
+const nigerianPhone = /^(\+?234|0)[789][01]\d{8}$/;
+
 const checkoutSchema = z
   .object({
     email: z.email("Enter a valid email"),
     fullName: z.string().trim().min(2, "Enter your full name"),
-    phone: z.string().trim().regex(/^(\+?234|0)[789][01]\d{8}$/, "Enter a valid Nigerian phone number"),
+    phone: z.string().trim().regex(nigerianPhone, "Enter a valid Nigerian phone number"),
+    /** Empty = same as phone. */
+    whatsapp: z
+      .string()
+      .trim()
+      .optional()
+      .refine((v) => !v || nigerianPhone.test(v.replace(/\s/g, "")), "Enter a valid WhatsApp number"),
+    paymentMethod: z.enum(["paystack", "bank_transfer"]).default("bank_transfer"),
     deliveryMethod: z.enum(["delivery", "pickup"]),
     zoneId: z.coerce.number().optional(),
     addressLine: z.string().trim().optional(),
@@ -43,7 +54,8 @@ export type CheckoutResult =
   | { ok: false; error: string; fieldErrors?: Record<string, string>; priceChanged?: boolean };
 
 /**
- * Creates an unpaid order from the given items and starts a Paystack payment.
+ * Creates an unpaid order from the given items, then either starts a Paystack payment or — for bank
+ * transfers — returns the order page, which shows the account details and the screenshot upload.
  * Shared by the website's checkout action and the mobile checkout API.
  * `callbackPath` is where Paystack sends the shopper after paying.
  */
@@ -58,6 +70,8 @@ export async function createCheckout(
     return { ok: false, error: "Please check the highlighted fields.", fieldErrors };
   }
   const data = parsed.data;
+  if (data.paymentMethod === "paystack" && !paystackEnabled())
+    return { ok: false, error: "Card payment isn't available yet. Please choose bank transfer." };
 
   // Re-price everything from the database — never trust client prices.
   const variantIds = data.items.map((i) => i.variantId);
@@ -99,6 +113,8 @@ export async function createCheckout(
         email: data.email.toLowerCase(),
         fullName: data.fullName,
         phone: data.phone,
+        whatsapp: data.whatsapp?.replace(/\s/g, "") || data.phone,
+        paymentMethod: data.paymentMethod,
         deliveryMethod: data.deliveryMethod,
         zoneId: zone?.id,
         zoneName: zone?.name,
@@ -126,6 +142,19 @@ export async function createCheckout(
     );
     return o;
   });
+
+  if (data.paymentMethod === "bank_transfer") {
+    // The order now holds these items, so empty the account cart everywhere (guests: the page clears it).
+    if (opts.userId) {
+      const userId = opts.userId;
+      await clearCart(userId)
+        .then(() => publishCart(userId, null))
+        .catch((err) => console.error("[checkout] clearing cart failed", err));
+    }
+    const items = await db.query.orderItems.findMany({ where: eq(orderItems.orderId, order.id) });
+    await sendTransferInstructions(order, items);
+    return { ok: true, url: absoluteUrl(`/order/${reference}?placed=1`), reference };
+  }
 
   try {
     const res = await initializeTransaction({

@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
   ),
   title: {
-    default: `${site.name} — iPhones, Samsung, Laptops, PS5 & Starlink in Nigeria`,
+    default: `${site.name} — iPhones, Samsung, Laptops, PS5 & Starlink in Port Harcourt, Nigeria`,
     template: `%s | ${site.name}`,
   },
   description: site.description,
@@ -45,6 +45,15 @@ export const metadata: Metadata = {
     title: site.name,
     description: site.description,
     images: ["/og.png"],
+  },
+  // Full-screen launch + home-screen title when iPhone users "Add to Home Screen".
+  appleWebApp: { capable: true, title: site.shortName, statusBarStyle: "black" },
+  // Codes from Google Search Console / Bing Webmaster Tools ("HTML tag" verification method).
+  verification: {
+    google: process.env.GOOGLE_SITE_VERIFICATION,
+    other: process.env.BING_SITE_VERIFICATION
+      ? { "msvalidate.01": process.env.BING_SITE_VERIFICATION }
+      : undefined,
   },
 };
 

@@ -1,4 +1,4 @@
-import type { ComponentProps, ReactNode } from "react";
+import { useState, type ComponentProps, type ReactNode } from "react";
 import { ActivityIndicator, Pressable, StyleSheet, Text, TextInput, View, type StyleProp, type ViewStyle } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { colors, radius } from "@/lib/theme";
@@ -45,11 +45,30 @@ export function Button({ title, onPress, variant = "primary", loading, disabled,
 
 type FieldProps = ComponentProps<typeof TextInput> & { label: string; error?: string };
 
-export function Field({ label, error, style, ...props }: FieldProps) {
+export function Field({ label, error, style, secureTextEntry, ...props }: FieldProps) {
+  const [revealed, setRevealed] = useState(false);
   return (
     <View style={{ gap: 6 }}>
       <Text style={styles.label}>{label}</Text>
-      <TextInput placeholderTextColor={colors.muted} style={[styles.input, error && { borderColor: colors.brand }, style]} {...props} />
+      <View>
+        <TextInput
+          placeholderTextColor={colors.muted}
+          style={[styles.input, secureTextEntry && { paddingRight: 48 }, error && { borderColor: colors.brand }, style]}
+          secureTextEntry={secureTextEntry && !revealed}
+          {...props}
+        />
+        {secureTextEntry ? (
+          <Pressable
+            accessibilityRole="button"
+            accessibilityLabel={revealed ? "Hide password" : "Show password"}
+            hitSlop={8}
+            onPress={() => setRevealed((r) => !r)}
+            style={styles.reveal}
+          >
+            <Ionicons name={revealed ? "eye-off-outline" : "eye-outline"} size={20} color={colors.muted} />
+          </Pressable>
+        ) : null}
+      </View>
       {error ? <Text style={styles.error}>{error}</Text> : null}
     </View>
   );
@@ -135,6 +154,7 @@ export const styles = StyleSheet.create({
     color: colors.ink,
     backgroundColor: colors.white,
   },
+  reveal: { position: "absolute", right: 0, top: 0, bottom: 0, width: 48, alignItems: "center", justifyContent: "center" },
   error: { color: colors.brand, fontSize: 13 },
   notice: { borderRadius: radius.md, padding: 14 },
   empty: { flex: 1, alignItems: "center", justifyContent: "center", padding: 32, gap: 6 },

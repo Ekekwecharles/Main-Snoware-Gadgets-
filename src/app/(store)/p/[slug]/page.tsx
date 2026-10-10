@@ -18,8 +18,9 @@ import { auth } from "@/auth";
 import { db } from "@/db";
 import { wishlist } from "@/db/schema";
 import { and, eq } from "drizzle-orm";
-import { absoluteUrl, formatNaira } from "@/lib/utils";
+import { formatNaira } from "@/lib/utils";
 import { site } from "@/lib/site";
+import { JsonLd, productJsonLd } from "@/lib/seo";
 
 export async function generateMetadata(
   props: PageProps<"/p/[slug]">,
@@ -28,9 +29,15 @@ export async function generateMetadata(
   const p = await getProductBySlug(slug);
   if (!p) return {};
   const from = Math.min(...p.variants.map((v) => v.price));
+  const hasUsed = p.variants.some((v) => v.condition !== "new");
+  const hasNew = p.variants.some((v) => v.condition === "new");
+  const kind = hasNew && hasUsed ? "New & Used" : hasUsed ? "Used" : "Brand New";
   return {
-    title: `${p.name} — from ${formatNaira(from)}`,
-    description: p.shortDescription ?? undefined,
+    title: `${p.name} Price in Nigeria — from ${formatNaira(from)}`,
+    description:
+      p.shortDescription ??
+      `Buy ${kind} ${p.name} in Port Harcourt from ${formatNaira(from)} at ${site.name}. Warranty, same-day delivery in Port Harcourt and nationwide shipping.`,
+    alternates: { canonical: `/p/${p.slug}` },
     openGraph: {
       title: p.name,
       description: p.shortDescription ?? undefined,
@@ -57,42 +64,10 @@ export default async function ProductPage(props: PageProps<"/p/[slug]">) {
       }))
     : false;
   const cheapest = Math.min(...product.variants.map((v) => v.price));
-  const anyInStock = product.variants.some((v) => v.availability === "in_stock");
-  const anyOnOrder = product.variants.some((v) => v.availability === "on_order");
-
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    name: product.name,
-    description: product.shortDescription,
-    image: product.images.map((i) => i.url),
-    brand: product.brand
-      ? { "@type": "Brand", name: product.brand.name }
-      : undefined,
-    offers: {
-      "@type": "AggregateOffer",
-      priceCurrency: "NGN",
-      lowPrice: cheapest,
-      highPrice: Math.max(...product.variants.map((v) => v.price)),
-      offerCount: product.variants.length,
-      availability: anyInStock
-        ? "https://schema.org/InStock"
-        : anyOnOrder
-          ? "https://schema.org/BackOrder"
-          : "https://schema.org/OutOfStock",
-      url: absoluteUrl(`/p/${product.slug}`),
-      seller: { "@type": "Organization", name: site.name },
-    },
-  };
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
-        }}
-      />
+      <JsonLd data={productJsonLd(product)} />
 
       <div className="container-x py-6 lg:py-10">
         <nav aria-label="Breadcrumb" className="mb-6">

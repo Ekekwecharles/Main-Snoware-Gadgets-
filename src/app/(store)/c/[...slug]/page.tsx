@@ -8,8 +8,12 @@ export async function generateMetadata(props: PageProps<"/c/[...slug]">): Promis
   const path = await getCategoryPath(slug);
   if (!path) return {};
   return {
-    title: `${path.current.name} — New & Pre-owned, Best Prices in Nigeria`,
-    description: path.current.description ?? `Shop ${path.current.name} at Snoware Gadgets. Genuine devices, warranty and fast delivery across Nigeria.`,
+    title: `${path.current.name} Prices in Nigeria — New & Used`,
+    description:
+      path.current.description ??
+      `Shop ${path.current.name} in Port Harcourt at Snoware Gadgets — new and UK-used, genuine devices with warranty, same-day delivery in Port Harcourt and fast delivery across Nigeria.`,
+    // Filtered/sorted URLs (?sort=…, ?condition=…) all point Google at the plain category page.
+    alternates: { canonical: `/c/${slug.join("/")}` },
   };
 }
 

@@ -30,15 +30,32 @@ export async function confirmPayment(reference: string) {
     return { ok: false as const, reason: "amount_mismatch" as const, order };
   }
 
+  const updated = await markOrderPaid(order.id, tx.paid_at ? new Date(tx.paid_at) : new Date());
+
+  if (!updated) {
+    const fresh = await db.query.orders.findFirst({ where: eq(orders.id, order.id) });
+    return { ok: true as const, order: fresh ?? order, alreadyPaid: true };
+  }
+
+  await Promise.all([sendOrderConfirmation(updated.paid, updated.items), sendAdminNewOrderAlert(updated.paid, updated.items)]);
+  return { ok: true as const, order: updated.paid, alreadyPaid: false };
+}
+
+/**
+ * Marks an order paid exactly once: reduces tracked stock, bumps sales counts and empties the
+ * shopper's account cart. Returns null if the order was already paid (nothing is repeated).
+ * Used by Paystack confirmation and by the admin confirming a bank transfer.
+ */
+export async function markOrderPaid(orderId: number, paidAt: Date) {
   const updated = await db.transaction(async (trx) => {
     const [paid] = await trx
       .update(orders)
-      .set({ paymentStatus: "paid", status: "paid", paidAt: tx.paid_at ? new Date(tx.paid_at) : new Date() })
-      .where(and(eq(orders.id, order.id), sql`${orders.paymentStatus} <> 'paid'`))
+      .set({ paymentStatus: "paid", status: "paid", paidAt })
+      .where(and(eq(orders.id, orderId), sql`${orders.paymentStatus} <> 'paid'`))
       .returning();
     if (!paid) return null; // another request already confirmed it
 
-    const items = await trx.select().from(orderItems).where(eq(orderItems.orderId, order.id));
+    const items = await trx.select().from(orderItems).where(eq(orderItems.orderId, orderId));
     for (const item of items) {
       // Decrease the optional quantity only where one is set; NULL (no limit) stays NULL.
       if (item.variantId)
@@ -55,21 +72,14 @@ export async function confirmPayment(reference: string) {
     return { paid, items };
   });
 
-  if (!updated) {
-    const fresh = await db.query.orders.findFirst({ where: eq(orders.id, order.id) });
-    return { ok: true as const, order: fresh ?? order, alreadyPaid: true };
-  }
-
   // The order is paid, so empty the shopper's account cart on every device (website and app).
-  if (updated.paid.userId) {
+  if (updated?.paid.userId) {
     const userId = updated.paid.userId;
     await clearCart(userId)
       .then(() => publishCart(userId, null))
       .catch((err) => console.error("[orders] clearing cart failed", err));
   }
-
-  await Promise.all([sendOrderConfirmation(updated.paid, updated.items), sendAdminNewOrderAlert(updated.paid, updated.items)]);
-  return { ok: true as const, order: updated.paid, alreadyPaid: false };
+  return updated;
 }
 
 export async function getOrderByReference(reference: string) {

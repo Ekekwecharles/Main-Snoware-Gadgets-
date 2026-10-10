@@ -5,6 +5,7 @@ import { ListingView, parseFilters } from "@/components/listing/listing-view";
 export const metadata: Metadata = {
   title: "Shop All Gadgets",
   description: "Browse every phone, laptop, console, speaker and accessory at Snoware Gadgets.",
+  alternates: { canonical: "/shop" },
 };
 
 export default async function ShopPage(props: PageProps<"/shop">) {

@@ -2,13 +2,13 @@
 
 import Link from "next/link";
 import { useState, useTransition } from "react";
-import { Loader2, Lock, MapPin, ShieldCheck, Store, Truck } from "lucide-react";
+import { CreditCard, Landmark, Loader2, Lock, MapPin, ShieldCheck, Store, Truck } from "lucide-react";
 import { useCart, cartSubtotal } from "@/store/cart";
 import { useHydrated } from "@/lib/use-hydrated";
 import { startCheckout } from "@/app/actions/checkout";
 import { ProductImage } from "@/components/product/product-image";
 import { cn, formatNaira } from "@/lib/utils";
-import { onOrderLeadTime } from "@/lib/site";
+import { onOrderLeadTime, type PaymentMethod } from "@/lib/site";
 
 type Zone = { id: number; name: string; state: string; fee: number; eta: string };
 
@@ -18,13 +18,17 @@ type Props = {
   storeHours: string;
   defaults: { email: string; fullName: string };
   signedIn: boolean;
+  /** Card payment via Paystack is offered only when switched on (PAYSTACK_ENABLED). */
+  paystackEnabled: boolean;
 };
 
-export function CheckoutForm({ zones, storeAddress, storeHours, defaults, signedIn }: Props) {
+export function CheckoutForm({ zones, storeAddress, storeHours, defaults, signedIn, paystackEnabled }: Props) {
   const hydrated = useHydrated();
   const items = useCart((s) => s.items);
   const notes = useCart((s) => s.notes);
   const [method, setMethod] = useState<"delivery" | "pickup">("delivery");
+  const [payment, setPayment] = useState<PaymentMethod>("bank_transfer");
+  const [sameWhatsapp, setSameWhatsapp] = useState(true);
   const [zoneId, setZoneId] = useState<number | "">("");
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [formError, setFormError] = useState<string | null>(null);
@@ -58,6 +62,8 @@ export function CheckoutForm({ zones, storeAddress, storeHours, defaults, signed
         email: String(formData.get("email") ?? ""),
         fullName: String(formData.get("fullName") ?? ""),
         phone: String(formData.get("phone") ?? "").replace(/\s/g, ""),
+        whatsapp: sameWhatsapp ? "" : String(formData.get("whatsapp") ?? "").replace(/\s/g, ""),
+        paymentMethod: payment,
         deliveryMethod: method,
         zoneId: method === "delivery" && zoneId ? Number(zoneId) : undefined,
         addressLine: String(formData.get("addressLine") ?? ""),
@@ -67,7 +73,7 @@ export function CheckoutForm({ zones, storeAddress, storeHours, defaults, signed
         items: items.map((i) => ({ variantId: i.variantId, quantity: i.quantity })),
       });
       if (res.ok) {
-        window.location.href = res.url; // Paystack hosted checkout
+        window.location.href = res.url; // Paystack hosted checkout, or the order page with bank details
       } else {
         setFormError(res.error);
         setErrors(res.fieldErrors ?? {});
@@ -90,6 +96,15 @@ export function CheckoutForm({ zones, storeAddress, storeHours, defaults, signed
             <Field label="Full name" name="fullName" defaultValue={defaults.fullName} autoComplete="name" error={errors.fullName} />
             <Field label="Phone number" name="phone" type="tel" placeholder="0803 123 4567" autoComplete="tel" error={errors.phone} />
             <Field label="Email" name="email" type="email" defaultValue={defaults.email} autoComplete="email" error={errors.email} className="sm:col-span-2" hint="We'll send your receipt and order updates here." />
+            <div className="sm:col-span-2">
+              <label className="flex items-center gap-2.5 text-[14px]">
+                <input type="checkbox" checked={sameWhatsapp} onChange={(e) => setSameWhatsapp(e.target.checked)} className="h-4.5 w-4.5 accent-ink" />
+                My WhatsApp number is the same as my phone number
+              </label>
+              {(!sameWhatsapp || errors.whatsapp) && (
+                <Field label="WhatsApp number" name="whatsapp" type="tel" placeholder="0803 123 4567" autoComplete="tel" error={errors.whatsapp} className="mt-3 sm:max-w-[calc(50%-0.5rem)]" hint="We'll message you here about your order." />
+              )}
+            </div>
           </div>
         </Section>
 
@@ -140,7 +155,29 @@ export function CheckoutForm({ zones, storeAddress, storeHours, defaults, signed
           )}
         </Section>
 
-        <Section step={3} title="Order notes" optional>
+        <Section step={3} title="Payment">
+          <div className="grid gap-3 sm:grid-cols-2">
+            <MethodCard
+              active={payment === "bank_transfer"}
+              onClick={() => setPayment("bank_transfer")}
+              icon={<Landmark className="h-5 w-5" />}
+              title="Bank transfer"
+              sub="Pay to our OPay or Moniepoint account"
+            />
+            {paystackEnabled && (
+              <MethodCard active={payment === "paystack"} onClick={() => setPayment("paystack")} icon={<CreditCard className="h-5 w-5" />} title="Card / USSD" sub="Pay instantly with Paystack" />
+            )}
+          </div>
+          {payment === "bank_transfer" && (
+            <ol className="mt-5 space-y-1.5 rounded-2xl bg-mist p-4 text-[14px] text-ink/80">
+              <li><b className="text-ink">1.</b> Place your order — you&apos;ll get our account details and an order reference.</li>
+              <li><b className="text-ink">2.</b> Transfer the exact total, with the reference in the narration.</li>
+              <li><b className="text-ink">3.</b> Upload your payment screenshot. We confirm and start processing right away.</li>
+            </ol>
+          )}
+        </Section>
+
+        <Section step={4} title="Order notes" optional>
           <textarea name="notes" defaultValue={notes} rows={3} placeholder="Anything we should know? e.g. preferred delivery time" className="w-full rounded-xl border border-line bg-white px-4 py-3 text-[15px] outline-none focus:border-ink" />
         </Section>
       </div>
@@ -178,13 +215,20 @@ export function CheckoutForm({ zones, storeAddress, storeHours, defaults, signed
             className="mt-6 flex h-13 w-full items-center justify-center gap-2 rounded-full bg-brand-600 py-3.5 text-[16px] font-semibold text-white transition hover:bg-brand-700 disabled:opacity-70"
           >
             {pending ? <Loader2 className="h-5 w-5 animate-spin" /> : <Lock className="h-4.5 w-4.5" />}
-            {pending ? "Connecting to Paystack…" : `Pay ${formatNaira(total)}`}
+            {payment === "paystack"
+              ? pending
+                ? "Connecting to Paystack…"
+                : `Pay ${formatNaira(total)}`
+              : pending
+                ? "Placing your order…"
+                : `Place order · ${formatNaira(total)}`}
           </button>
           <p className="mt-3 flex items-center justify-center gap-1.5 text-[12.5px] text-muted">
-            <ShieldCheck className="h-4 w-4 text-success" /> Secured by Paystack · Card, transfer, USSD
+            <ShieldCheck className="h-4 w-4 text-success" />
+            {payment === "paystack" ? "Secured by Paystack · Card, transfer, USSD" : "Pay by transfer to Snoware Gadgets · OPay or Moniepoint"}
           </p>
           <p className="mt-2 text-center text-[12px] text-muted">
-            Prices are confirmed at payment. By paying you agree to our <Link href="/policies/terms" className="underline">terms</Link>.
+            Prices are confirmed when you place your order. By ordering you agree to our <Link href="/policies/terms" className="underline">terms</Link>.
           </p>
         </div>
       </aside>

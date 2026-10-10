@@ -6,6 +6,7 @@ import { conditionLabel } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Pre-owned Phones — Boxed, Open Box, UK, US & Nigerian Used",
   description: "Inspected, graded pre-owned iPhones, Samsung, Pixel and more — Boxed (like new), Open Box, UK-used, US-used and Nigerian-used — with warranty at Snoware Gadgets.",
+  alternates: { canonical: "/used" },
 };
 
 export default async function UsedPage(props: PageProps<"/used">) {

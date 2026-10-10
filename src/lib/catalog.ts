@@ -85,7 +85,8 @@ function toCard(p: ProductWithRelations): ProductCardData {
     compareAtPrice: cheapest?.compareAtPrice ?? null,
     inStock: buyable.length > 0,
     onOrderOnly: buyable.length > 0 && buyable.every((v) => v.availability === "on_order"),
-    conditions: [...new Set(p.variants.map((v) => v.condition))],
+    // Conditions customers can actually buy — sold-out options shouldn't make a card say "New & Pre-owned".
+    conditions: [...new Set(pool.map((v) => v.condition))],
     storages: [
       ...new Set(
         p.variants.map((v) => v.storage).filter((s): s is string => !!s),
@@ -401,6 +402,10 @@ export const settingDefaults = {
   store_map_query: "Port Harcourt, Nigeria",
   announcement:
     "Free in-store pickup · Fast delivery nationwide · Pay securely with Paystack",
+  /** Newest APK version — older installs see an "Update available" prompt. Empty = no prompt. */
+  app_latest_version: "",
+  /** Installs below this version must update before they can keep shopping. Empty = never forced. */
+  app_min_version: "",
 };
 
 export type SettingKey = keyof typeof settingDefaults;

@@ -1,0 +1,280 @@
+{
+  "google-pixel-11-pro-xl": {
+    "short": "Google Pixel 11 Pro XL — Google's latest flagship with the Tensor G6 chip, its brightest Super Actua display yet and upgraded pro cameras with Gemini built in.",
+    "highlights": ["Super Actua display up to 3,600 nits with anti-scratch coating", "Google Tensor G6 with Gemini", "Pro triple camera with upgraded 48MP telephoto", "Fast charging and all-day battery"],
+    "specs": [["Processor", "Google Tensor G6"], ["Display", "Super Actua, up to 3,600 nits"], ["Telephoto", "48MP"], ["Brand", "Google"]]
+  },
+  "google-pixel-10-pro-fold": {
+    "short": "Google Pixel 10 Pro Fold — the first IP68 foldable, with an 8-inch inner display, Tensor G5 and Pixel's pro cameras.",
+    "highlights": ["8-inch Super Actua Flex inner display, 6.4-inch outer display", "Google Tensor G5 with Gemini", "IP68 dust and water resistance", "Pixelsnap magnetic Qi2 charging"],
+    "specs": [["Inner display", "8-inch Super Actua Flex"], ["Outer display", "6.4-inch Actua"], ["Processor", "Google Tensor G5"], ["Storage", "256GB"], ["Water resistance", "IP68"]]
+  },
+  "google-pixel-10-pro": {
+    "short": "Google Pixel 10 Pro — Tensor G5, a 6.3-inch Super Actua display and a pro triple camera with 5x telephoto and up to 100x Pro Res Zoom.",
+    "highlights": ["6.3-inch Super Actua display", "Google Tensor G5 with Gemini", "50MP main, 48MP ultra wide and 48MP 5x telephoto", "Pixelsnap magnetic Qi2 charging"],
+    "specs": [["Display", "6.3-inch Super Actua, 120Hz"], ["Processor", "Google Tensor G5"], ["RAM", "16GB"], ["Rear cameras", "50MP + 48MP Ultra Wide + 48MP 5x Telephoto"], ["Water resistance", "IP68"]]
+  },
+  "google-pixel-10": {
+    "short": "Google Pixel 10 — the first standard Pixel with a 5x telephoto camera, powered by Tensor G5 with Gemini built in.",
+    "highlights": ["6.3-inch Actua display", "Google Tensor G5 with Gemini", "Triple camera with 5x telephoto", "Pixelsnap magnetic Qi2 charging"],
+    "specs": [["Display", "6.3-inch Actua, 120Hz"], ["Processor", "Google Tensor G5"], ["RAM", "12GB"], ["Rear cameras", "48MP + 13MP Ultra Wide + 10.8MP 5x Telephoto"], ["Water resistance", "IP68"]]
+  },
+  "google-pixel-9-pro-xl": {
+    "short": "Google Pixel 9 Pro XL — a 6.8-inch Super Actua display, Tensor G4, 16GB RAM and Pixel's pro triple camera with 5x telephoto.",
+    "highlights": ["6.8-inch Super Actua display", "Google Tensor G4 with Gemini", "50MP main, 48MP ultra wide and 48MP 5x telephoto", "42MP front camera, 7 years of updates"],
+    "specs": [["Display", "6.8-inch Super Actua, 120Hz"], ["Processor", "Google Tensor G4"], ["RAM", "16GB"], ["Rear cameras", "50MP + 48MP Ultra Wide + 48MP 5x Telephoto"], ["Water resistance", "IP68"]]
+  },
+  "google-pixel-9-pro": {
+    "short": "Google Pixel 9 Pro — all the pro cameras of the 9 Pro XL in a compact 6.3-inch size, with Tensor G4 and 16GB RAM.",
+    "highlights": ["6.3-inch Super Actua display", "Google Tensor G4 with Gemini", "50MP main, 48MP ultra wide and 48MP 5x telephoto", "42MP front camera, 7 years of updates"],
+    "specs": [["Display", "6.3-inch Super Actua, 120Hz"], ["Processor", "Google Tensor G4"], ["RAM", "16GB"], ["Rear cameras", "50MP + 48MP Ultra Wide + 48MP 5x Telephoto"], ["Water resistance", "IP68"]]
+  },
+  "google-pixel-8-pro": {
+    "short": "Google Pixel 8 Pro — Tensor G3, a 6.7-inch Super Actua display, pro cameras with 5x telephoto and 7 years of updates.",
+    "highlights": ["6.7-inch Super Actua display, 1–120Hz", "Google Tensor G3", "50MP main, 48MP ultra wide and 48MP 5x telephoto", "Built-in temperature sensor, 7 years of updates"],
+    "specs": [["Display", "6.7-inch Super Actua LTPO, 120Hz"], ["Processor", "Google Tensor G3"], ["RAM", "12GB"], ["Rear cameras", "50MP + 48MP Ultra Wide + 48MP 5x Telephoto"], ["Battery", "5,050mAh"]]
+  },
+  "google-pixel-8": {
+    "short": "Google Pixel 8 — a compact Pixel with Tensor G3, a bright 120Hz Actua display, great cameras and 7 years of updates.",
+    "highlights": ["6.2-inch Actua display, 120Hz", "Google Tensor G3", "50MP main and 12MP ultra wide cameras", "7 years of OS and security updates"],
+    "specs": [["Display", "6.2-inch Actua, 120Hz"], ["Processor", "Google Tensor G3"], ["RAM", "8GB"], ["Rear cameras", "50MP + 12MP Ultra Wide"], ["Battery", "4,575mAh"]]
+  },
+  "google-pixel-7-pro": {
+    "short": "Google Pixel 7 Pro — Tensor G2, a 6.7-inch QHD+ 120Hz display and a pro triple camera with 5x telephoto.",
+    "highlights": ["6.7-inch QHD+ LTPO display, 120Hz", "Google Tensor G2", "50MP main, 12MP ultra wide and 48MP 5x telephoto", "Photo Unblur and Cinematic Blur"],
+    "specs": [["Display", "6.7-inch QHD+ LTPO OLED, 120Hz"], ["Processor", "Google Tensor G2"], ["RAM", "12GB"], ["Rear cameras", "50MP + 12MP Ultra Wide + 48MP 5x Telephoto"], ["Battery", "5,000mAh"]]
+  },
+  "google-pixel-7": {
+    "short": "Google Pixel 7 — Tensor G2, a 6.3-inch 90Hz display and Pixel's acclaimed 50MP camera with Photo Unblur.",
+    "highlights": ["6.3-inch FHD+ OLED display, 90Hz", "Google Tensor G2", "50MP main and 12MP ultra wide cameras", "Face Unlock and in-display fingerprint"],
+    "specs": [["Display", "6.3-inch FHD+ OLED, 90Hz"], ["Processor", "Google Tensor G2"], ["RAM", "8GB"], ["Rear cameras", "50MP + 12MP Ultra Wide"], ["Battery", "4,355mAh"]]
+  },
+  "google-pixel-7a": {
+    "short": "Google Pixel 7a — flagship Tensor G2 performance, a 64MP camera and wireless charging at an affordable price.",
+    "highlights": ["6.1-inch FHD+ OLED display, 90Hz", "Google Tensor G2", "64MP main and 13MP ultra wide cameras", "Wireless charging"],
+    "specs": [["Display", "6.1-inch FHD+ OLED, 90Hz"], ["Processor", "Google Tensor G2"], ["RAM", "8GB"], ["Rear cameras", "64MP + 13MP Ultra Wide"], ["Battery", "4,385mAh"]]
+  },
+  "google-pixel-6-pro": {
+    "short": "Google Pixel 6 Pro — the first Pixel with Google Tensor, a 6.7-inch 120Hz QHD+ display and a triple camera with 4x telephoto.",
+    "highlights": ["6.7-inch QHD+ LTPO display, 120Hz", "Google Tensor chip", "50MP main, 12MP ultra wide and 48MP 4x telephoto", "Magic Eraser and Real Tone"],
+    "specs": [["Display", "6.7-inch QHD+ LTPO OLED, 120Hz"], ["Processor", "Google Tensor"], ["RAM", "12GB"], ["Rear cameras", "50MP + 12MP Ultra Wide + 48MP 4x Telephoto"], ["Battery", "5,003mAh"]]
+  },
+
+  "jbl-tune-730": {
+    "short": "JBL Tune 730BT — wireless over-ear headphones with JBL Pure Bass sound, long battery life and comfortable cushioned ear cups.",
+    "highlights": ["JBL Pure Bass sound", "Wireless Bluetooth with long battery life", "Comfortable over-ear design", "Hands-free calls with built-in mic"],
+    "specs": [["Type", "Over-ear wireless headphones"], ["Connection", "Bluetooth"], ["Brand", "JBL"]]
+  },
+  "jbl-tune-530": {
+    "short": "JBL Tune 530 — lightweight on-ear headphones with JBL Pure Bass sound and a built-in mic for calls.",
+    "highlights": ["JBL Pure Bass sound", "Lightweight, foldable on-ear design", "Built-in mic for calls", "Comfortable for all-day listening"],
+    "specs": [["Type", "On-ear headphones"], ["Brand", "JBL"]]
+  },
+  "jbl-tune-520": {
+    "short": "JBL Tune 520BT — wireless on-ear headphones with JBL Pure Bass, up to 57 hours of battery and multipoint connection.",
+    "highlights": ["JBL Pure Bass sound", "Up to 57 hours of battery life", "Multipoint: connect two devices at once", "Lightweight, foldable design"],
+    "specs": [["Type", "On-ear wireless headphones"], ["Battery", "Up to 57 hours"], ["Connection", "Bluetooth 5.3, multipoint"], ["Brand", "JBL"]]
+  },
+  "jbl-tune-510": {
+    "short": "JBL Tune 510BT — wireless on-ear headphones with JBL Pure Bass, up to 40 hours of battery and speed charging.",
+    "highlights": ["JBL Pure Bass sound", "Up to 40 hours of battery life", "5 minutes of charging gives about 2 hours of playback", "Multipoint connection"],
+    "specs": [["Type", "On-ear wireless headphones"], ["Battery", "Up to 40 hours"], ["Charging", "USB-C"], ["Brand", "JBL"]]
+  },
+  "jbl-partybox-310": {
+    "short": "JBL PartyBox 310 — a portable party speaker with powerful JBL Pro Sound, a dazzling light show, wheels and up to 18 hours of battery.",
+    "highlights": ["Powerful JBL Pro Sound with deep bass", "Dynamic light show synced to the music", "Up to 18 hours of battery, wheels and handle", "Mic and guitar inputs for karaoke"],
+    "specs": [["Battery", "Up to 18 hours"], ["Inputs", "Microphone, guitar, AUX, USB"], ["Splash resistance", "IPX4"], ["Brand", "JBL"]]
+  },
+  "jbl-boombox-4": {
+    "short": "JBL Boombox 4 — massive JBL Pro Sound with AI Sound Boost, up to 34 hours of playtime and IP68 waterproofing.",
+    "highlights": ["Massive JBL Pro Sound with AI Sound Boost", "Up to 34 hours of playtime", "IP68 waterproof and dustproof", "Auracast multi-speaker connection and built-in power bank"],
+    "specs": [["Battery", "Up to 34 hours"], ["Water resistance", "IP68"], ["Multi-speaker", "Auracast"], ["Brand", "JBL"]]
+  },
+  "jbl-boombox-3": {
+    "short": "JBL Boombox 3 — powerful sound and the deepest bass in a portable, waterproof speaker with up to 24 hours of playtime.",
+    "highlights": ["Powerful JBL Original Pro Sound", "Up to 24 hours of playtime", "IP67 waterproof and dustproof", "Built-in power bank"],
+    "specs": [["Battery", "Up to 24 hours"], ["Water resistance", "IP67"], ["Multi-speaker", "PartyBoost"], ["Brand", "JBL"]]
+  },
+  "jbl-xtreme-4": {
+    "short": "JBL Xtreme 4 — big JBL Pro Sound with AI Sound Boost, a replaceable battery and up to 24 hours of playtime.",
+    "highlights": ["JBL Pro Sound with AI Sound Boost", "Up to 24 hours of playtime, plus Playtime Boost", "IP67 waterproof and dustproof", "Auracast and built-in power bank"],
+    "specs": [["Battery", "Up to 24 hours"], ["Water resistance", "IP67"], ["Multi-speaker", "Auracast"], ["Brand", "JBL"]]
+  },
+  "onyx-studio-9": {
+    "short": "Harman Kardon Onyx Studio 9 — the iconic round Bluetooth speaker with rich stereo sound, self-tuning and Auracast multi-speaker connection.",
+    "highlights": ["Iconic Harman Kardon design", "Rich stereo sound with self-tuning", "Built-in rechargeable battery", "Auracast multi-speaker connection"],
+    "specs": [["Type", "Portable Bluetooth home speaker"], ["Charging", "USB-C"], ["Multi-speaker", "Auracast"], ["Brand", "Harman Kardon"]]
+  },
+  "jbl-charge-5": {
+    "short": "JBL Charge 5 — bold JBL Pro Sound, up to 20 hours of playtime and a built-in power bank to charge your phone.",
+    "highlights": ["JBL Pro Sound with separate tweeter", "Up to 20 hours of playtime", "IP67 waterproof and dustproof", "Built-in power bank and PartyBoost"],
+    "specs": [["Battery", "Up to 20 hours"], ["Water resistance", "IP67"], ["Multi-speaker", "PartyBoost"], ["Brand", "JBL"]]
+  },
+  "jbl-grip": {
+    "short": "JBL Grip — a compact, easy-to-hold speaker with AI Sound Boost, IP68 waterproofing and up to 14 hours of playtime.",
+    "highlights": ["JBL Pro Sound with AI Sound Boost", "Up to 14 hours of playtime", "IP68 waterproof and dustproof", "Auracast multi-speaker connection"],
+    "specs": [["Battery", "Up to 14 hours"], ["Water resistance", "IP68"], ["Multi-speaker", "Auracast"], ["Brand", "JBL"]]
+  },
+  "jbl-flip-6": {
+    "short": "JBL Flip 6 — bold JBL Original Pro Sound in a rugged, waterproof portable speaker with up to 12 hours of playtime.",
+    "highlights": ["JBL Original Pro Sound with separate tweeter", "Up to 12 hours of playtime", "IP67 waterproof and dustproof", "PartyBoost multi-speaker pairing"],
+    "specs": [["Battery", "Up to 12 hours"], ["Water resistance", "IP67"], ["Multi-speaker", "PartyBoost"], ["Brand", "JBL"]]
+  },
+  "jbl-clip-5": {
+    "short": "JBL Clip 5 — an ultra-portable clip-on speaker with AI Sound Boost, up to 12 hours of playtime and Auracast.",
+    "highlights": ["JBL Pro Sound with AI Sound Boost", "Up to 12 hours of playtime", "IP67 waterproof and dustproof", "Integrated carabiner"],
+    "specs": [["Battery", "Up to 12 hours"], ["Water resistance", "IP67"], ["Multi-speaker", "Auracast"], ["Brand", "JBL"]]
+  },
+  "jbl-clip-4": {
+    "short": "JBL Clip 4 — a colourful, ultra-portable speaker with an integrated carabiner and up to 10 hours of playtime.",
+    "highlights": ["JBL Pro Sound", "Up to 10 hours of playtime", "IP67 waterproof and dustproof", "Integrated carabiner"],
+    "specs": [["Battery", "Up to 10 hours"], ["Water resistance", "IP67"], ["Brand", "JBL"]]
+  },
+  "jbl-go-4": {
+    "short": "JBL Go 4 — a pocket-sized speaker with JBL Pro Sound, IP67 waterproofing, Auracast and up to 7 hours of playtime.",
+    "highlights": ["JBL Pro Sound in a pocket-size speaker", "Up to 7 hours of playtime", "IP67 waterproof and dustproof", "Auracast and multipoint connection"],
+    "specs": [["Battery", "Up to 7 hours"], ["Water resistance", "IP67"], ["Multi-speaker", "Auracast"], ["Brand", "JBL"]]
+  },
+  "jbl-go-3": {
+    "short": "JBL Go 3 — a stylish ultra-compact speaker with bold JBL Pro Sound, IP67 waterproofing and up to 5 hours of playtime.",
+    "highlights": ["JBL Pro Sound", "Up to 5 hours of playtime", "IP67 waterproof and dustproof", "Integrated loop for carrying"],
+    "specs": [["Battery", "Up to 5 hours"], ["Water resistance", "IP67"], ["Brand", "JBL"]]
+  },
+
+  "playstation-4-pro-1tb": {
+    "short": "Sony PlayStation 4 Pro 1TB — 4K and HDR gaming with enhanced performance on PS4 Pro-enhanced games. Choose console only or with games.",
+    "highlights": ["4K and HDR gaming and streaming", "Boosted performance for PS4 Pro-enhanced games", "1TB storage", "DualShock 4 controller included"],
+    "specs": [["Storage", "1TB"], ["Resolution", "Up to 4K HDR"], ["Controller", "DualShock 4"], ["Brand", "Sony"]]
+  },
+  "playstation-4-original": {
+    "short": "Sony PlayStation 4 (original model) — an affordable way into the huge PS4 games library. Choose console only or with games.",
+    "highlights": ["Full HD 1080p gaming", "Access to the huge PS4 games library", "Streaming apps and online play", "DualShock 4 controller included"],
+    "specs": [["Resolution", "Up to 1080p"], ["Controller", "DualShock 4"], ["Brand", "Sony"]]
+  },
+  "ea-sports-fc-27": {
+    "short": "EA SPORTS FC 27 for PlayStation — the latest edition of the world's biggest football game, with Ultimate Team, Career Mode and the world's top clubs.",
+    "highlights": ["Latest EA SPORTS FC season", "Ultimate Team, Career Mode and Kick-Off", "Thousands of licensed players and clubs", "Physical disc"],
+    "specs": [["Platform", "PlayStation"], ["Format", "Physical disc"], ["Publisher", "EA SPORTS"]]
+  },
+  "dji-osmo-pocket-4": {
+    "short": "DJI Osmo Pocket 4 — a pocket-size 3-axis gimbal camera with a 1-inch sensor and 4K video, made for vlogs and smooth everyday footage.",
+    "highlights": ["1-inch CMOS sensor", "4K video at up to 240fps", "3-axis mechanical stabilisation", "Rotatable touchscreen and ActiveTrack subject tracking"],
+    "specs": [["Sensor", "1-inch CMOS"], ["Video", "4K up to 240fps"], ["Stabilisation", "3-axis gimbal"], ["Brand", "DJI"]]
+  },
+  "xiaomi-gaming-monitor": {
+    "short": "Xiaomi gaming monitor with a fast high-refresh-rate panel and quick response time for smooth, responsive gaming.",
+    "highlights": ["High refresh rate for smooth gameplay", "Fast response time", "Slim bezels", "Adjustable stand"],
+    "specs": [["Type", "Gaming monitor"], ["Brand", "Xiaomi"]]
+  },
+
+  "dell-alienware-rtx-5060-gaming-laptop": {
+    "short": "Dell Alienware gaming laptop with NVIDIA GeForce RTX 5060, 32GB RAM and a 1TB SSD — serious performance for the latest games.",
+    "highlights": ["NVIDIA GeForce RTX 5060 graphics", "32GB RAM", "1TB SSD", "Alienware cooling and design"],
+    "specs": [["Graphics", "NVIDIA GeForce RTX 5060"], ["RAM", "32GB"], ["Storage", "1TB SSD"], ["Brand", "Dell Alienware"]]
+  },
+  "dell-alienware-16-aurora-rtx-5050": {
+    "short": "Dell Alienware 16 Aurora — a 16-inch WQXGA gaming laptop with NVIDIA GeForce RTX 5050 graphics and Intel Core processing.",
+    "highlights": ["16-inch WQXGA (2560 x 1600) display", "NVIDIA GeForce RTX 5050 graphics", "Intel Core 7 processor", "Alienware design and cooling"],
+    "specs": [["Display", "16-inch WQXGA"], ["Graphics", "NVIDIA GeForce RTX 5050"], ["Processor", "Intel Core 7"], ["Brand", "Dell Alienware"]]
+  },
+  "dell-alienware-15-rtx-4050": {
+    "short": "Dell Alienware 15 — a 15.3-inch 165Hz gaming laptop with Intel Core 7 240H and NVIDIA GeForce RTX 4050.",
+    "highlights": ["15.3-inch WUXGA display, 165Hz", "Intel Core 7 240H processor", "NVIDIA GeForce RTX 4050 graphics", "16GB RAM, 512GB SSD"],
+    "specs": [["Display", "15.3-inch WUXGA, 165Hz"], ["Processor", "Intel Core 7 240H"], ["Graphics", "NVIDIA GeForce RTX 4050"], ["RAM / Storage", "16GB / 512GB SSD"]]
+  },
+  "hp-victus-15-fa2309tx-rtx-5050": {
+    "short": "HP Victus 15 gaming laptop with an Intel Core i7 (13th gen), NVIDIA GeForce RTX 5050 8GB, 24GB RAM and a 1TB SSD.",
+    "highlights": ["NVIDIA GeForce RTX 5050 8GB graphics", "Intel Core i7 13th Gen processor", "24GB RAM and 1TB SSD", "15.6-inch high-refresh-rate display"],
+    "specs": [["Processor", "Intel Core i7 (13th Gen)"], ["Graphics", "NVIDIA GeForce RTX 5050 8GB"], ["RAM / Storage", "24GB / 1TB SSD"], ["Display", "15.6-inch"]]
+  },
+  "hp-victus-15-fa2082wm-rtx-4050": {
+    "short": "HP Victus 15 gaming laptop with an Intel Core i5 (13th gen), NVIDIA GeForce RTX 4050 6GB and a 144Hz Full HD display.",
+    "highlights": ["NVIDIA GeForce RTX 4050 6GB graphics", "Intel Core i5 13th Gen processor", "15.6-inch Full HD 144Hz display", "16GB RAM, 512GB SSD"],
+    "specs": [["Processor", "Intel Core i5 (13th Gen)"], ["Graphics", "NVIDIA GeForce RTX 4050 6GB"], ["RAM / Storage", "16GB / 512GB SSD"], ["Display", "15.6-inch FHD, 144Hz"]]
+  },
+  "hp-victus-15-fa2013dx-rtx-3050": {
+    "short": "HP Victus 15 — an affordable gaming laptop with an Intel Core i5 (13th gen) and NVIDIA GeForce RTX 3050 6GB.",
+    "highlights": ["NVIDIA GeForce RTX 3050 6GB graphics", "Intel Core i5 13th Gen processor", "15.6-inch Full HD 144Hz display", "8GB RAM, 512GB SSD"],
+    "specs": [["Processor", "Intel Core i5 (13th Gen)"], ["Graphics", "NVIDIA GeForce RTX 3050 6GB"], ["RAM / Storage", "8GB / 512GB SSD"], ["Display", "15.6-inch FHD, 144Hz"]]
+  },
+  "hp-omen-16-rtx-5060": {
+    "short": "HP Omen 16 gaming laptop with an Intel Core Ultra 7, NVIDIA GeForce RTX 5060 8GB, 16GB RAM and a 1TB SSD.",
+    "highlights": ["NVIDIA GeForce RTX 5060 8GB graphics", "Intel Core Ultra 7 processor", "16GB RAM and 1TB SSD", "16-inch gaming display"],
+    "specs": [["Processor", "Intel Core Ultra 7"], ["Graphics", "NVIDIA GeForce RTX 5060 8GB"], ["RAM / Storage", "16GB / 1TB SSD"], ["Display", "16-inch"]]
+  },
+  "hp-omnibook-3-snapdragon-x-14-inch": {
+    "short": "HP OmniBook 3 14-inch Copilot+ PC with a Snapdragon X processor — fast, cool and quiet with excellent battery life.",
+    "highlights": ["Snapdragon X processor with NPU for AI features", "Copilot+ PC", "16GB RAM, 512GB SSD", "Long battery life in a light 14-inch design"],
+    "specs": [["Processor", "Qualcomm Snapdragon X"], ["RAM / Storage", "16GB / 512GB SSD"], ["Display", "14-inch"], ["Brand", "HP"]]
+  },
+  "hp-omnibook-flip-16-16-as0023dx-touch": {
+    "short": "HP OmniBook X Flip 16 — a 16-inch 2-in-1 touchscreen Copilot+ PC with an Intel Core Ultra 7 256V, 16GB RAM and a 1TB SSD.",
+    "highlights": ["16-inch touchscreen that flips into tablet mode", "Intel Core Ultra 7 256V with AI NPU", "16GB RAM and 1TB SSD", "Copilot+ PC"],
+    "specs": [["Processor", "Intel Core Ultra 7 256V"], ["RAM / Storage", "16GB / 1TB SSD"], ["Display", "16-inch touchscreen, 2-in-1"], ["Model", "16-as0023dx"]]
+  },
+  "hp-envy-x360-14-14-es1013dx-touch": {
+    "short": "HP Envy x360 14 — a stylish 14-inch 2-in-1 touchscreen laptop with an Intel Core 5 120U processor.",
+    "highlights": ["14-inch touchscreen, flips into tablet mode", "Intel Core 5 120U processor", "8GB RAM, 512GB SSD", "Backlit keyboard and fingerprint reader"],
+    "specs": [["Processor", "Intel Core 5 120U"], ["RAM / Storage", "8GB / 512GB SSD"], ["Display", "14-inch FHD touchscreen"], ["Model", "14-es1013dx"]]
+  },
+  "hp-elitebook-x360-1040-g8": {
+    "short": "HP EliteBook x360 1040 G8 — a premium 14-inch convertible business laptop with an 11th Gen Intel Core i7 and 32GB RAM.",
+    "highlights": ["14-inch touchscreen, 360° convertible", "Intel Core i7 11th Gen", "32GB RAM, 512GB SSD", "Business-grade security and build"],
+    "specs": [["Processor", "Intel Core i7 (11th Gen)"], ["RAM / Storage", "32GB / 512GB SSD"], ["Display", "14-inch touchscreen"], ["Brand", "HP"]]
+  },
+  "dell-latitude-7420-touch": {
+    "short": "Dell Latitude 7420 — a premium 14-inch business laptop with an 11th Gen Intel Core i7 and touchscreen.",
+    "highlights": ["14-inch touchscreen display", "Intel Core i7 11th Gen", "16GB RAM, 512GB SSD", "Lightweight business design"],
+    "specs": [["Processor", "Intel Core i7 (11th Gen)"], ["RAM / Storage", "16GB / 512GB SSD"], ["Display", "14-inch touchscreen"], ["Brand", "Dell"]]
+  },
+  "hp-zbook-firefly-14-g8-touch": {
+    "short": "HP ZBook Firefly 14 G8 — a light 14-inch mobile workstation with an 11th Gen Intel Core i7 and touchscreen.",
+    "highlights": ["14-inch touchscreen display", "Intel Core i7 11th Gen", "16GB RAM, 256GB SSD", "Workstation-grade reliability in a thin design"],
+    "specs": [["Processor", "Intel Core i7 (11th Gen)"], ["RAM / Storage", "16GB / 256GB SSD"], ["Display", "14-inch touchscreen"], ["Brand", "HP"]]
+  },
+  "hp-zbook-firefly-14-g7-touch": {
+    "short": "HP ZBook Firefly 14 G7 — a compact 14-inch mobile workstation with a 10th Gen Intel Core i7 and touchscreen.",
+    "highlights": ["14-inch touchscreen display", "Intel Core i7 10th Gen", "16GB RAM, 256GB SSD", "Durable, lightweight design"],
+    "specs": [["Processor", "Intel Core i7 (10th Gen)"], ["RAM / Storage", "16GB / 256GB SSD"], ["Display", "14-inch touchscreen"], ["Brand", "HP"]]
+  },
+  "hp-elitebook-830-g8": {
+    "short": "HP EliteBook 830 G8 — a compact 13.3-inch business laptop with an 11th Gen Intel Core i7, 16GB RAM and a 512GB SSD.",
+    "highlights": ["13.3-inch Full HD display", "Intel Core i7 11th Gen", "16GB RAM, 512GB SSD", "Business-grade security and build"],
+    "specs": [["Processor", "Intel Core i7 (11th Gen)"], ["RAM / Storage", "16GB / 512GB SSD"], ["Display", "13.3-inch FHD"], ["Brand", "HP"]]
+  },
+  "hp-elitebook-830-g8-amd-ryzen": {
+    "short": "HP EliteBook 830-series G8 with an AMD Ryzen processor — a compact 13.3-inch business laptop with 16GB RAM and a 512GB SSD.",
+    "highlights": ["13.3-inch display", "AMD Ryzen processor", "16GB RAM, 512GB SSD", "Business-grade security and build"],
+    "specs": [["Processor", "AMD Ryzen"], ["RAM / Storage", "16GB / 512GB SSD"], ["Display", "13.3-inch"], ["Brand", "HP"]]
+  },
+  "hp-elitebook-830-g7": {
+    "short": "HP EliteBook 830 G7 — a compact 13.3-inch business laptop with a 10th Gen Intel Core i7 and 16GB RAM.",
+    "highlights": ["13.3-inch Full HD display", "Intel Core i7 10th Gen", "16GB RAM, 256GB SSD", "Business-grade security and build"],
+    "specs": [["Processor", "Intel Core i7 (10th Gen)"], ["RAM / Storage", "16GB / 256GB SSD"], ["Display", "13.3-inch FHD"], ["Brand", "HP"]]
+  },
+  "hp-elitebook-x360-1040-g6-touch": {
+    "short": "HP EliteBook x360 1040 G6 — a 14-inch convertible business laptop with an 8th Gen Intel Core i7 and touchscreen.",
+    "highlights": ["14-inch touchscreen, 360° convertible", "Intel Core i7 8th Gen", "16GB RAM, 256GB SSD", "Premium aluminium design"],
+    "specs": [["Processor", "Intel Core i7 (8th Gen)"], ["RAM / Storage", "16GB / 256GB SSD"], ["Display", "14-inch touchscreen"], ["Brand", "HP"]]
+  },
+  "hp-elitebook-1030-g2-touch": {
+    "short": "HP EliteBook x360 1030 G2 — a slim 13.3-inch convertible touchscreen laptop with a 7th Gen Intel Core i5.",
+    "highlights": ["13.3-inch touchscreen, 360° convertible", "Intel Core i5 7th Gen", "8GB RAM, 256GB SSD", "Slim aluminium design"],
+    "specs": [["Processor", "Intel Core i5 (7th Gen)"], ["RAM / Storage", "8GB / 256GB SSD"], ["Display", "13.3-inch touchscreen"], ["Brand", "HP"]]
+  },
+  "hp-elitebook-830-g6": {
+    "short": "HP EliteBook 830 G6 — a reliable 13.3-inch business laptop with an 8th Gen Intel Core i5, ideal for work and study.",
+    "highlights": ["13.3-inch display", "Intel Core i5 8th Gen", "8GB RAM, 256GB SSD", "Durable business build"],
+    "specs": [["Processor", "Intel Core i5 (8th Gen)"], ["RAM / Storage", "8GB / 256GB SSD"], ["Display", "13.3-inch"], ["Brand", "HP"]]
+  },
+  "hp-elitebook-840-g3": {
+    "short": "HP EliteBook 840 G3 — an affordable 14-inch business laptop with a 6th Gen Intel Core processor and fast SSD storage.",
+    "highlights": ["14-inch display", "Intel Core i5 or i7 (6th Gen)", "8GB RAM, 256GB SSD", "Durable business build"],
+    "specs": [["Processor", "Intel Core i5 / i7 (6th Gen)"], ["RAM / Storage", "8GB / 256GB SSD"], ["Display", "14-inch"], ["Brand", "HP"]]
+  },
+  "dell-latitude-3190-2-in-1-touch": {
+    "short": "Dell Latitude 3190 2-in-1 — a rugged, budget 11.6-inch touchscreen convertible, great for students and light work.",
+    "highlights": ["11.6-inch touchscreen, 2-in-1 convertible", "Durable, education-ready design", "4GB RAM, 128GB storage", "Compact and portable"],
+    "specs": [["RAM / Storage", "4GB / 128GB"], ["Display", "11.6-inch touchscreen"], ["Brand", "Dell"]]
+  }
+}

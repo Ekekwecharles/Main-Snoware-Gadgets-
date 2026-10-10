@@ -29,6 +29,24 @@ Native Google sign-in needs a development build (it isn't in Expo Go; the button
 - The app also refetches when it returns to the foreground. Without Pusher keys it polls every 20s instead.
 - Paying for an order empties the account cart everywhere.
 
+## Releasing (Android APK, outside the Play Store)
+
+There are two kinds of update.
+
+**Small changes (screens, text, logic): over-the-air, no reinstall.**
+Run `npm run publish-update -- "what changed"`. Installed apps download it the next time they open and switch to it on the
+following launch. Always use this script rather than bare `eas update`: it bundles with the live-site values from
+`eas.json` instead of the LAN address in `.env`, which would break every customer's app.
+
+**Native changes (new Expo package, permissions, icon, SDK upgrade): a new APK.**
+1. Bump `version` in `app.config.ts` (e.g. `1.0.0` → `1.1.0`). Over-the-air updates only reach builds with the same
+   version, so older APKs never receive JS they can't run.
+2. `npx eas-cli@latest build -p android --profile preview`, then download the `.apk` from the link it prints.
+3. Rename it to `snoware-gadgets.apk` and publish a new GitHub release (tag `v1.1.0`) with it attached. The website's
+   download button always serves the newest release's `snoware-gadgets.apk`.
+4. On the website, open **Admin › Store settings** and set **Latest app version** to `1.1.0`. Older installs then show
+   an "Update available" popup. Set **Minimum allowed version** too if old versions must stop working (e.g. a checkout change).
+
 ## Checks
 
 `npm run typecheck`, `npm run lint`, `npx expo-doctor`

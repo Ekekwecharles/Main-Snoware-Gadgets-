@@ -226,6 +226,7 @@ export const orderStatusEnum = pgEnum("order_status", [
 
 export const paymentStatusEnum = pgEnum("payment_status", ["unpaid", "paid", "failed", "refunded"]);
 export const deliveryMethodEnum = pgEnum("delivery_method", ["delivery", "pickup"]);
+export const paymentMethodEnum = pgEnum("payment_method", ["paystack", "bank_transfer"]);
 
 export const orders = pgTable(
   "orders",
@@ -236,6 +237,7 @@ export const orders = pgTable(
     email: text("email").notNull(),
     fullName: text("full_name").notNull(),
     phone: text("phone").notNull(),
+    whatsapp: text("whatsapp"),
     deliveryMethod: deliveryMethodEnum("delivery_method").notNull(),
     zoneId: integer("zone_id").references(() => deliveryZones.id),
     zoneName: text("zone_name"),
@@ -248,6 +250,11 @@ export const orders = pgTable(
     total: integer("total").notNull(),
     status: orderStatusEnum("status").notNull().default("pending"),
     paymentStatus: paymentStatusEnum("payment_status").notNull().default("unpaid"),
+    paymentMethod: paymentMethodEnum("payment_method").notNull().default("paystack"),
+    /** Bank transfers: the customer's payment screenshot, stored privately on Cloudinary ("authenticated" type). */
+    paymentProofPublicId: text("payment_proof_public_id"),
+    paymentProofFormat: text("payment_proof_format"),
+    paymentProofAt: timestamp("payment_proof_at"),
     paidAt: timestamp("paid_at"),
     createdAt: timestamp("created_at").notNull().defaultNow(),
   },

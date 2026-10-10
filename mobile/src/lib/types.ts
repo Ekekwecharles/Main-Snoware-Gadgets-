@@ -12,6 +12,8 @@ export type ProductCard = {
   compareAtPrice: number | null;
   inStock: boolean;
   onOrderOnly: boolean;
+  /** Conditions that can currently be bought (new, uk-used, …). */
+  conditions?: string[];
   defaultVariantId: number | null;
   defaultVariantLabel: string;
   defaultVariantOnOrder: boolean;
@@ -99,6 +101,10 @@ export type DeliveryZone = { id: number; name: string; state: string; fee: numbe
 export type StoreInfo = {
   zones: DeliveryZone[];
   store: { address: string; hours: string; email: string; whatsapp: string; whatsappLink: string };
+  /** Missing on older servers — treat as Paystack only. */
+  payments?: { paystack: boolean; bankTransfer: boolean; bankAccounts: { bank: string; accountNumber: string; accountName: string }[] };
+  /** Missing on older servers — no update prompt. */
+  app?: { latestVersion: string | null; minVersion: string | null; androidUrl: string };
 };
 
 export type Order = {
@@ -106,6 +112,10 @@ export type Order = {
   status: string;
   statusLabel: string;
   paymentStatus: string;
+  paymentMethod?: "paystack" | "bank_transfer";
+  /** Unpaid bank transfer: the customer still needs to pay / upload their screenshot at payUrl. */
+  awaitingTransfer?: boolean;
+  payUrl?: string;
   deliveryMethod: "delivery" | "pickup";
   fullName: string;
   email: string;

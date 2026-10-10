@@ -1,0 +1,259 @@
+{
+  "samsung-galaxy-s8": {
+    "short": "Samsung Galaxy S8 — the phone that introduced the curved Infinity Display, with a 12MP Dual Pixel camera, IP68 water resistance and wireless charging.",
+    "highlights": ["5.8-inch Quad HD+ Super AMOLED Infinity Display", "12MP Dual Pixel camera (f/1.7)", "IP68 water and dust resistance", "Wireless and fast charging"],
+    "specs": [["Display", "5.8-inch Quad HD+ Super AMOLED"], ["RAM", "4GB"], ["Rear camera", "12MP Dual Pixel"], ["Battery", "3,000mAh"], ["Water resistance", "IP68"]]
+  },
+  "samsung-galaxy-s8-plus": {
+    "short": "Samsung Galaxy S8+ — a larger 6.2-inch curved Infinity Display and bigger battery, with the same great Dual Pixel camera.",
+    "highlights": ["6.2-inch Quad HD+ Super AMOLED Infinity Display", "12MP Dual Pixel camera (f/1.7)", "IP68 water and dust resistance", "Wireless and fast charging"],
+    "specs": [["Display", "6.2-inch Quad HD+ Super AMOLED"], ["RAM", "4GB"], ["Rear camera", "12MP Dual Pixel"], ["Battery", "3,500mAh"], ["Water resistance", "IP68"]]
+  },
+  "samsung-galaxy-s9": {
+    "short": "Samsung Galaxy S9 with a dual-aperture 12MP camera for great low-light photos, AKG stereo speakers and an Infinity Display.",
+    "highlights": ["5.8-inch Quad HD+ curved Super AMOLED display", "12MP Dual Aperture camera (f/1.5–f/2.4)", "Stereo speakers tuned by AKG", "IP68 water resistance, wireless charging"],
+    "specs": [["Display", "5.8-inch Quad HD+ Super AMOLED"], ["RAM", "4GB"], ["Rear camera", "12MP Dual Aperture"], ["Battery", "3,000mAh"], ["Water resistance", "IP68"]]
+  },
+  "samsung-galaxy-s9-plus": {
+    "short": "Samsung Galaxy S9+ — a 6.2-inch Infinity Display, dual rear cameras with 2x zoom, 6GB RAM and AKG stereo speakers.",
+    "highlights": ["6.2-inch Quad HD+ curved Super AMOLED display", "Dual 12MP cameras with 2x optical zoom", "6GB RAM and stereo speakers by AKG", "IP68 water resistance, wireless charging"],
+    "specs": [["Display", "6.2-inch Quad HD+ Super AMOLED"], ["RAM", "6GB"], ["Rear cameras", "12MP Dual Aperture + 12MP Telephoto"], ["Battery", "3,500mAh"], ["Water resistance", "IP68"]]
+  },
+  "samsung-galaxy-s10e": {
+    "short": "Samsung Galaxy S10e — a compact flagship with a flat Dynamic AMOLED display, dual camera with ultra wide and a side fingerprint reader.",
+    "highlights": ["5.8-inch flat Dynamic AMOLED display", "Dual camera: 12MP + 16MP ultra wide", "Fingerprint reader in the power button", "Wireless PowerShare and IP68"],
+    "specs": [["Display", "5.8-inch FHD+ Dynamic AMOLED"], ["RAM", "6GB"], ["Rear cameras", "12MP Dual Aperture + 16MP Ultra Wide"], ["Battery", "3,100mAh"], ["Water resistance", "IP68"]]
+  },
+  "samsung-galaxy-s10": {
+    "short": "Samsung Galaxy S10 with a 6.1-inch Dynamic AMOLED display, triple camera system and an ultrasonic in-display fingerprint scanner.",
+    "highlights": ["6.1-inch Quad HD+ Dynamic AMOLED display", "Triple camera with ultra wide and 2x telephoto", "Ultrasonic in-display fingerprint scanner", "Wireless PowerShare and IP68"],
+    "specs": [["Display", "6.1-inch Quad HD+ Dynamic AMOLED"], ["RAM", "8GB"], ["Rear cameras", "12MP + 12MP Telephoto + 16MP Ultra Wide"], ["Battery", "3,400mAh"], ["Water resistance", "IP68"]]
+  },
+  "samsung-galaxy-s10-plus": {
+    "short": "Samsung Galaxy S10+ — a big 6.4-inch Dynamic AMOLED display, triple rear and dual front cameras, and a long-lasting 4,100mAh battery.",
+    "highlights": ["6.4-inch Quad HD+ Dynamic AMOLED display", "Triple rear camera and dual front camera", "Ultrasonic in-display fingerprint scanner", "4,100mAh battery with Wireless PowerShare"],
+    "specs": [["Display", "6.4-inch Quad HD+ Dynamic AMOLED"], ["RAM", "8GB"], ["Rear cameras", "12MP + 12MP Telephoto + 16MP Ultra Wide"], ["Battery", "4,100mAh"], ["Water resistance", "IP68"]]
+  },
+  "samsung-galaxy-note-10": {
+    "short": "Samsung Galaxy Note10 — a compact Note with the S Pen and Air Actions, a 6.3-inch Dynamic AMOLED display and triple camera.",
+    "highlights": ["6.3-inch Dynamic AMOLED Infinity-O display", "S Pen with Air Actions", "Triple camera with ultra wide and 2x telephoto", "25W fast charging"],
+    "specs": [["Display", "6.3-inch FHD+ Dynamic AMOLED"], ["RAM", "8GB"], ["Rear cameras", "12MP + 12MP Telephoto + 16MP Ultra Wide"], ["Battery", "3,500mAh"], ["S Pen", "Built in"]]
+  },
+  "samsung-galaxy-note-10-plus": {
+    "short": "Samsung Galaxy Note10+ — a huge 6.8-inch display, S Pen with Air Actions, quad camera with DepthVision and 45W super-fast charging.",
+    "highlights": ["6.8-inch Quad HD+ Dynamic AMOLED display", "S Pen with Air Actions", "Quad camera with DepthVision", "4,300mAh battery with 45W charging support"],
+    "specs": [["Display", "6.8-inch Quad HD+ Dynamic AMOLED"], ["RAM", "12GB"], ["Rear cameras", "12MP + 12MP Telephoto + 16MP Ultra Wide + DepthVision"], ["Battery", "4,300mAh"], ["S Pen", "Built in"]]
+  },
+  "samsung-galaxy-s20": {
+    "short": "Samsung Galaxy S20 — a 120Hz display, 64MP telephoto camera with 30x Space Zoom and 8K video recording.",
+    "highlights": ["6.2-inch Quad HD+ Dynamic AMOLED 2X, 120Hz", "64MP telephoto with 3x hybrid optic zoom and 30x Space Zoom", "8K video recording", "4,000mAh battery, IP68"],
+    "specs": [["Display", "6.2-inch Dynamic AMOLED 2X, 120Hz"], ["RAM", "8GB"], ["Rear cameras", "12MP + 64MP Telephoto + 12MP Ultra Wide"], ["Battery", "4,000mAh"], ["Water resistance", "IP68"]]
+  },
+  "samsung-galaxy-s20-ultra": {
+    "short": "Samsung Galaxy S20 Ultra — a 6.9-inch 120Hz display, 108MP camera with 100x Space Zoom and a 5,000mAh battery with 45W charging.",
+    "highlights": ["6.9-inch Quad HD+ Dynamic AMOLED 2X, 120Hz", "108MP main camera and 100x Space Zoom", "8K video recording", "5,000mAh battery with 45W charging"],
+    "specs": [["Display", "6.9-inch Dynamic AMOLED 2X, 120Hz"], ["RAM", "12GB"], ["Rear cameras", "108MP + 48MP Telephoto + 12MP Ultra Wide + DepthVision"], ["Battery", "5,000mAh"], ["Water resistance", "IP68"]]
+  },
+  "samsung-galaxy-s20-fe": {
+    "short": "Samsung Galaxy S20 FE — flagship features at a friendlier price: a 120Hz display, triple camera with 3x telephoto and a 4,500mAh battery.",
+    "highlights": ["6.5-inch Super AMOLED, 120Hz", "Triple camera with 3x optical zoom", "32MP front camera", "4,500mAh battery, IP68"],
+    "specs": [["Display", "6.5-inch FHD+ Super AMOLED, 120Hz"], ["RAM", "6GB"], ["Rear cameras", "12MP + 8MP 3x Telephoto + 12MP Ultra Wide"], ["Battery", "4,500mAh"], ["Water resistance", "IP68"]]
+  },
+  "samsung-galaxy-note-20": {
+    "short": "Samsung Galaxy Note20 — a 6.7-inch display, S Pen for notes and drawing, and a triple camera with 64MP telephoto.",
+    "highlights": ["6.7-inch FHD+ Super AMOLED Plus display", "S Pen with Air Actions", "Triple camera with 64MP telephoto and 8K video", "4,300mAh battery"],
+    "specs": [["Display", "6.7-inch FHD+ Super AMOLED Plus"], ["RAM", "8GB"], ["Rear cameras", "12MP + 64MP Telephoto + 12MP Ultra Wide"], ["Battery", "4,300mAh"], ["S Pen", "Built in"]]
+  },
+  "samsung-galaxy-note-20-ultra": {
+    "short": "Samsung Galaxy Note20 Ultra — a 6.9-inch 120Hz display, the most responsive S Pen of its time and a 108MP camera with 5x optical zoom.",
+    "highlights": ["6.9-inch Quad HD+ Dynamic AMOLED 2X, 120Hz", "S Pen with 9ms latency", "108MP main camera, 5x optical / 50x Space Zoom", "4,500mAh battery, IP68"],
+    "specs": [["Display", "6.9-inch Dynamic AMOLED 2X, 120Hz"], ["RAM", "12GB"], ["Rear cameras", "108MP + 12MP 5x Periscope + 12MP Ultra Wide"], ["Battery", "4,500mAh"], ["S Pen", "Built in"]]
+  },
+  "samsung-galaxy-s21": {
+    "short": "Samsung Galaxy S21 — a smooth 120Hz display, triple camera with 64MP telephoto and 8K video in a sleek contour-cut design.",
+    "highlights": ["6.2-inch FHD+ Dynamic AMOLED 2X, adaptive 120Hz", "Triple camera with 3x hybrid optic zoom", "8K video recording", "4,000mAh battery, IP68"],
+    "specs": [["Display", "6.2-inch Dynamic AMOLED 2X, 120Hz"], ["RAM", "8GB"], ["Rear cameras", "12MP + 64MP Telephoto + 12MP Ultra Wide"], ["Battery", "4,000mAh"], ["Water resistance", "IP68"]]
+  },
+  "samsung-galaxy-s21-ultra": {
+    "short": "Samsung Galaxy S21 Ultra — a 108MP camera with dual telephoto (3x and 10x), S Pen support and a 6.8-inch WQHD+ 120Hz display.",
+    "highlights": ["6.8-inch WQHD+ Dynamic AMOLED 2X, 120Hz", "108MP camera with 3x and 10x optical telephoto", "S Pen support", "5,000mAh battery, IP68"],
+    "specs": [["Display", "6.8-inch WQHD+ Dynamic AMOLED 2X, 120Hz"], ["RAM", "12GB"], ["Rear cameras", "108MP + 10MP 3x + 10MP 10x + 12MP Ultra Wide"], ["Battery", "5,000mAh"], ["Water resistance", "IP68"]]
+  },
+  "samsung-galaxy-s22": {
+    "short": "Samsung Galaxy S22 — compact and premium with a 50MP main camera, 3x telephoto, Armor Aluminum frame and 120Hz display.",
+    "highlights": ["6.1-inch FHD+ Dynamic AMOLED 2X, 120Hz", "50MP main camera with Nightography", "3x optical telephoto", "Armor Aluminum frame, IP68"],
+    "specs": [["Display", "6.1-inch Dynamic AMOLED 2X, 120Hz"], ["RAM", "8GB"], ["Rear cameras", "50MP + 10MP 3x Telephoto + 12MP Ultra Wide"], ["Battery", "3,700mAh"], ["Water resistance", "IP68"]]
+  },
+  "samsung-galaxy-s22-ultra": {
+    "short": "Samsung Galaxy S22 Ultra — the first Galaxy S with a built-in S Pen, a 108MP camera with 10x optical zoom and a 5,000mAh battery.",
+    "highlights": ["6.8-inch QHD+ Dynamic AMOLED 2X, 120Hz", "Built-in S Pen", "108MP camera with 3x and 10x optical zoom", "5,000mAh battery with 45W charging"],
+    "specs": [["Display", "6.8-inch QHD+ Dynamic AMOLED 2X, 120Hz"], ["RAM", "8GB / 12GB"], ["Rear cameras", "108MP + 10MP 3x + 10MP 10x + 12MP Ultra Wide"], ["Battery", "5,000mAh"], ["S Pen", "Built in"]]
+  },
+  "samsung-galaxy-s23": {
+    "short": "Samsung Galaxy S23 with the Snapdragon 8 Gen 2 for Galaxy — fast, efficient and compact, with a 50MP camera and excellent low-light shots.",
+    "highlights": ["6.1-inch FHD+ Dynamic AMOLED 2X, 120Hz", "Snapdragon 8 Gen 2 for Galaxy", "50MP main camera with Nightography", "IP68, Gorilla Glass Victus 2"],
+    "specs": [["Display", "6.1-inch Dynamic AMOLED 2X, 120Hz"], ["Processor", "Snapdragon 8 Gen 2 for Galaxy"], ["RAM", "8GB"], ["Rear cameras", "50MP + 10MP 3x Telephoto + 12MP Ultra Wide"], ["Battery", "3,900mAh"]]
+  },
+  "samsung-galaxy-s23-ultra": {
+    "short": "Samsung Galaxy S23 Ultra — a 200MP camera, built-in S Pen and Snapdragon 8 Gen 2 for Galaxy in a premium 6.8-inch flagship.",
+    "highlights": ["6.8-inch QHD+ Dynamic AMOLED 2X, 120Hz", "200MP main camera with 10x optical zoom", "Built-in S Pen", "5,000mAh battery, Snapdragon 8 Gen 2 for Galaxy"],
+    "specs": [["Display", "6.8-inch QHD+ Dynamic AMOLED 2X, 120Hz"], ["Processor", "Snapdragon 8 Gen 2 for Galaxy"], ["RAM", "12GB"], ["Rear cameras", "200MP + 10MP 3x + 10MP 10x + 12MP Ultra Wide"], ["Battery", "5,000mAh"]]
+  },
+  "samsung-galaxy-s24": {
+    "short": "Samsung Galaxy S24 — compact and smart with Galaxy AI features like Live Translate and Circle to Search, plus a 50MP triple camera.",
+    "highlights": ["6.2-inch FHD+ Dynamic AMOLED 2X, 1–120Hz", "Galaxy AI: Circle to Search, Live Translate, Photo Assist", "50MP triple camera with 3x telephoto", "7 years of OS and security updates"],
+    "specs": [["Display", "6.2-inch Dynamic AMOLED 2X, 120Hz"], ["RAM", "8GB"], ["Rear cameras", "50MP + 10MP 3x Telephoto + 12MP Ultra Wide"], ["Battery", "4,000mAh"], ["Water resistance", "IP68"]]
+  },
+  "samsung-galaxy-s24-ultra": {
+    "short": "Samsung Galaxy S24 Ultra — a titanium frame, 200MP camera, built-in S Pen and Galaxy AI, powered by Snapdragon 8 Gen 3 for Galaxy.",
+    "highlights": ["6.8-inch QHD+ Dynamic AMOLED 2X with anti-reflective glass", "200MP camera with 5x 50MP telephoto", "Built-in S Pen and Galaxy AI", "Titanium frame, 5,000mAh battery"],
+    "specs": [["Display", "6.8-inch QHD+ Dynamic AMOLED 2X, 120Hz"], ["Processor", "Snapdragon 8 Gen 3 for Galaxy"], ["RAM", "12GB"], ["Rear cameras", "200MP + 50MP 5x + 10MP 3x + 12MP Ultra Wide"], ["Battery", "5,000mAh"]]
+  },
+  "samsung-galaxy-s25": {
+    "short": "Samsung Galaxy S25 — compact flagship power with the Snapdragon 8 Elite for Galaxy, 12GB RAM and the latest Galaxy AI.",
+    "highlights": ["6.2-inch FHD+ Dynamic AMOLED 2X, 120Hz", "Snapdragon 8 Elite for Galaxy, 12GB RAM", "50MP triple camera with 3x telephoto", "Galaxy AI with 7 years of updates"],
+    "specs": [["Display", "6.2-inch Dynamic AMOLED 2X, 120Hz"], ["Processor", "Snapdragon 8 Elite for Galaxy"], ["RAM", "12GB"], ["Rear cameras", "50MP + 10MP 3x Telephoto + 12MP Ultra Wide"], ["Battery", "4,000mAh"]]
+  },
+  "samsung-galaxy-s25-ultra": {
+    "short": "Samsung Galaxy S25 Ultra — Samsung's ultimate camera phone with a 200MP sensor, 50MP ultra wide, built-in S Pen and Snapdragon 8 Elite for Galaxy.",
+    "highlights": ["6.9-inch QHD+ Dynamic AMOLED 2X with anti-reflective glass", "200MP main + 50MP ultra wide + 50MP 5x telephoto", "Built-in S Pen and Galaxy AI", "Titanium frame, 5,000mAh battery"],
+    "specs": [["Display", "6.9-inch QHD+ Dynamic AMOLED 2X, 120Hz"], ["Processor", "Snapdragon 8 Elite for Galaxy"], ["RAM", "12GB"], ["Rear cameras", "200MP + 50MP Ultra Wide + 50MP 5x + 10MP 3x"], ["Battery", "5,000mAh"]]
+  },
+  "samsung-galaxy-s26": {
+    "short": "Samsung Galaxy S26 — Samsung's latest compact flagship with a smooth Dynamic AMOLED 2X display, pro-grade cameras and the newest Galaxy AI.",
+    "highlights": ["Dynamic AMOLED 2X display, 120Hz", "Latest Galaxy AI features", "Flagship triple camera", "Long-term software updates"],
+    "specs": [["Display", "Dynamic AMOLED 2X, 120Hz"], ["Storage", "256GB"], ["Network", "5G"], ["Brand", "Samsung"]]
+  },
+  "samsung-galaxy-a57": {
+    "short": "Samsung Galaxy A57 5G — Samsung's newest premium mid-ranger with a vivid Super AMOLED display, capable cameras and all-day battery.",
+    "highlights": ["Super AMOLED display", "Versatile multi-camera system", "5G connectivity", "All-day battery life"],
+    "specs": [["Storage", "128GB / 256GB"], ["Network", "5G"], ["Brand", "Samsung"]]
+  },
+  "samsung-galaxy-a56": {
+    "short": "Samsung Galaxy A56 5G — a 6.7-inch 120Hz Super AMOLED display, 50MP OIS camera, 45W fast charging and six years of updates.",
+    "highlights": ["6.7-inch FHD+ Super AMOLED, 120Hz", "50MP OIS main camera", "5,000mAh battery with 45W fast charging", "IP67 and 6 years of OS updates"],
+    "specs": [["Display", "6.7-inch FHD+ Super AMOLED, 120Hz"], ["Processor", "Exynos 1580"], ["Rear cameras", "50MP + 12MP Ultra Wide + 5MP Macro"], ["Battery", "5,000mAh, 45W"], ["Water resistance", "IP67"]]
+  },
+  "samsung-galaxy-a36": {
+    "short": "Samsung Galaxy A36 5G — a big 6.7-inch 120Hz Super AMOLED screen, 50MP camera, 45W charging and IP67 protection.",
+    "highlights": ["6.7-inch FHD+ Super AMOLED, 120Hz", "50MP OIS main camera", "5,000mAh battery with 45W fast charging", "IP67 water and dust resistance"],
+    "specs": [["Display", "6.7-inch FHD+ Super AMOLED, 120Hz"], ["Processor", "Snapdragon 6 Gen 3"], ["Rear cameras", "50MP + 8MP Ultra Wide + 5MP Macro"], ["Battery", "5,000mAh, 45W"], ["Water resistance", "IP67"]]
+  },
+  "samsung-galaxy-a26": {
+    "short": "Samsung Galaxy A26 5G — great value with a 6.7-inch 120Hz Super AMOLED display, 50MP OIS camera and IP67 water resistance.",
+    "highlights": ["6.7-inch FHD+ Super AMOLED, 120Hz", "50MP OIS main camera", "5,000mAh battery", "IP67 water and dust resistance"],
+    "specs": [["Display", "6.7-inch FHD+ Super AMOLED, 120Hz"], ["Processor", "Exynos 1380"], ["Rear cameras", "50MP + 8MP Ultra Wide + 2MP Macro"], ["Battery", "5,000mAh"], ["Water resistance", "IP67"]]
+  },
+  "samsung-galaxy-z-trifold": {
+    "short": "Samsung Galaxy Z TriFold — a phone that unfolds twice into a 10-inch tablet-sized screen, with a 200MP camera and Galaxy AI.",
+    "highlights": ["Folds out to a 10-inch main display", "6.5-inch cover screen for everyday use", "200MP main camera", "Run three apps side by side"],
+    "specs": [["Main display", "10-inch Dynamic AMOLED 2X"], ["Cover display", "6.5-inch Dynamic AMOLED 2X"], ["Processor", "Snapdragon 8 Elite for Galaxy"], ["Rear camera", "200MP main"], ["Brand", "Samsung"]]
+  },
+  "samsung-galaxy-z-fold-8-ultra": {
+    "short": "Samsung Galaxy Z Fold8 Ultra — Samsung's most advanced foldable, with a huge folding main screen, flagship cameras and Galaxy AI.",
+    "highlights": ["Large foldable Dynamic AMOLED 2X main display", "Full-size cover screen", "Flagship camera system", "Galaxy AI multitasking"],
+    "specs": [["Storage", "256GB / 512GB"], ["Network", "5G"], ["Brand", "Samsung"]]
+  },
+  "samsung-galaxy-z-fold-8": {
+    "short": "Samsung Galaxy Z Fold8 — a phone that opens into a tablet, with Galaxy AI, pro cameras and powerful multitasking.",
+    "highlights": ["Foldable Dynamic AMOLED 2X main display", "Full-size cover screen", "Flagship camera system", "Galaxy AI multitasking"],
+    "specs": [["Storage", "256GB / 512GB"], ["Network", "5G"], ["Brand", "Samsung"]]
+  },
+  "samsung-galaxy-z-fold-6": {
+    "short": "Samsung Galaxy Z Fold6 — a lighter, slimmer foldable with a 7.6-inch main screen, Snapdragon 8 Gen 3 for Galaxy and Galaxy AI.",
+    "highlights": ["7.6-inch main and 6.3-inch cover Dynamic AMOLED 2X displays", "Snapdragon 8 Gen 3 for Galaxy", "50MP main camera", "Galaxy AI and S Pen Fold Edition support"],
+    "specs": [["Main display", "7.6-inch Dynamic AMOLED 2X, 120Hz"], ["Cover display", "6.3-inch Dynamic AMOLED 2X"], ["Processor", "Snapdragon 8 Gen 3 for Galaxy"], ["RAM", "12GB"], ["Battery", "4,400mAh"]]
+  },
+  "samsung-galaxy-z-fold-5": {
+    "short": "Samsung Galaxy Z Fold5 — a gap-free Flex Hinge design with a 7.6-inch main screen and Snapdragon 8 Gen 2 for Galaxy.",
+    "highlights": ["7.6-inch main and 6.2-inch cover displays", "Flex Hinge folds flat with no gap", "Snapdragon 8 Gen 2 for Galaxy", "50MP main camera with 3x telephoto"],
+    "specs": [["Main display", "7.6-inch Dynamic AMOLED 2X, 120Hz"], ["Cover display", "6.2-inch Dynamic AMOLED 2X"], ["Processor", "Snapdragon 8 Gen 2 for Galaxy"], ["RAM", "12GB"], ["Battery", "4,400mAh"]]
+  },
+  "samsung-galaxy-z-fold-4": {
+    "short": "Samsung Galaxy Z Fold4 — a foldable that's a phone and a tablet, with a 50MP camera, taskbar multitasking and Snapdragon 8+ Gen 1.",
+    "highlights": ["7.6-inch main and 6.2-inch cover displays", "50MP main camera with 3x telephoto", "Taskbar for PC-like multitasking", "S Pen Fold Edition support"],
+    "specs": [["Main display", "7.6-inch Dynamic AMOLED 2X, 120Hz"], ["Cover display", "6.2-inch Dynamic AMOLED 2X"], ["Processor", "Snapdragon 8+ Gen 1"], ["RAM", "12GB"], ["Battery", "4,400mAh"]]
+  },
+  "samsung-galaxy-z-fold-3": {
+    "short": "Samsung Galaxy Z Fold3 5G — the first water-resistant Fold, with an under-display camera and S Pen support.",
+    "highlights": ["7.6-inch main screen with under-display camera", "6.2-inch cover screen, 120Hz", "S Pen Fold Edition support", "IPX8 water resistance"],
+    "specs": [["Main display", "7.6-inch Dynamic AMOLED 2X, 120Hz"], ["Cover display", "6.2-inch Dynamic AMOLED 2X"], ["Processor", "Snapdragon 888"], ["RAM", "12GB"], ["Battery", "4,400mAh"]]
+  },
+  "samsung-galaxy-z-flip-8": {
+    "short": "Samsung Galaxy Z Flip8 — Samsung's latest compact flip phone with a large FlexWindow cover screen, Galaxy AI and flagship cameras.",
+    "highlights": ["Folds down to pocket size", "Large FlexWindow cover screen", "FlexCam hands-free selfies", "Galaxy AI"],
+    "specs": [["Storage", "512GB"], ["Network", "5G"], ["Brand", "Samsung"]]
+  },
+  "samsung-galaxy-z-flip-7": {
+    "short": "Samsung Galaxy Z Flip7 — a 6.9-inch main screen and an edge-to-edge 4.1-inch FlexWindow, with a 50MP camera and Galaxy AI.",
+    "highlights": ["6.9-inch main display, 120Hz", "Edge-to-edge 4.1-inch FlexWindow", "50MP main camera with FlexCam", "4,300mAh battery and Galaxy AI"],
+    "specs": [["Main display", "6.9-inch Dynamic AMOLED 2X, 120Hz"], ["Cover display", "4.1-inch Super AMOLED FlexWindow"], ["Processor", "Exynos 2500"], ["Rear cameras", "50MP + 12MP Ultra Wide"], ["Battery", "4,300mAh"]]
+  },
+  "samsung-galaxy-z-flip-7-fe": {
+    "short": "Samsung Galaxy Z Flip7 FE — the most affordable Galaxy flip phone, with a 6.7-inch main screen, 50MP camera and Galaxy AI.",
+    "highlights": ["6.7-inch main display, 120Hz", "3.4-inch FlexWindow cover screen", "50MP main camera with FlexCam", "Galaxy AI"],
+    "specs": [["Main display", "6.7-inch Dynamic AMOLED 2X, 120Hz"], ["Cover display", "3.4-inch Super AMOLED"], ["Processor", "Exynos 2400"], ["Rear cameras", "50MP + 12MP Ultra Wide"], ["Battery", "4,000mAh"]]
+  },
+
+  "samsung-galaxy-tab-s11-ultra": {
+    "short": "Samsung Galaxy Tab S11 Ultra — a massive 14.6-inch Dynamic AMOLED 2X display in an ultra-thin design, with S Pen included and Galaxy AI.",
+    "highlights": ["14.6-inch Dynamic AMOLED 2X, 120Hz", "S Pen included in the box", "Galaxy AI and Samsung DeX", "IP68 water and dust resistance"],
+    "specs": [["Display", "14.6-inch Dynamic AMOLED 2X, 120Hz"], ["Processor", "MediaTek Dimensity 9400+"], ["Storage", "256GB"], ["S Pen", "Included"], ["Water resistance", "IP68"]]
+  },
+  "samsung-galaxy-tab-s10-ultra": {
+    "short": "Samsung Galaxy Tab S10 Ultra — a 14.6-inch anti-reflective AMOLED screen, S Pen included and Galaxy AI for work and creativity. 5G model.",
+    "highlights": ["14.6-inch Dynamic AMOLED 2X with anti-reflection", "S Pen included in the box", "Galaxy AI and Samsung DeX", "5G connectivity, IP68"],
+    "specs": [["Display", "14.6-inch Dynamic AMOLED 2X, 120Hz"], ["Processor", "MediaTek Dimensity 9300+"], ["Storage", "256GB"], ["Network", "5G"], ["Water resistance", "IP68"]]
+  },
+  "samsung-galaxy-tab-s10-fe": {
+    "short": "Samsung Galaxy Tab S10 FE — a 10.9-inch tablet with the S Pen in the box, Galaxy AI and IP68 protection, great for study and work.",
+    "highlights": ["10.9-inch display, 90Hz", "S Pen included in the box", "Galaxy AI features", "IP68 water and dust resistance"],
+    "specs": [["Display", "10.9-inch, 90Hz"], ["Processor", "Exynos 1580"], ["Storage", "128GB"], ["S Pen", "Included"], ["Water resistance", "IP68"]]
+  },
+  "samsung-galaxy-tab-a11-plus": {
+    "short": "Samsung Galaxy Tab A11+ — an 11-inch family tablet for streaming, browsing and schoolwork, with immersive sound and long battery life.",
+    "highlights": ["11-inch display", "Immersive stereo sound", "Long battery life", "Expandable storage with microSD"],
+    "specs": [["Display", "11-inch"], ["Storage", "128GB / 256GB"], ["Brand", "Samsung"]]
+  },
+  "samsung-galaxy-tab-a11": {
+    "short": "Samsung Galaxy Tab A11 — a compact, affordable tablet for reading, video and kids' learning.",
+    "highlights": ["Compact, lightweight design", "Great for video, reading and learning", "Long battery life", "Expandable storage with microSD"],
+    "specs": [["Storage", "128GB"], ["Brand", "Samsung"]]
+  },
+  "samsung-galaxy-tab-a9-plus": {
+    "short": "Samsung Galaxy Tab A9+ — an 11-inch 90Hz screen with quad speakers and Dolby Atmos for streaming and everyday use.",
+    "highlights": ["11-inch display, 90Hz", "Quad speakers with Dolby Atmos", "Snapdragon 695 processor", "7,040mAh battery"],
+    "specs": [["Display", "11-inch, 90Hz"], ["Processor", "Snapdragon 695"], ["Storage", "64GB (expandable)"], ["Battery", "7,040mAh"]]
+  },
+
+  "samsung-galaxy-watch-ultra-2-2026": {
+    "short": "Samsung Galaxy Watch Ultra 2 (2026) — Samsung's toughest smartwatch, built for outdoor adventures, training and advanced health tracking.",
+    "highlights": ["Rugged titanium design", "Bright display for outdoor use", "Advanced health and fitness tracking", "Long battery life"],
+    "specs": [["Brand", "Samsung"], ["Compatibility", "Android phones"]]
+  },
+  "samsung-galaxy-watch-ultra-1-2025": {
+    "short": "Samsung Galaxy Watch Ultra (2025) — a 47mm titanium adventure watch with a 3,000-nit display, 10ATM water resistance and up to 100 hours of battery.",
+    "highlights": ["47mm titanium case", "3,000-nit Super AMOLED display", "Dual-frequency GPS, 10ATM and IP68", "Up to 100 hours in power saving mode"],
+    "specs": [["Case", "47mm titanium"], ["Processor", "Exynos W1000"], ["Display", "1.5-inch Super AMOLED, 3,000 nits"], ["Water resistance", "10ATM, IP68"], ["Compatibility", "Android phones"]]
+  },
+  "samsung-galaxy-watch-9": {
+    "short": "Samsung Galaxy Watch9 — Samsung's latest everyday smartwatch with advanced health tracking, sleep coaching and Galaxy AI.",
+    "highlights": ["Advanced health and sleep tracking", "Galaxy AI features", "Bright AMOLED display", "Works with Android phones"],
+    "specs": [["Brand", "Samsung"], ["Compatibility", "Android phones"]]
+  },
+  "samsung-galaxy-watch-8-classic": {
+    "short": "Samsung Galaxy Watch8 Classic — the iconic rotating bezel returns, with advanced health insights like the Antioxidant Index and Gemini on your wrist.",
+    "highlights": ["Physical rotating bezel", "Antioxidant Index and bedtime guidance", "Gemini voice assistant", "Exynos W1000 processor"],
+    "specs": [["Case", "46mm"], ["Processor", "Exynos W1000"], ["Display", "Super AMOLED"], ["Water resistance", "5ATM, IP68"], ["Compatibility", "Android phones"]]
+  },
+  "samsung-galaxy-watch-7": {
+    "short": "Samsung Galaxy Watch7 — a fast 3nm processor, dual-frequency GPS and the BioActive sensor for detailed health tracking.",
+    "highlights": ["Exynos W1000 3nm processor", "BioActive sensor for heart, sleep and body composition", "Dual-frequency GPS", "Galaxy AI health insights"],
+    "specs": [["Sizes", "40mm / 44mm"], ["Processor", "Exynos W1000"], ["Display", "Super AMOLED"], ["Water resistance", "5ATM, IP68"], ["Compatibility", "Android phones"]]
+  },
+  "samsung-galaxy-buds-4-pro": {
+    "short": "Samsung Galaxy Buds4 Pro — Samsung's newest premium earbuds with Active Noise Cancelling, Hi-Fi sound and Galaxy AI features.",
+    "highlights": ["Active Noise Cancelling", "Hi-Fi sound", "Galaxy AI features like Interpreter", "Wireless charging case"],
+    "specs": [["Type", "True wireless earbuds"], ["Noise control", "Active Noise Cancelling"], ["Brand", "Samsung"]]
+  }
+}

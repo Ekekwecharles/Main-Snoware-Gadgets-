@@ -9,7 +9,7 @@ import { api } from "@/lib/api";
 import { useAuth } from "@/lib/auth";
 import { useCart } from "@/lib/cart";
 import { imageUrl } from "@/lib/config";
-import { discountPercent, formatNaira, maxOrderQty, variantLabel } from "@/lib/format";
+import { conditionLabel, discountPercent, formatNaira, maxOrderQty, variantLabel } from "@/lib/format";
 import { colors, radius } from "@/lib/theme";
 import type { ProductCard, ProductDetail, Variant } from "@/lib/types";
 
@@ -131,6 +131,11 @@ export default function ProductScreen() {
                     : "In stock"}
             </Text>
           ) : null}
+          {variant ? (
+            <Text style={styles.condition}>
+              Condition: <Text style={{ fontWeight: "700", color: variant.condition === "new" ? colors.success : colors.navy }}>{conditionLabel(variant.condition)}</Text>
+            </Text>
+          ) : null}
 
           {p.variants.length > 1 ? (
             <View style={{ gap: 8, marginTop: 6 }}>
@@ -149,7 +154,7 @@ export default function ProductScreen() {
                     >
                       {v.colorHex ? <View style={[styles.swatch, { backgroundColor: v.colorHex }]} /> : null}
                       <View>
-                        <Text style={[styles.variantText, active && { color: colors.white }]}>{variantLabel(v) || "Standard"}</Text>
+                        <Text style={[styles.variantText, active && { color: colors.white }]}>{[v.storage, v.color, conditionLabel(v.condition)].filter(Boolean).join(" · ")}</Text>
                         <Text style={[styles.variantPrice, active && { color: colors.white }]}>{formatNaira(v.price)}</Text>
                       </View>
                     </Pressable>
@@ -210,6 +215,7 @@ const styles = StyleSheet.create({
   off: { fontSize: 13, fontWeight: "700", color: colors.brand },
   availability: { fontSize: 14, fontWeight: "600" },
   sectionLabel: { fontSize: 16, fontWeight: "800", color: colors.ink },
+  condition: { fontSize: 14, color: colors.muted },
   variants: { flexDirection: "row", flexWrap: "wrap", gap: 8 },
   variant: { flexDirection: "row", alignItems: "center", gap: 8, borderWidth: 1.5, borderColor: colors.line, borderRadius: radius.md, paddingHorizontal: 12, paddingVertical: 8 },
   variantActive: { backgroundColor: colors.ink, borderColor: colors.ink },

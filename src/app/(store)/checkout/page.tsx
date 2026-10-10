@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { auth } from "@/auth";
 import { getDeliveryZones, getSettings } from "@/lib/catalog";
 import { CheckoutForm } from "@/components/checkout/checkout-form";
+import { paystackEnabled } from "@/lib/paystack";
 
 export const metadata: Metadata = { title: "Checkout", robots: { index: false } };
 
@@ -17,6 +18,7 @@ export default async function CheckoutPage() {
           storeHours={settings.store_hours}
           defaults={{ email: session?.user?.email ?? "", fullName: session?.user?.name ?? "" }}
           signedIn={!!session?.user}
+          paystackEnabled={paystackEnabled()}
         />
       </div>
     </div>

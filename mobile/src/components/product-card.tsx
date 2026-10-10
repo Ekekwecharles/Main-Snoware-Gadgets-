@@ -4,7 +4,7 @@ import { router } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import { useCart } from "@/lib/cart";
 import { imageUrl } from "@/lib/config";
-import { discountPercent, formatNaira } from "@/lib/format";
+import { conditionSummary, discountPercent, formatNaira } from "@/lib/format";
 import { colors, radius } from "@/lib/theme";
 import type { ProductCard as Card } from "@/lib/types";
 
@@ -28,6 +28,11 @@ export function ProductCard({ product, width }: { product: Card; width?: number 
         <Text numberOfLines={2} style={styles.name}>
           {product.name}
         </Text>
+        {product.conditions?.length ? (
+          <Text style={[styles.condition, product.conditions.length === 1 && product.conditions[0] === "new" && { color: colors.success }]}>
+            {conditionSummary(product.conditions)}
+          </Text>
+        ) : null}
         <View style={{ flex: 1 }} />
         <View style={styles.row}>
           <View style={{ flex: 1 }}>
@@ -71,6 +76,7 @@ const styles = StyleSheet.create({
   badge: { position: "absolute", top: 8, left: 8, backgroundColor: colors.brand, borderRadius: radius.pill, paddingHorizontal: 8, paddingVertical: 3 },
   badgeText: { color: colors.white, fontSize: 11, fontWeight: "700" },
   name: { fontSize: 14, fontWeight: "600", color: colors.ink, lineHeight: 19 },
+  condition: { fontSize: 12, fontWeight: "600", color: colors.navy },
   row: { flexDirection: "row", alignItems: "flex-end", gap: 6 },
   price: { fontSize: 15, fontWeight: "800", color: colors.ink },
   compare: { fontSize: 12, color: colors.muted, textDecorationLine: "line-through" },

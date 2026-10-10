@@ -19,6 +19,12 @@ const conditionLabels: Record<string, string> = {
 
 export const conditionLabel = (value: string) => conditionLabels[value] ?? value;
 
+/** One line for a product card: "Brand New", "UK Used", "New & Pre-owned" or "Pre-owned" — same wording as the website. */
+export function conditionSummary(conditions: string[]) {
+  if (conditions.length === 1) return conditionLabel(conditions[0]);
+  return conditions.includes("new") ? "New & Pre-owned" : "Pre-owned";
+}
+
 /** Same label the website builds for a variant (storage · color · condition when not new). */
 export function variantLabel(v: { condition: string; storage: string | null; color: string | null }) {
   const cond = v.condition === "new" ? null : conditionLabel(v.condition);

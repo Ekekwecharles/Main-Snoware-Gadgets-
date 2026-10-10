@@ -17,7 +17,7 @@ type CheckoutResult =
   | { ok: true; url: string; reference: string }
   | { ok: false; error: string; fieldErrors?: Record<string, string> };
 
-/** Same checkout as the website: the server re-prices the cart and starts a Paystack payment. */
+/** Same checkout as the website: the server re-prices the cart, then it's bank transfer or Paystack. */
 export default function CheckoutScreen() {
   const { user } = useAuth();
   const items = useCart((s) => s.items);
@@ -33,6 +33,9 @@ export default function CheckoutScreen() {
     state: "",
   }));
   const [method, setMethod] = useState<"delivery" | "pickup">("delivery");
+  const [payment, setPayment] = useState<"bank_transfer" | "paystack">("bank_transfer");
+  const [sameWhatsapp, setSameWhatsapp] = useState(true);
+  const [whatsapp, setWhatsapp] = useState("");
   const [zoneId, setZoneId] = useState<number | null>(null);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [message, setMessage] = useState<string | null>(null);
@@ -42,6 +45,10 @@ export default function CheckoutScreen() {
   if (info.isPending) return <Loading />;
 
   const zones = info.data?.zones ?? [];
+  // Older servers don't send `payments` and only support Paystack.
+  const paystackOn = info.data?.payments ? info.data.payments.paystack : true;
+  const transferOn = info.data?.payments?.bankTransfer ?? false;
+  const payMethod = transferOn ? (paystackOn ? payment : "bank_transfer") : "paystack";
   const zone = zones.find((z) => z.id === zoneId);
   const subtotal = cartSubtotal(items);
   const deliveryFee = method === "delivery" ? (zone?.fee ?? 0) : 0;
@@ -57,6 +64,8 @@ export default function CheckoutScreen() {
         method: "POST",
         body: {
           ...form,
+          whatsapp: sameWhatsapp ? "" : whatsapp,
+          paymentMethod: payMethod,
           deliveryMethod: method,
           zoneId: method === "delivery" ? zoneId ?? undefined : undefined,
           notes: notes || undefined,
@@ -72,6 +81,15 @@ export default function CheckoutScreen() {
       setErrors(result.fieldErrors ?? {});
       setMessage(result.error);
       setBusy(false);
+      return;
+    }
+
+    if (payMethod === "bank_transfer") {
+      // The order is placed. The website's order page shows our account details and takes the screenshot upload.
+      useCart.getState().clear();
+      await WebBrowser.openBrowserAsync(result.url).catch(() => undefined);
+      setBusy(false);
+      router.replace({ pathname: "/checkout-complete", params: { status: "transfer", reference: result.reference, payUrl: result.url } });
       return;
     }
 
@@ -98,6 +116,13 @@ export default function CheckoutScreen() {
         <Field label="Email" value={form.email} onChangeText={set("email")} autoCapitalize="none" keyboardType="email-address" autoComplete="email" error={errors.email} />
         <Field label="Full name" value={form.fullName} onChangeText={set("fullName")} autoComplete="name" error={errors.fullName} />
         <Field label="Phone" value={form.phone} onChangeText={set("phone")} keyboardType="phone-pad" autoComplete="tel" placeholder="080…" error={errors.phone} />
+        <Pressable onPress={() => setSameWhatsapp((v) => !v)} style={styles.check} accessibilityRole="checkbox" accessibilityState={{ checked: sameWhatsapp }}>
+          <Ionicons name={sameWhatsapp ? "checkbox" : "square-outline"} size={22} color={sameWhatsapp ? colors.ink : colors.muted} />
+          <Text style={styles.checkText}>My WhatsApp number is the same as my phone</Text>
+        </Pressable>
+        {!sameWhatsapp || errors.whatsapp ? (
+          <Field label="WhatsApp number" value={whatsapp} onChangeText={setWhatsapp} keyboardType="phone-pad" placeholder="080…" error={errors.whatsapp} />
+        ) : null}
 
         <Text style={styles.heading}>Delivery</Text>
         <View style={styles.toggle}>
@@ -135,6 +160,30 @@ export default function CheckoutScreen() {
           </>
         )}
 
+        {transferOn ? (
+          <>
+            <Text style={styles.heading}>Payment</Text>
+            <View style={styles.toggle}>
+              <Pressable onPress={() => setPayment("bank_transfer")} style={[styles.toggleItem, payMethod === "bank_transfer" && styles.toggleActive]}>
+                <Ionicons name="business-outline" size={18} color={payMethod === "bank_transfer" ? colors.white : colors.ink} />
+                <Text style={[styles.toggleText, payMethod === "bank_transfer" && { color: colors.white }]}>Bank transfer</Text>
+              </Pressable>
+              {paystackOn ? (
+                <Pressable onPress={() => setPayment("paystack")} style={[styles.toggleItem, payMethod === "paystack" && styles.toggleActive]}>
+                  <Ionicons name="card-outline" size={18} color={payMethod === "paystack" ? colors.white : colors.ink} />
+                  <Text style={[styles.toggleText, payMethod === "paystack" && { color: colors.white }]}>Card</Text>
+                </Pressable>
+              ) : null}
+            </View>
+            {payMethod === "bank_transfer" ? (
+              <Notice>
+                After you place your order you&apos;ll see our OPay / Moniepoint account details and your order reference. Transfer the exact total with the reference in the
+                narration, then upload your payment screenshot.
+              </Notice>
+            ) : null}
+          </>
+        ) : null}
+
         <View style={styles.summary}>
           {items.map((i) => (
             <View key={i.variantId} style={styles.summaryRow}>
@@ -154,8 +203,15 @@ export default function CheckoutScreen() {
           </View>
         </View>
 
-        <Button title={`Pay ${formatNaira(subtotal + deliveryFee)} with Paystack`} icon="lock-closed" loading={busy} onPress={pay} />
-        <Text style={styles.small}>Prices are confirmed by the server before payment. You'll pay securely on Paystack.</Text>
+        <Button
+          title={payMethod === "bank_transfer" ? `Place order · ${formatNaira(subtotal + deliveryFee)}` : `Pay ${formatNaira(subtotal + deliveryFee)} with Paystack`}
+          icon="lock-closed"
+          loading={busy}
+          onPress={pay}
+        />
+        <Text style={styles.small}>
+          {payMethod === "bank_transfer" ? "Prices are confirmed by the server when you place your order." : "Prices are confirmed by the server before payment. You'll pay securely on Paystack."}
+        </Text>
       </ScrollView>
     </KeyboardAvoidingView>
   );
@@ -166,6 +222,8 @@ const styles = StyleSheet.create({
   label: { fontSize: 14, fontWeight: "600", color: colors.ink },
   error: { color: colors.brand, fontSize: 13 },
   toggle: { flexDirection: "row", gap: 8 },
+  check: { flexDirection: "row", alignItems: "center", gap: 8 },
+  checkText: { flex: 1, fontSize: 14, color: colors.ink },
   toggleItem: { flex: 1, flexDirection: "row", gap: 6, alignItems: "center", justifyContent: "center", borderWidth: 1.5, borderColor: colors.line, borderRadius: radius.md, paddingVertical: 12 },
   toggleActive: { backgroundColor: colors.ink, borderColor: colors.ink },
   toggleText: { fontWeight: "700", color: colors.ink },

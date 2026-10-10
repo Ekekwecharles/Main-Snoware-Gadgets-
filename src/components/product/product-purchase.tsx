@@ -160,13 +160,14 @@ export function ProductPurchase({ product, compact = false }: { product: Purchas
         )}
       </div>
 
-      {options.condition.length > 1 && (
+      {/* Always shown, even with one condition, so shoppers know whether it's brand new or pre-owned. */}
+      {options.condition.length > 0 && (
         <OptionGroup label="Condition" value={conditionLabel(selected.condition)}>
           <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
             {options.condition.map((c) => (
               <OptionButton key={c} active={selected.condition === c} state={availability("condition", c)} onClick={() => choose("condition", c)}>
                 <span className="block text-[13.5px] font-semibold">{conditionLabel(c)}</span>
-                {priceFor("condition", c) && <span className="block text-[11.5px] text-muted">{formatNaira(priceFor("condition", c)!)}</span>}
+                {options.condition.length > 1 && priceFor("condition", c) && <span className="block text-[11.5px] text-muted">{formatNaira(priceFor("condition", c)!)}</span>}
               </OptionButton>
             ))}
           </div>

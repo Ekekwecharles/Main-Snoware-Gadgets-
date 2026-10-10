@@ -5,6 +5,8 @@ import { Footer } from "@/components/layout/footer";
 import { CartDrawer } from "@/components/cart/cart-drawer";
 import { CartSync } from "@/components/cart/cart-sync";
 import { WhatsAppFab } from "@/components/layout/whatsapp-fab";
+import { AppInstallBanner } from "@/components/layout/app-install-banner";
+import { JsonLd, storeJsonLd } from "@/lib/seo";
 
 export default async function StoreLayout({ children }: LayoutProps<"/">) {
   const [session, settings] = await Promise.all([auth().catch(() => null), getSettings()]);
@@ -12,6 +14,8 @@ export default async function StoreLayout({ children }: LayoutProps<"/">) {
 
   return (
     <>
+      <JsonLd data={storeJsonLd(settings.store_address)} />
+      <AppInstallBanner />
       <Header user={user} announcement={settings.announcement} />
       <main className="flex-1">{children}</main>
       <Footer storeAddress={settings.store_address} />

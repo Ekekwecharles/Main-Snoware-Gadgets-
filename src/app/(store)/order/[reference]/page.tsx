@@ -3,12 +3,13 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Check, CheckCircle2, MapPin, Store } from "lucide-react";
 import { getOrderByReference } from "@/lib/orders";
-import { pickupSteps, statusLabels, statusSteps } from "@/lib/order-status";
+import { isAwaitingTransfer, orderStatusText, pickupSteps, statusSteps } from "@/lib/order-status";
 import { getSettings } from "@/lib/catalog";
 import { ProductImage } from "@/components/product/product-image";
 import { ClearCartOnSuccess } from "@/components/checkout/clear-cart";
 import { cn, formatNaira } from "@/lib/utils";
-import { site } from "@/lib/site";
+import { bankAccounts, site } from "@/lib/site";
+import { TransferPayment } from "@/components/checkout/transfer-payment";
 
 export const metadata: Metadata = { title: "Your order", robots: { index: false } };
 
@@ -18,12 +19,15 @@ export default async function OrderPage(props: PageProps<"/order/[reference]">) 
   if (!order) notFound();
 
   const success = sp.success === "1" && order.paymentStatus === "paid";
+  const placed = sp.placed === "1";
+  const awaitingTransfer = isAwaitingTransfer(order);
   const steps = order.deliveryMethod === "pickup" ? pickupSteps : statusSteps;
   const currentIndex = steps.findIndex((s) => s.key === order.status);
+  const statusText = orderStatusText(order);
 
   return (
     <div className="container-x max-w-4xl py-10 lg:py-14">
-      {success && <ClearCartOnSuccess />}
+      {(success || placed) && <ClearCartOnSuccess />}
 
       {success ? (
         <div className="mb-10 text-center">
@@ -31,8 +35,22 @@ export default async function OrderPage(props: PageProps<"/order/[reference]">) 
           <h1 className="mt-4 text-[30px] font-extrabold sm:text-[38px]">Thank you, {order.fullName.split(" ")[0]}!</h1>
           <p className="mt-2 text-muted">Your payment was successful. A confirmation has been sent to <b className="text-ink">{order.email}</b>.</p>
         </div>
+      ) : awaitingTransfer ? (
+        <div className="mb-8">
+          <h1 className="text-[28px] font-extrabold sm:text-[34px]">{placed ? `Order placed, ${order.fullName.split(" ")[0]}!` : "Complete your payment"}</h1>
+          <p className="mt-2 text-muted">
+            {placed ? "Your order is reserved. Pay by bank transfer below to complete it — we've also emailed these details to " : "Pay by bank transfer below. Details were also sent to "}
+            <b className="text-ink">{order.email}</b>.
+          </p>
+        </div>
       ) : (
         <h1 className="mb-8 text-[30px] font-extrabold">Order details</h1>
+      )}
+
+      {awaitingTransfer && (
+        <div className="mb-6 rounded-3xl bg-white p-6 shadow-card ring-1 ring-line sm:p-8">
+          <TransferPayment reference={order.reference} total={order.total} accounts={bankAccounts} proofAt={order.paymentProofAt?.toISOString() ?? null} />
+        </div>
       )}
 
       <div className="rounded-3xl bg-white p-6 shadow-card ring-1 ring-line sm:p-8">
@@ -42,7 +60,7 @@ export default async function OrderPage(props: PageProps<"/order/[reference]">) 
             <p className="font-mono text-[16px] font-semibold">{order.reference}</p>
           </div>
           <span className={cn("rounded-full px-3.5 py-1.5 text-[13px] font-semibold", order.status === "cancelled" ? "bg-brand-50 text-brand-700" : order.paymentStatus === "paid" ? "bg-emerald-50 text-success" : "bg-amber-50 text-amber-700")}>
-            {statusLabels[order.status]}
+            {statusText}
           </span>
         </div>
 
@@ -88,7 +106,7 @@ export default async function OrderPage(props: PageProps<"/order/[reference]">) 
               <p className="text-muted">
                 {order.deliveryMethod === "pickup" ? settings.store_address : [order.addressLine, order.city, order.state].filter(Boolean).join(", ")}
               </p>
-              <p className="text-muted">{order.phone}</p>
+              <p className="text-muted">{order.phone}{order.whatsapp && order.whatsapp !== order.phone ? ` · WhatsApp ${order.whatsapp}` : ""}</p>
             </div>
           </div>
           <dl className="space-y-1.5 text-[14.5px]">

@@ -15,6 +15,26 @@ export const site = {
   },
 } as const;
 
+/**
+ * Where visitors get the mobile app while it isn't on the Play Store / App Store.
+ * - Android: a direct APK download (default: the latest GitHub release asset named snoware-gadgets.apk).
+ * - iOS: a TestFlight public link if you have one; otherwise iPhone users add the website to their home screen.
+ */
+export const appDownloads = {
+  android:
+    process.env.NEXT_PUBLIC_ANDROID_APK_URL ||
+    "https://github.com/Ekekwecharles/Main-Snoware-Gadgets-/releases/latest/download/snoware-gadgets.apk",
+  ios: process.env.NEXT_PUBLIC_IOS_APP_URL || null,
+} as const;
+
+/** Accounts shown for "Pay by bank transfer" — the first one is the main account. */
+export const bankAccounts = [
+  { bank: "OPay", accountNumber: "6140818808", accountName: "Snoware Gadgets" },
+  { bank: "Moniepoint", accountNumber: "6703883408", accountName: "Snoware Gadgets" },
+] as const;
+
+export type PaymentMethod = "paystack" | "bank_transfer";
+
 export function whatsappMessageLink(message: string) {
   return `${site.whatsappLink}?text=${encodeURIComponent(message)}`;
 }
@@ -224,6 +244,7 @@ export const footerLinks = {
     { label: "Trade-In", href: "/trade-in" },
     { label: "Warranty", href: "/warranty" },
     { label: "FAQ", href: "/faq" },
+    { label: "Get the App", href: "/app" },
     { label: "Contact Us", href: "/contact" },
   ],
   shop: [

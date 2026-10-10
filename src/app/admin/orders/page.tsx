@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { and, desc, eq, ilike, or, type SQL } from "drizzle-orm";
+import { and, count, desc, eq, ilike, isNotNull, ne, or, type SQL } from "drizzle-orm";
 import { Search } from "lucide-react";
 import { db } from "@/db";
 import { orders, orderStatusEnum } from "@/db/schema";
@@ -10,7 +10,12 @@ import { statusLabels } from "@/lib/order-status";
 export const dynamic = "force-dynamic";
 export const metadata = { title: "Orders" };
 
-const tabs = [{ value: "", label: "All paid" }, ...orderStatusEnum.enumValues.filter((s) => s !== "pending").map((s) => ({ value: s, label: statusLabels[s] })), { value: "unpaid", label: "Unpaid / abandoned" }];
+const tabs = [
+  { value: "transfers", label: "Transfers to confirm" },
+  { value: "", label: "All paid" },
+  ...orderStatusEnum.enumValues.filter((s) => s !== "pending").map((s) => ({ value: s, label: statusLabels[s] })),
+  { value: "unpaid", label: "Unpaid / abandoned" },
+];
 
 export default async function AdminOrdersPage(props: PageProps<"/admin/orders">) {
   const sp = await props.searchParams;
@@ -18,14 +23,23 @@ export default async function AdminOrdersPage(props: PageProps<"/admin/orders">)
   const q = typeof sp.q === "string" ? sp.q.trim() : "";
 
   const conds: (SQL | undefined)[] = [];
-  if (status === "unpaid") conds.push(eq(orders.paymentStatus, "unpaid"));
+  if (status === "transfers")
+    conds.push(eq(orders.paymentMethod, "bank_transfer"), eq(orders.paymentStatus, "unpaid"), ne(orders.status, "cancelled"));
+  else if (status === "unpaid") conds.push(eq(orders.paymentStatus, "unpaid"));
   else {
     conds.push(eq(orders.paymentStatus, "paid"));
     if (status) conds.push(eq(orders.status, status as (typeof orderStatusEnum.enumValues)[number]));
   }
   if (q) conds.push(or(ilike(orders.reference, `%${q}%`), ilike(orders.fullName, `%${q}%`), ilike(orders.email, `%${q}%`), ilike(orders.phone, `%${q}%`)));
 
-  const list = await db.query.orders.findMany({ where: and(...conds), orderBy: [desc(orders.createdAt)], limit: 200, with: { items: true } });
+  const [list, [{ proofs }]] = await Promise.all([
+    db.query.orders.findMany({ where: and(...conds), orderBy: [desc(orders.createdAt)], limit: 200, with: { items: true } }),
+    // Transfers with a screenshot waiting — shown as a badge on the tab.
+    db
+      .select({ proofs: count() })
+      .from(orders)
+      .where(and(eq(orders.paymentMethod, "bank_transfer"), eq(orders.paymentStatus, "unpaid"), ne(orders.status, "cancelled"), isNotNull(orders.paymentProofAt))),
+  ]);
 
   return (
     <>
@@ -38,6 +52,9 @@ export default async function AdminOrdersPage(props: PageProps<"/admin/orders">)
             className={cn("shrink-0 rounded-full px-4 py-2 text-[13.5px] font-medium", status === t.value ? "bg-ink text-white" : "bg-white ring-1 ring-line hover:ring-ink")}
           >
             {t.label}
+            {t.value === "transfers" && proofs > 0 && (
+              <span className="ml-2 rounded-full bg-orange-500 px-1.5 py-0.5 text-[11px] font-bold text-white">{proofs}</span>
+            )}
           </Link>
         ))}
       </div>
@@ -75,7 +92,20 @@ export default async function AdminOrdersPage(props: PageProps<"/admin/orders">)
                   </td>
                   <td className="px-4 py-3 text-muted">{o.deliveryMethod === "pickup" ? "Pickup" : o.zoneName}</td>
                   <td className="px-4 py-3">
-                    <StatusPill status={o.paymentStatus === "paid" ? o.status : o.paymentStatus} />
+                    <StatusPill
+                      status={
+                        o.paymentStatus === "paid"
+                          ? o.status
+                          : o.paymentMethod === "bank_transfer" && o.status !== "cancelled"
+                            ? o.paymentProofAt
+                              ? "proof_sent"
+                              : "awaiting_transfer"
+                            : o.status === "cancelled"
+                              ? "cancelled"
+                              : o.paymentStatus
+                      }
+                    />
+                    <p className="mt-0.5 text-[12px] text-muted">{o.paymentMethod === "bank_transfer" ? "Bank transfer" : "Paystack"}</p>
                   </td>
                   <td className="px-4 py-3 text-right font-semibold">{formatNaira(o.total)}</td>
                 </tr>

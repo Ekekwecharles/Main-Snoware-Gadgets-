@@ -1,0 +1,272 @@
+{
+  "iphone-17": {
+    "short": "Apple's iPhone 17 brings a 6.3-inch ProMotion display, the A19 chip and a 48MP dual camera system to the standard iPhone for the first time.",
+    "highlights": ["6.3-inch Super Retina XDR display with ProMotion up to 120Hz", "A19 chip with Apple Intelligence", "48MP Fusion and 48MP Ultra Wide cameras", "18MP Center Stage front camera"],
+    "specs": [["Display", "6.3-inch Super Retina XDR, ProMotion 120Hz"], ["Chip", "A19"], ["Rear cameras", "48MP Fusion + 48MP Ultra Wide"], ["Front camera", "18MP Center Stage"], ["Storage", "256GB / 512GB"], ["Connector", "USB-C"]]
+  },
+  "iphone-16-pro": {
+    "short": "iPhone 16 Pro in a light titanium design with the A18 Pro chip, Camera Control and a pro camera system with 5x telephoto.",
+    "highlights": ["6.3-inch Super Retina XDR display with ProMotion and Always-On", "A18 Pro chip built for Apple Intelligence", "48MP Fusion, 48MP Ultra Wide and 12MP 5x telephoto cameras", "Camera Control and Action button"],
+    "specs": [["Display", "6.3-inch Super Retina XDR, ProMotion"], ["Chip", "A18 Pro"], ["Rear cameras", "48MP Fusion + 48MP Ultra Wide + 12MP 5x Telephoto"], ["Body", "Titanium"], ["Connector", "USB-C (USB 3)"]]
+  },
+  "iphone-16-plus": {
+    "short": "iPhone 16 Plus pairs a big 6.7-inch display and long battery life with the A18 chip, Camera Control and a 48MP Fusion camera.",
+    "highlights": ["6.7-inch Super Retina XDR display", "A18 chip with Apple Intelligence", "48MP Fusion camera with 2x optical-quality zoom", "Camera Control and Action button"],
+    "specs": [["Display", "6.7-inch Super Retina XDR"], ["Chip", "A18"], ["Rear cameras", "48MP Fusion + 12MP Ultra Wide"], ["Front camera", "12MP TrueDepth"], ["Connector", "USB-C"]]
+  },
+  "iphone-15-pro-max": {
+    "short": "iPhone 15 Pro Max — Apple's first titanium iPhone, with the A17 Pro chip, a 5x telephoto camera and USB-C.",
+    "highlights": ["6.7-inch Super Retina XDR display with ProMotion and Always-On", "A17 Pro chip", "48MP main camera and 12MP 5x tetraprism telephoto", "Titanium design with Action button"],
+    "specs": [["Display", "6.7-inch Super Retina XDR, ProMotion"], ["Chip", "A17 Pro"], ["Rear cameras", "48MP Main + 12MP Ultra Wide + 12MP 5x Telephoto"], ["Body", "Titanium"], ["Connector", "USB-C (USB 3)"]]
+  },
+  "iphone-15-pro": {
+    "short": "iPhone 15 Pro packs the A17 Pro chip, a titanium frame and a 48MP pro camera system into a compact 6.1-inch size.",
+    "highlights": ["6.1-inch Super Retina XDR display with ProMotion and Always-On", "A17 Pro chip", "48MP main camera with 3x telephoto", "Titanium design with Action button and USB-C"],
+    "specs": [["Display", "6.1-inch Super Retina XDR, ProMotion"], ["Chip", "A17 Pro"], ["Rear cameras", "48MP Main + 12MP Ultra Wide + 12MP 3x Telephoto"], ["Body", "Titanium"], ["Connector", "USB-C (USB 3)"]]
+  },
+  "iphone-15-plus": {
+    "short": "iPhone 15 Plus gives you a 6.7-inch display, Dynamic Island, a 48MP main camera and great battery life.",
+    "highlights": ["6.7-inch Super Retina XDR display with Dynamic Island", "A16 Bionic chip", "48MP main camera with 2x telephoto option", "USB-C charging"],
+    "specs": [["Display", "6.7-inch Super Retina XDR"], ["Chip", "A16 Bionic"], ["Rear cameras", "48MP Main + 12MP Ultra Wide"], ["Front camera", "12MP TrueDepth"], ["Connector", "USB-C"]]
+  },
+  "iphone-15": {
+    "short": "iPhone 15 brings Dynamic Island, a 48MP main camera and USB-C in a colour-infused glass design.",
+    "highlights": ["6.1-inch Super Retina XDR display with Dynamic Island", "A16 Bionic chip", "48MP main camera with 2x telephoto option", "USB-C charging"],
+    "specs": [["Display", "6.1-inch Super Retina XDR"], ["Chip", "A16 Bionic"], ["Rear cameras", "48MP Main + 12MP Ultra Wide"], ["Front camera", "12MP TrueDepth"], ["Connector", "USB-C"]]
+  },
+  "iphone-14-pro-max": {
+    "short": "iPhone 14 Pro Max introduced Dynamic Island, an Always-On display and a 48MP main camera, powered by the A16 Bionic.",
+    "highlights": ["6.7-inch Super Retina XDR display with ProMotion and Always-On", "Dynamic Island", "48MP main camera with 3x telephoto", "A16 Bionic chip, Crash Detection"],
+    "specs": [["Display", "6.7-inch Super Retina XDR, ProMotion"], ["Chip", "A16 Bionic"], ["Rear cameras", "48MP Main + 12MP Ultra Wide + 12MP 3x Telephoto"], ["Body", "Stainless steel"], ["Connector", "Lightning"]]
+  },
+  "iphone-14-pro": {
+    "short": "iPhone 14 Pro: Dynamic Island, Always-On display and a 48MP pro camera in a 6.1-inch stainless steel design.",
+    "highlights": ["6.1-inch Super Retina XDR display with ProMotion and Always-On", "Dynamic Island", "48MP main camera with 3x telephoto", "A16 Bionic chip, Crash Detection"],
+    "specs": [["Display", "6.1-inch Super Retina XDR, ProMotion"], ["Chip", "A16 Bionic"], ["Rear cameras", "48MP Main + 12MP Ultra Wide + 12MP 3x Telephoto"], ["Body", "Stainless steel"], ["Connector", "Lightning"]]
+  },
+  "iphone-14-plus": {
+    "short": "iPhone 14 Plus offers a large 6.7-inch display and excellent battery life with the A15 Bionic chip.",
+    "highlights": ["6.7-inch Super Retina XDR display", "A15 Bionic chip with 5-core GPU", "12MP dual camera with Photonic Engine", "Crash Detection and Emergency SOS"],
+    "specs": [["Display", "6.7-inch Super Retina XDR"], ["Chip", "A15 Bionic"], ["Rear cameras", "12MP Main + 12MP Ultra Wide"], ["Front camera", "12MP TrueDepth with autofocus"], ["Connector", "Lightning"]]
+  },
+  "iphone-14": {
+    "short": "iPhone 14 is a dependable all-rounder with the A15 Bionic chip, an improved dual camera and Crash Detection.",
+    "highlights": ["6.1-inch Super Retina XDR display", "A15 Bionic chip with 5-core GPU", "12MP dual camera with Photonic Engine", "Crash Detection and Emergency SOS"],
+    "specs": [["Display", "6.1-inch Super Retina XDR"], ["Chip", "A15 Bionic"], ["Rear cameras", "12MP Main + 12MP Ultra Wide"], ["Front camera", "12MP TrueDepth with autofocus"], ["Connector", "Lightning"]]
+  },
+  "iphone-13-pro": {
+    "short": "iPhone 13 Pro brings a 120Hz ProMotion display, the A15 Bionic and a triple camera with 3x telephoto and macro photography.",
+    "highlights": ["6.1-inch Super Retina XDR display with ProMotion", "A15 Bionic chip", "Triple 12MP camera with 3x telephoto and macro", "Stainless steel and Ceramic Shield"],
+    "specs": [["Display", "6.1-inch Super Retina XDR, ProMotion"], ["Chip", "A15 Bionic"], ["Rear cameras", "12MP Main + 12MP Ultra Wide + 12MP 3x Telephoto"], ["Body", "Stainless steel"], ["Connector", "Lightning"]]
+  },
+  "iphone-13": {
+    "short": "iPhone 13 combines the A15 Bionic chip, a sharp dual camera with Cinematic mode and strong battery life at a great price.",
+    "highlights": ["6.1-inch Super Retina XDR display", "A15 Bionic chip", "12MP dual camera with Cinematic mode", "5G and Ceramic Shield"],
+    "specs": [["Display", "6.1-inch Super Retina XDR"], ["Chip", "A15 Bionic"], ["Rear cameras", "12MP Main + 12MP Ultra Wide"], ["Front camera", "12MP TrueDepth"], ["Connector", "Lightning"]]
+  },
+  "iphone-12-pro-max": {
+    "short": "iPhone 12 Pro Max with a 6.7-inch display, A14 Bionic, LiDAR scanner and a pro triple camera system.",
+    "highlights": ["6.7-inch Super Retina XDR display", "A14 Bionic chip with 5G", "Triple 12MP camera with 2.5x telephoto and LiDAR", "Stainless steel and Ceramic Shield"],
+    "specs": [["Display", "6.7-inch Super Retina XDR"], ["Chip", "A14 Bionic"], ["Rear cameras", "12MP Wide + 12MP Ultra Wide + 12MP 2.5x Telephoto, LiDAR"], ["Body", "Stainless steel"], ["Connector", "Lightning"]]
+  },
+  "iphone-12-pro": {
+    "short": "iPhone 12 Pro: A14 Bionic, 5G, LiDAR and a pro triple camera in a 6.1-inch stainless steel design.",
+    "highlights": ["6.1-inch Super Retina XDR display", "A14 Bionic chip with 5G", "Triple 12MP camera with 2x telephoto and LiDAR", "Stainless steel and Ceramic Shield"],
+    "specs": [["Display", "6.1-inch Super Retina XDR"], ["Chip", "A14 Bionic"], ["Rear cameras", "12MP Wide + 12MP Ultra Wide + 12MP 2x Telephoto, LiDAR"], ["Body", "Stainless steel"], ["Connector", "Lightning"]]
+  },
+  "iphone-12": {
+    "short": "iPhone 12 brings 5G, an OLED Super Retina XDR display and the A14 Bionic chip in a flat-edged design.",
+    "highlights": ["6.1-inch Super Retina XDR (OLED) display", "A14 Bionic chip with 5G", "12MP dual camera with Night mode", "Ceramic Shield front and MagSafe"],
+    "specs": [["Display", "6.1-inch Super Retina XDR"], ["Chip", "A14 Bionic"], ["Rear cameras", "12MP Wide + 12MP Ultra Wide"], ["Front camera", "12MP TrueDepth"], ["Connector", "Lightning"]]
+  },
+  "iphone-11-pro-max": {
+    "short": "iPhone 11 Pro Max with a 6.5-inch Super Retina XDR display, A13 Bionic and Apple's first triple camera system.",
+    "highlights": ["6.5-inch Super Retina XDR (OLED) display", "A13 Bionic chip", "Triple 12MP camera with 2x telephoto and Night mode", "Water resistant (IP68)"],
+    "specs": [["Display", "6.5-inch Super Retina XDR"], ["Chip", "A13 Bionic"], ["Rear cameras", "12MP Wide + 12MP Ultra Wide + 12MP Telephoto"], ["Front camera", "12MP TrueDepth"], ["Connector", "Lightning"]]
+  },
+  "iphone-11-pro": {
+    "short": "iPhone 11 Pro: a compact 5.8-inch OLED iPhone with the A13 Bionic and a triple camera system.",
+    "highlights": ["5.8-inch Super Retina XDR (OLED) display", "A13 Bionic chip", "Triple 12MP camera with 2x telephoto and Night mode", "Water resistant (IP68)"],
+    "specs": [["Display", "5.8-inch Super Retina XDR"], ["Chip", "A13 Bionic"], ["Rear cameras", "12MP Wide + 12MP Ultra Wide + 12MP Telephoto"], ["Front camera", "12MP TrueDepth"], ["Connector", "Lightning"]]
+  },
+  "iphone-11": {
+    "short": "iPhone 11 is a reliable, affordable iPhone with the A13 Bionic chip, a dual camera with Night mode and all-day battery.",
+    "highlights": ["6.1-inch Liquid Retina display", "A13 Bionic chip", "12MP dual camera with Night mode", "Face ID and water resistance (IP68)"],
+    "specs": [["Display", "6.1-inch Liquid Retina HD"], ["Chip", "A13 Bionic"], ["Rear cameras", "12MP Wide + 12MP Ultra Wide"], ["Front camera", "12MP TrueDepth"], ["Connector", "Lightning"]]
+  },
+  "iphone-xr": {
+    "short": "iPhone XR — a budget-friendly way into iOS with a 6.1-inch Liquid Retina display, Face ID and the A12 Bionic chip.",
+    "highlights": ["6.1-inch Liquid Retina display", "A12 Bionic chip", "12MP camera with Portrait mode", "Face ID"],
+    "specs": [["Display", "6.1-inch Liquid Retina HD"], ["Chip", "A12 Bionic"], ["Rear camera", "12MP Wide"], ["Front camera", "7MP TrueDepth"], ["Connector", "Lightning"]]
+  },
+
+  "ipad-pro-13-inch-m5": {
+    "short": "The 13-inch iPad Pro with the M5 chip — Apple's thinnest, most powerful iPad with an Ultra Retina XDR tandem OLED display.",
+    "highlights": ["13-inch Ultra Retina XDR (tandem OLED) display", "Apple M5 chip with Apple Intelligence", "Works with Apple Pencil Pro and Magic Keyboard", "Face ID, Thunderbolt / USB 4"],
+    "specs": [["Display", "13-inch Ultra Retina XDR, ProMotion"], ["Chip", "Apple M5"], ["Security", "Face ID"], ["Accessories", "Apple Pencil Pro, Magic Keyboard for iPad Pro (M5)"], ["Connector", "Thunderbolt / USB 4"]]
+  },
+  "ipad-pro-13-inch-m4": {
+    "short": "13-inch iPad Pro with the M4 chip — an incredibly thin design with a stunning Ultra Retina XDR tandem OLED display.",
+    "highlights": ["13-inch Ultra Retina XDR (tandem OLED) display", "Apple M4 chip with Apple Intelligence", "Works with Apple Pencil Pro and Magic Keyboard", "Face ID, Thunderbolt / USB 4"],
+    "specs": [["Display", "13-inch Ultra Retina XDR, ProMotion"], ["Chip", "Apple M4"], ["Security", "Face ID"], ["Accessories", "Apple Pencil Pro, Magic Keyboard for iPad Pro (M4)"], ["Connector", "Thunderbolt / USB 4"]]
+  },
+  "ipad-air-13-inch": {
+    "short": "The 13-inch iPad Air — a big Liquid Retina display and Apple silicon power in a thin, light design, ready for Apple Pencil Pro and Magic Keyboard.",
+    "highlights": ["13-inch Liquid Retina display", "Apple M-series chip with Apple Intelligence", "Works with Apple Pencil Pro and Magic Keyboard", "Touch ID in the top button"],
+    "specs": [["Display", "13-inch Liquid Retina"], ["Chip", "Apple M-series"], ["Security", "Touch ID"], ["Accessories", "Apple Pencil Pro, Magic Keyboard for iPad Air"], ["Connector", "USB-C"]]
+  },
+  "ipad-air-11-inch": {
+    "short": "The 11-inch iPad Air — portable, powerful and ready for work, study and creativity with Apple Pencil Pro and Magic Keyboard support.",
+    "highlights": ["11-inch Liquid Retina display", "Apple M-series chip with Apple Intelligence", "Works with Apple Pencil Pro and Magic Keyboard", "Touch ID in the top button"],
+    "specs": [["Display", "11-inch Liquid Retina"], ["Chip", "Apple M-series"], ["Security", "Touch ID"], ["Accessories", "Apple Pencil Pro, Magic Keyboard for iPad Air"], ["Connector", "USB-C"]]
+  },
+  "ipad-11th-gen": {
+    "short": "The 11th-generation iPad with the A16 chip — Apple's everyday tablet for school, work and entertainment, now with 128GB to start.",
+    "highlights": ["11-inch Liquid Retina display", "A16 chip", "Landscape 12MP front camera with Center Stage", "Touch ID and USB-C"],
+    "specs": [["Display", "11-inch Liquid Retina"], ["Chip", "A16"], ["Front camera", "12MP Center Stage (landscape)"], ["Security", "Touch ID"], ["Connector", "USB-C"]]
+  },
+  "ipad-mini-7-wi-fi": {
+    "short": "iPad mini (A17 Pro) — the full iPad experience in an ultraportable 8.3-inch design, with Apple Pencil Pro support. Wi-Fi model.",
+    "highlights": ["8.3-inch Liquid Retina display", "A17 Pro chip with Apple Intelligence", "Works with Apple Pencil Pro", "Touch ID and USB-C"],
+    "specs": [["Display", "8.3-inch Liquid Retina"], ["Chip", "A17 Pro"], ["Connectivity", "Wi-Fi 6E"], ["Security", "Touch ID"], ["Connector", "USB-C"]]
+  },
+  "ipad-air-5th-gen-m1": {
+    "short": "iPad Air (5th generation) with the M1 chip — laptop-class performance in a thin 10.9-inch design. This one is Wi-Fi + Cellular.",
+    "highlights": ["10.9-inch Liquid Retina display", "Apple M1 chip", "12MP Ultra Wide front camera with Center Stage", "Wi-Fi + Cellular (5G), Touch ID"],
+    "specs": [["Display", "10.9-inch Liquid Retina"], ["Chip", "Apple M1"], ["Connectivity", "Wi-Fi + 5G Cellular"], ["Security", "Touch ID"], ["Connector", "USB-C"]]
+  },
+
+  "macbook-pro-14-inch-m4": {
+    "short": "MacBook Pro 14-inch with the M4 chip — a Liquid Retina XDR display, Thunderbolt 4, HDMI and SD card slot, and outstanding battery life.",
+    "highlights": ["14.2-inch Liquid Retina XDR display", "Apple M4 chip with Apple Intelligence", "Three Thunderbolt 4 ports, HDMI and SDXC slot", "12MP Center Stage camera"],
+    "specs": [["Display", "14.2-inch Liquid Retina XDR"], ["Chip", "Apple M4"], ["Ports", "3x Thunderbolt 4, HDMI, SDXC, MagSafe 3"], ["Camera", "12MP Center Stage"], ["Memory / Storage", "16GB / 512GB"]]
+  },
+  "macbook-air-13-inch-m5": {
+    "short": "MacBook Air 13-inch with the M5 chip — Apple's thin, silent, fanless laptop with all-day battery life and Apple Intelligence.",
+    "highlights": ["13.6-inch Liquid Retina display", "Apple M5 chip with Apple Intelligence", "Silent fanless design", "MagSafe charging and Touch ID"],
+    "specs": [["Display", "13.6-inch Liquid Retina"], ["Chip", "Apple M5"], ["Memory / Storage", "16GB / 512GB"], ["Security", "Touch ID"], ["Charging", "MagSafe 3"]]
+  },
+  "macbook-air-15-inch-m4": {
+    "short": "MacBook Air 15-inch with the M4 chip — a big Liquid Retina display in a thin, fanless design with up to 18 hours of battery life.",
+    "highlights": ["15.3-inch Liquid Retina display", "Apple M4 chip with Apple Intelligence", "12MP Center Stage camera", "Up to 18 hours battery life"],
+    "specs": [["Display", "15.3-inch Liquid Retina"], ["Chip", "Apple M4"], ["Memory / Storage", "16GB / 256GB"], ["Ports", "2x Thunderbolt 4, MagSafe 3, headphone jack"], ["Battery", "Up to 18 hours"]]
+  },
+  "macbook-air-13-inch-m2": {
+    "short": "MacBook Air 13-inch with the M2 chip — redesigned with a 13.6-inch Liquid Retina display, MagSafe charging and a 1080p camera.",
+    "highlights": ["13.6-inch Liquid Retina display", "Apple M2 chip", "1080p FaceTime HD camera", "Up to 18 hours battery life"],
+    "specs": [["Display", "13.6-inch Liquid Retina"], ["Chip", "Apple M2"], ["Memory / Storage", "16GB / 256GB"], ["Ports", "2x Thunderbolt / USB 4, MagSafe 3"], ["Battery", "Up to 18 hours"]]
+  },
+  "macbook-air-13-inch-m1": {
+    "short": "MacBook Air with the M1 chip — fast, silent and fanless with up to 18 hours of battery life. A brilliant first Mac.",
+    "highlights": ["13.3-inch Retina display", "Apple M1 chip", "Silent fanless design", "Up to 18 hours battery life"],
+    "specs": [["Display", "13.3-inch Retina"], ["Chip", "Apple M1"], ["Memory / Storage", "8GB / 256GB"], ["Security", "Touch ID"], ["Battery", "Up to 18 hours"]]
+  },
+  "macbook-neo": {
+    "short": "MacBook Neo — Apple's new everyday MacBook for school, work and creativity, running macOS with Apple Intelligence.",
+    "highlights": ["Thin, light Apple laptop", "macOS with Apple Intelligence", "All-day battery life", "Works seamlessly with iPhone"],
+    "specs": [["Operating system", "macOS"], ["Brand", "Apple"]]
+  },
+  "mac-mini-m4": {
+    "short": "Mac mini with the M4 chip — a powerful desktop Mac that fits in your hand, with front USB-C ports and Thunderbolt at the back.",
+    "highlights": ["Apple M4 chip with Apple Intelligence", "Just 5 x 5 inches", "Front USB-C and headphone ports", "Three Thunderbolt 4 ports, HDMI and Gigabit Ethernet"],
+    "specs": [["Chip", "Apple M4"], ["Memory / Storage", "16GB / 256GB"], ["Ports", "3x Thunderbolt 4, 2x USB-C, HDMI, Gigabit Ethernet, headphone jack"], ["Size", "12.7 x 12.7 cm"]]
+  },
+  "macbook-pro-m3-pro": {
+    "short": "MacBook Pro with the M3 Pro chip — serious performance for creative and pro work, with a Liquid Retina XDR display and long battery life.",
+    "highlights": ["Liquid Retina XDR display with ProMotion", "Apple M3 Pro chip", "HDMI, SDXC slot, Thunderbolt and MagSafe 3", "Space Black or Silver finish"],
+    "specs": [["Display", "Liquid Retina XDR, ProMotion"], ["Chip", "Apple M3 Pro"], ["Ports", "Thunderbolt 4, HDMI, SDXC, MagSafe 3"], ["Camera", "1080p FaceTime HD"]]
+  },
+  "macbook-pro-m1-pro": {
+    "short": "MacBook Pro with the M1 Pro chip — pro performance, a Liquid Retina XDR display and the ports professionals need.",
+    "highlights": ["Liquid Retina XDR display with ProMotion", "Apple M1 Pro chip", "HDMI, SDXC slot, Thunderbolt 4 and MagSafe 3", "1080p FaceTime HD camera"],
+    "specs": [["Display", "Liquid Retina XDR, ProMotion"], ["Chip", "Apple M1 Pro"], ["Ports", "3x Thunderbolt 4, HDMI, SDXC, MagSafe 3"], ["Camera", "1080p FaceTime HD"]]
+  },
+  "macbook-pro-13-inch-m1": {
+    "short": "MacBook Pro 13-inch with the M1 chip — fast, efficient and long-lasting, with a Touch Bar and up to 20 hours of battery life.",
+    "highlights": ["13.3-inch Retina display", "Apple M1 chip", "Touch Bar and Touch ID", "Up to 20 hours battery life"],
+    "specs": [["Display", "13.3-inch Retina"], ["Chip", "Apple M1"], ["Ports", "2x Thunderbolt / USB 4"], ["Battery", "Up to 20 hours"]]
+  },
+
+  "apple-watch-ultra-2": {
+    "short": "Apple Watch Ultra 2 — the most rugged and capable Apple Watch, with a 49mm titanium case, a 3000-nit display and up to 36 hours of battery.",
+    "highlights": ["49mm titanium case, 100m water resistance", "3000-nit Always-On Retina display", "Precision dual-frequency GPS", "Up to 36 hours battery (72 hours in Low Power Mode)"],
+    "specs": [["Case", "49mm titanium"], ["Chip", "S9 SiP"], ["Display", "Always-On Retina, up to 3000 nits"], ["Water resistance", "100m, dive-ready to 40m"], ["Battery", "Up to 36 hours"]]
+  },
+  "apple-watch-ultra-1": {
+    "short": "The original Apple Watch Ultra — a 49mm titanium adventure watch with Action button, dual-frequency GPS and long battery life.",
+    "highlights": ["49mm titanium case with sapphire front crystal", "Customisable Action button", "Precision dual-frequency GPS and 86dB siren", "Up to 36 hours battery life"],
+    "specs": [["Case", "49mm titanium"], ["Chip", "S8 SiP"], ["Display", "Always-On Retina, up to 2000 nits"], ["Water resistance", "100m"], ["Battery", "Up to 36 hours"]]
+  },
+  "apple-watch-series-10": {
+    "short": "Apple Watch Series 10 — Apple's thinnest watch with the biggest, brightest wide-angle OLED display yet, plus faster charging.",
+    "highlights": ["Wide-angle OLED Always-On display", "Thinnest Apple Watch design", "Sleep apnoea notifications and ECG", "Fast charging"],
+    "specs": [["Sizes", "42mm / 46mm"], ["Chip", "S10 SiP"], ["Health", "ECG, blood oxygen, heart rate, sleep tracking"], ["Water resistance", "50m"]]
+  },
+  "apple-watch-series-9": {
+    "short": "Apple Watch Series 9 with the S9 chip, the magical double tap gesture and a display up to 2000 nits bright.",
+    "highlights": ["S9 SiP with double tap gesture", "Always-On Retina display up to 2000 nits", "ECG, blood oxygen and temperature sensing", "Crash Detection and Fall Detection"],
+    "specs": [["Sizes", "41mm / 45mm"], ["Chip", "S9 SiP"], ["Health", "ECG, blood oxygen, temperature sensing"], ["Water resistance", "50m"]]
+  },
+  "apple-watch-series-8": {
+    "short": "Apple Watch Series 8 brings temperature sensing, Crash Detection and advanced health features in a durable design.",
+    "highlights": ["Always-On Retina display", "Temperature sensing", "Crash Detection and Fall Detection", "ECG and blood oxygen apps"],
+    "specs": [["Sizes", "41mm / 45mm"], ["Chip", "S8 SiP"], ["Health", "ECG, blood oxygen, temperature sensing"], ["Water resistance", "50m"]]
+  },
+  "apple-watch-series-7": {
+    "short": "Apple Watch Series 7 with a larger, more durable Always-On display and fast charging.",
+    "highlights": ["Larger Always-On Retina display", "Crack-resistant front crystal, IP6X dust resistant", "Fast charging", "ECG and blood oxygen apps"],
+    "specs": [["Sizes", "41mm / 45mm"], ["Chip", "S7 SiP"], ["Health", "ECG, blood oxygen, heart rate"], ["Water resistance", "50m"]]
+  },
+  "apple-watch-series-6": {
+    "short": "Apple Watch Series 6 — blood oxygen measurement, ECG and an always-on altimeter in a classic design.",
+    "highlights": ["Always-On Retina display", "Blood oxygen sensor and ECG app", "Always-on altimeter", "Sleep tracking"],
+    "specs": [["Sizes", "40mm / 44mm"], ["Chip", "S6 SiP"], ["Health", "ECG, blood oxygen, heart rate"], ["Water resistance", "50m"]]
+  },
+  "apple-watch-series-5": {
+    "short": "Apple Watch Series 5 — the first Apple Watch with an Always-On Retina display, plus ECG and a built-in compass.",
+    "highlights": ["Always-On Retina display", "ECG app and heart-rate notifications", "Built-in compass", "Fall Detection and Emergency SOS"],
+    "specs": [["Sizes", "40mm / 44mm"], ["Chip", "S5 SiP"], ["Health", "ECG, heart rate"], ["Water resistance", "50m"]]
+  },
+  "apple-watch-series-4": {
+    "short": "Apple Watch Series 4 — a bigger display, ECG and Fall Detection in an affordable smartwatch.",
+    "highlights": ["Larger edge-to-edge display", "ECG app", "Fall Detection and Emergency SOS", "Activity and workout tracking"],
+    "specs": [["Sizes", "40mm / 44mm"], ["Chip", "S4 SiP"], ["Health", "ECG, heart rate"], ["Water resistance", "50m"]]
+  },
+
+  "airpods-max-2nd-gen": {
+    "short": "AirPods Max — Apple's premium over-ear headphones with high-fidelity sound, Active Noise Cancellation and Personalised Spatial Audio.",
+    "highlights": ["Active Noise Cancellation and Transparency mode", "Personalised Spatial Audio with head tracking", "Knit-mesh canopy and memory-foam ear cushions", "USB-C charging"],
+    "specs": [["Type", "Over-ear wireless headphones"], ["Noise control", "Active Noise Cancellation, Transparency"], ["Charging", "USB-C"], ["Brand", "Apple"]]
+  },
+  "airpods-5": {
+    "short": "AirPods 5 — Apple's newest everyday AirPods with Personalised Spatial Audio, a comfortable open-ear design and a USB-C charging case.",
+    "highlights": ["Comfortable open-ear design", "Personalised Spatial Audio", "Quick setup and seamless switching between Apple devices", "USB-C charging case"],
+    "specs": [["Type", "Wireless earbuds"], ["Charging", "USB-C case"], ["Brand", "Apple"]]
+  },
+  "airpods-pro-2": {
+    "short": "AirPods Pro 2 with the H2 chip — up to 2x more Active Noise Cancellation, Adaptive Audio and a USB-C MagSafe case with built-in speaker.",
+    "highlights": ["Active Noise Cancellation with Adaptive Audio", "H2 chip with Personalised Spatial Audio", "Hearing health features", "MagSafe USB-C case with speaker and lanyard loop"],
+    "specs": [["Chip", "Apple H2"], ["Battery", "Up to 6 hours (30 hours with case)"], ["Water resistance", "IP54 (earbuds and case)"], ["Charging", "USB-C, MagSafe, Qi"]]
+  },
+  "airpods-4": {
+    "short": "AirPods 4 — redesigned for all-day comfort with the H2 chip, Personalised Spatial Audio and a smaller USB-C case.",
+    "highlights": ["Redesigned open-ear fit", "H2 chip with Personalised Spatial Audio", "Voice Isolation for clear calls", "Smaller USB-C charging case"],
+    "specs": [["Chip", "Apple H2"], ["Battery", "Up to 5 hours (30 hours with case)"], ["Water resistance", "IP54"], ["Charging", "USB-C"]]
+  },
+
+  "magic-keyboard-for-ipad-pro-13-inch-m4-m5": {
+    "short": "Magic Keyboard for the 13-inch iPad Pro (M4/M5) — an aluminium palm rest, function row and a large glass trackpad with haptic feedback.",
+    "highlights": ["Backlit keys with a 14-key function row", "Large glass trackpad with haptic feedback", "Aluminium palm rest", "USB-C pass-through charging"],
+    "specs": [["Compatible with", "iPad Pro 13-inch (M4 and M5)"], ["Keyboard", "Backlit, 14-key function row"], ["Trackpad", "Glass, haptic feedback"], ["Charging", "USB-C pass-through"]]
+  },
+  "magic-keyboard-for-ipad-pro-11-inch-m4-m5": {
+    "short": "Magic Keyboard for the 11-inch iPad Pro (M4/M5) — turns your iPad Pro into a laptop with a function row and haptic glass trackpad.",
+    "highlights": ["Backlit keys with a 14-key function row", "Glass trackpad with haptic feedback", "Aluminium palm rest", "USB-C pass-through charging"],
+    "specs": [["Compatible with", "iPad Pro 11-inch (M4 and M5)"], ["Keyboard", "Backlit, 14-key function row"], ["Trackpad", "Glass, haptic feedback"], ["Charging", "USB-C pass-through"]]
+  },
+  "magic-keyboard-folio-for-ipad-10th-11th-gen": {
+    "short": "Magic Keyboard Folio for iPad (10th and 11th generation) — a two-piece keyboard with function row, trackpad and adjustable back panel.",
+    "highlights": ["Detachable two-piece design", "14-key function row", "Built-in trackpad", "Adjustable stand on the back panel"],
+    "specs": [["Compatible with", "iPad (10th and 11th generation)"], ["Keyboard", "Full-size with function row"], ["Trackpad", "Yes"], ["Connection", "Smart Connector (no pairing or charging needed)"]]
+  }
+}

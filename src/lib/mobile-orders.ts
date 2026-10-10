@@ -2,14 +2,19 @@ import "server-only";
 import { desc, eq, or } from "drizzle-orm";
 import { db } from "@/db";
 import { orders, users, type Order, type OrderItem } from "@/db/schema";
-import { statusLabels } from "@/lib/order-status";
+import { isAwaitingTransfer, isVisibleToCustomer, orderStatusText } from "@/lib/order-status";
+import { absoluteUrl } from "@/lib/utils";
 
 export function serializeOrder(o: Order & { items: OrderItem[] }) {
   return {
     reference: o.reference,
     status: o.status,
-    statusLabel: statusLabels[o.status] ?? o.status,
+    statusLabel: orderStatusText(o),
     paymentStatus: o.paymentStatus,
+    paymentMethod: o.paymentMethod,
+    awaitingTransfer: isAwaitingTransfer(o),
+    /** Website page where a bank-transfer customer sees the account details and uploads their screenshot. */
+    payUrl: absoluteUrl(`/order/${o.reference}`),
     deliveryMethod: o.deliveryMethod,
     fullName: o.fullName,
     email: o.email,
@@ -44,5 +49,5 @@ export async function listUserOrders(userId: string) {
     orderBy: [desc(orders.createdAt)],
     with: { items: true },
   });
-  return list.filter((o) => o.paymentStatus === "paid" || o.status === "cancelled").map(serializeOrder);
+  return list.filter(isVisibleToCustomer).map(serializeOrder);
 }

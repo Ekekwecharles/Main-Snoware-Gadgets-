@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -102,6 +103,8 @@ const promoStyles: Record<string, string> = {
 };
 
 const promoIcons: MenuIcon[] = ["accessory", "tag", "phone-used", "laptop"];
+
+export const metadata: Metadata = { alternates: { canonical: "/" } };
 
 export default async function HomePage() {
   const [hero, promos, featured, used, apple, samsung, gaming] =

@@ -3,6 +3,14 @@ import crypto from "node:crypto";
 
 const PAYSTACK_API = "https://api.paystack.co";
 
+/**
+ * Card payments are offered only when explicitly switched on (PAYSTACK_ENABLED=true) with a key set,
+ * so test keys left in the environment can never take "payments" on the live site.
+ */
+export function paystackEnabled() {
+  return process.env.PAYSTACK_ENABLED === "true" && Boolean(process.env.PAYSTACK_SECRET_KEY);
+}
+
 function secret() {
   const key = process.env.PAYSTACK_SECRET_KEY;
   if (!key) throw new Error("PAYSTACK_SECRET_KEY is not set");

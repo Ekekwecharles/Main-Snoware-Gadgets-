@@ -5,7 +5,7 @@ import { ChevronRight, Package } from "lucide-react";
 import { auth } from "@/auth";
 import { db } from "@/db";
 import { orders } from "@/db/schema";
-import { statusLabels } from "@/lib/order-status";
+import { isAwaitingTransfer, isVisibleToCustomer, orderStatusText } from "@/lib/order-status";
 import { cn, formatNaira } from "@/lib/utils";
 
 export const metadata: Metadata = { title: "My orders", robots: { index: false } };
@@ -19,7 +19,7 @@ export default async function AccountOrdersPage() {
     orderBy: [desc(orders.createdAt)],
     with: { items: true },
   });
-  const visible = list.filter((o) => o.paymentStatus === "paid" || o.status === "cancelled");
+  const visible = list.filter(isVisibleToCustomer);
 
   if (!visible.length)
     return (
@@ -43,8 +43,13 @@ export default async function AccountOrdersPage() {
               </p>
               <p className="mt-1 line-clamp-1 text-[14px]">{o.items.map((i) => i.name).join(", ")}</p>
             </div>
-            <span className={cn("rounded-full px-3 py-1 text-[12.5px] font-semibold", o.status === "delivered" ? "bg-emerald-50 text-success" : o.status === "cancelled" ? "bg-brand-50 text-brand-700" : "bg-sky/10 text-sky")}>
-              {statusLabels[o.status]}
+            <span
+              className={cn(
+                "rounded-full px-3 py-1 text-[12.5px] font-semibold",
+                isAwaitingTransfer(o) ? "bg-amber-50 text-amber-700" : o.status === "delivered" ? "bg-emerald-50 text-success" : o.status === "cancelled" ? "bg-brand-50 text-brand-700" : "bg-sky/10 text-sky",
+              )}
+            >
+              {orderStatusText(o)}
             </span>
             <span className="text-[16px] font-bold">{formatNaira(o.total)}</span>
             <ChevronRight className="h-5 w-5 text-muted" />

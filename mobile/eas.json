@@ -1,0 +1,38 @@
+{
+  "cli": {
+    "version": ">= 16.0.0",
+    "appVersionSource": "remote"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "channel": "development",
+      "distribution": "internal",
+      "android": { "buildType": "apk" }
+    },
+    "preview": {
+      "channel": "preview",
+      "autoIncrement": true,
+      "distribution": "internal",
+      "android": { "buildType": "apk" },
+      "env": {
+        "EXPO_PUBLIC_API_URL": "https://main-snoware-gadgets.vercel.app",
+        "EXPO_PUBLIC_PUSHER_KEY": "d3971f7ecae2443e7c5a",
+        "EXPO_PUBLIC_PUSHER_CLUSTER": "eu"
+      }
+    },
+    "production": {
+      "channel": "production",
+      "autoIncrement": true,
+      "android": { "buildType": "app-bundle" },
+      "env": {
+        "EXPO_PUBLIC_API_URL": "https://main-snoware-gadgets.vercel.app",
+        "EXPO_PUBLIC_PUSHER_KEY": "d3971f7ecae2443e7c5a",
+        "EXPO_PUBLIC_PUSHER_CLUSTER": "eu"
+      }
+    }
+  },
+  "submit": {
+    "production": {}
+  }
+}

@@ -2,7 +2,8 @@ import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { Image } from "expo-image";
 import { useLocalSearchParams } from "expo-router";
 import { useQuery } from "@tanstack/react-query";
-import { ErrorView, Loading } from "@/components/ui";
+import * as WebBrowser from "expo-web-browser";
+import { Button, ErrorView, Loading } from "@/components/ui";
 import { api } from "@/lib/api";
 import { imageUrl } from "@/lib/config";
 import { formatNaira } from "@/lib/format";
@@ -42,6 +43,24 @@ export default function OrderScreen() {
 
       {o.status === "cancelled" ? (
         <Text style={[styles.status, { color: colors.brand }]}>This order was cancelled.</Text>
+      ) : o.awaitingTransfer ? (
+        <View style={{ gap: 10 }}>
+          <Text style={[styles.status, { color: colors.sky }]}>{o.statusLabel}</Text>
+          <Text style={styles.meta}>
+            Transfer {formatNaira(o.total)} to our OPay or Moniepoint account with {o.reference} in the narration, then upload your payment screenshot.
+          </Text>
+          {o.payUrl ? (
+            <Button
+              title={o.statusLabel === "Confirming payment" ? "View payment details" : "Pay & upload screenshot"}
+              variant="dark"
+              icon="cloud-upload-outline"
+              onPress={async () => {
+                await WebBrowser.openBrowserAsync(o.payUrl!);
+                void order.refetch();
+              }}
+            />
+          ) : null}
+        </View>
       ) : o.paymentStatus !== "paid" ? (
         <Text style={[styles.status, { color: colors.brand }]}>{o.statusLabel}</Text>
       ) : (

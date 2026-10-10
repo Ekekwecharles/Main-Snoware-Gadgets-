@@ -8,7 +8,7 @@ import { absoluteUrl } from "@/lib/utils";
 export const revalidate = 3600;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const staticPaths = ["/", "/shop", "/used", "/about", "/contact", "/store", "/trade-in", "/warranty", "/faq", "/shipping", "/policies/terms", "/policies/refund", "/policies/privacy"];
+  const staticPaths = ["/", "/shop", "/used", "/about", "/contact", "/store", "/trade-in", "/warranty", "/faq", "/shipping", "/app", "/policies/terms", "/policies/refund", "/policies/privacy"];
   const entries: MetadataRoute.Sitemap = staticPaths.map((p) => ({ url: absoluteUrl(p), changeFrequency: "weekly", priority: p === "/" ? 1 : 0.5 }));
 
   try {

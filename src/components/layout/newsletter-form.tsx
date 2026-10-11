@@ -15,9 +15,9 @@ export function NewsletterForm() {
           type="email"
           required
           placeholder="you@example.com"
-          className="min-w-0 flex-1 bg-transparent px-5 py-3 text-[14px] outline-none placeholder:text-white/40"
+          className="w-full min-w-0 flex-1 bg-transparent px-4 py-3 sm:px-5 text-[14px] outline-none placeholder:text-white/40"
         />
-        <button disabled={pending} className="m-1 rounded-full bg-white px-5 text-[14px] font-semibold text-ink transition hover:bg-brand-600 hover:text-white disabled:opacity-60">
+        <button disabled={pending} className="m-1 shrink-0 rounded-full bg-white px-4 text-[14px] sm:px-5 font-semibold text-ink transition hover:bg-brand-600 hover:text-white disabled:opacity-60">
           {pending ? "…" : "Subscribe"}
         </button>
       </div>

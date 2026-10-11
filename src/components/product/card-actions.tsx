@@ -33,22 +33,34 @@ export function CardActions({ product }: { product: ProductCardData }) {
 
   return (
     <div className="relative z-10 mt-3 flex gap-2">
+      {/* On phones the card is ~160px wide: the button takes the full row, drops its icon and never wraps. */}
       <button
         onClick={onAdd}
         disabled={!product.inStock}
-        className="flex h-10 flex-1 items-center justify-center gap-2 rounded-full bg-ink text-[13.5px] font-semibold text-white transition hover:bg-brand-600 disabled:cursor-not-allowed disabled:bg-line disabled:text-muted"
+        className="flex h-10 min-w-0 flex-1 items-center justify-center gap-2 rounded-full bg-ink px-3 text-[13px] font-semibold whitespace-nowrap text-white transition hover:bg-brand-600 disabled:cursor-not-allowed disabled:bg-line disabled:text-muted sm:text-[13.5px]"
       >
         {product.inStock ? (
           <>
-            <ShoppingBag className="h-4 w-4" /> {needsChoice ? "Choose options" : "Add to cart"}
+            <ShoppingBag className="hidden h-4 w-4 shrink-0 sm:block" />
+            <span className="truncate">
+              {needsChoice ? (
+                <>
+                  <span className="sm:hidden">See options</span>
+                  <span className="hidden sm:inline">Choose options</span>
+                </>
+              ) : (
+                "Add to cart"
+              )}
+            </span>
           </>
         ) : (
           "Sold out"
         )}
       </button>
+      {/* Tapping the card already opens the product page, so Quick View is a desktop extra. */}
       <button
         onClick={() => setQuickOpen(true)}
-        className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full ring-1 ring-line transition hover:bg-mist hover:ring-ink"
+        className="hidden h-10 w-10 shrink-0 items-center justify-center rounded-full ring-1 ring-line transition hover:bg-mist hover:ring-ink sm:flex"
         aria-label={`Quick view ${product.name}`}
         title="Quick view"
       >

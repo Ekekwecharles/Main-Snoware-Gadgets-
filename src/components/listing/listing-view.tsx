@@ -5,9 +5,13 @@ import { ProductCard } from "@/components/product/product-card";
 import { DeviceIcon, iconForCategory } from "@/components/brand/device-icon";
 import { FilterPanel, MobileFilterButton, ActiveFilters } from "./filters";
 import { SortSelect } from "./sort-select";
+import { LoadMore } from "./load-more";
 import { whatsappMessageLink } from "@/lib/site";
 
 type Crumb = { label: string; href: string };
+
+/** Cards per batch — divisible by the 2, 3 and 4-column grids so every batch fills its last row. */
+const PAGE_SIZE = 24;
 
 export function parseFilters(sp: Record<string, string | string[] | undefined>): ListingFilters {
   const list = (k: string) => {
@@ -30,6 +34,7 @@ export function parseFilters(sp: Record<string, string | string[] | undefined>):
     max: num("max"),
     inStock: sp.instock === "1",
     sort: sort && ["best-selling", "price-asc", "price-desc", "newest"].includes(sort) ? sort : "best-selling",
+    show: num("show"),
   };
 }
 
@@ -46,6 +51,7 @@ type Props = {
 
 export function ListingView({ title, description, crumbs, cards, facets, filters, subcategories, hideConditionFilter }: Props) {
   const inStockCount = cards.filter((c) => c.inStock).length;
+  const shown = Math.min(cards.length, Math.max(PAGE_SIZE, Math.ceil((filters.show ?? PAGE_SIZE) / PAGE_SIZE) * PAGE_SIZE));
   return (
     <div className="container-x py-8 lg:py-10">
       <nav aria-label="Breadcrumb" className="mb-4">
@@ -111,13 +117,16 @@ export function ListingView({ title, description, crumbs, cards, facets, filters
           <ActiveFilters filters={filters} />
 
           {cards.length ? (
-            <ul className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 xl:grid-cols-4">
-              {cards.map((p, i) => (
-                <li key={p.id}>
-                  <ProductCard product={p} priority={i < 4} className="h-full" />
-                </li>
-              ))}
-            </ul>
+            <>
+              <ul className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 xl:grid-cols-4">
+                {cards.slice(0, shown).map((p, i) => (
+                  <li key={p.id}>
+                    <ProductCard product={p} priority={i < 4} className="h-full" />
+                  </li>
+                ))}
+              </ul>
+              {shown < cards.length && <LoadMore shown={shown} total={cards.length} step={PAGE_SIZE} />}
+            </>
           ) : (
             <div className="flex flex-col items-center rounded-[var(--radius-card)] bg-mist px-6 py-16 text-center">
               <SearchX className="h-10 w-10 text-muted" />

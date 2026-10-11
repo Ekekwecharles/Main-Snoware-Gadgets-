@@ -178,6 +178,8 @@ export type ListingFilters = {
   inStock?: boolean;
   usedOnly?: boolean;
   sort?: "best-selling" | "price-asc" | "price-desc" | "newest";
+  /** How many cards the listing renders ("Load more" raises it); filtering and facets still cover every match. */
+  show?: number;
 };
 
 export type Facets = {

@@ -23,10 +23,11 @@ export function Footer({ storeAddress }: { storeAddress: string }) {
           </div>
         </div>
 
-        <div className="grid gap-10 py-12 sm:grid-cols-2 lg:grid-cols-[1fr_1fr_1fr_1.4fr]">
+        {/* Company + Shop sit side by side on phones; min-w-0 keeps the newsletter field from pushing past the screen edge. */}
+        <div className="grid grid-cols-2 gap-x-6 gap-y-10 py-10 sm:py-12 lg:grid-cols-[1fr_1fr_1fr_1.4fr] [&>*]:min-w-0">
           <FooterColumn title="Company" links={footerLinks.company} />
           <FooterColumn title="Shop" links={footerLinks.shop} />
-          <div>
+          <div className="col-span-2 sm:col-span-1">
             <FooterColumn title="Policies" links={footerLinks.policies} />
             <ul className="mt-6 space-y-2.5 text-[14px] text-white/70">
               <li className="flex gap-2.5"><Phone className="mt-0.5 h-4 w-4 shrink-0 text-white/40" /> <a href={site.whatsappLink} className="hover:text-white">{site.whatsapp}</a></li>
@@ -34,7 +35,7 @@ export function Footer({ storeAddress }: { storeAddress: string }) {
               <li className="flex gap-2.5"><MapPin className="mt-0.5 h-4 w-4 shrink-0 text-white/40" /> <Link href="/store" className="hover:text-white">{storeAddress}</Link></li>
             </ul>
           </div>
-          <div>
+          <div className="col-span-2 sm:col-span-1">
             <h3 className="text-[15px] font-semibold">Get the best deals first</h3>
             <p className="mt-2 text-[14px] text-white/60">New arrivals, price drops and restocks — straight to your inbox. No spam.</p>
             <NewsletterForm />

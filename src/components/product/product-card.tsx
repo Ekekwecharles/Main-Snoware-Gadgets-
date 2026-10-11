@@ -9,7 +9,7 @@ export function ProductCard({ product, priority, className }: { product: Product
   const off = discountPercent(product.price, product.compareAtPrice);
   const hasNew = product.conditions.includes("new");
   const conditionText =
-    product.conditions.length === 1 ? conditionLabel(product.conditions[0]) : hasNew ? "New & Pre-owned" : "Pre-owned";
+    product.conditions.length === 1 ? conditionLabel(product.conditions[0]) : hasNew ? "New & Used" : "Pre-owned";
 
   return (
     <article
@@ -26,7 +26,7 @@ export function ProductCard({ product, priority, className }: { product: Product
           priority={priority}
           className={cn("transition duration-500 group-hover:scale-[1.04]", !product.inStock && "opacity-60 grayscale")}
         />
-        <div className="absolute top-3 left-3 flex flex-col items-start gap-1.5">
+        <div className="absolute top-2.5 left-2.5 flex flex-col items-start gap-1.5 sm:top-3 sm:left-3">
           {off > 0 && product.inStock && <span className="rounded-full bg-brand-600 px-2.5 py-1 text-[11px] font-bold text-white">-{off}%</span>}
           {product.badge && product.inStock && <span className="rounded-full bg-ink px-2.5 py-1 text-[11px] font-semibold text-white">{product.badge}</span>}
           {!product.inStock && <span className="rounded-full bg-white px-2.5 py-1 text-[11px] font-semibold text-muted ring-1 ring-line">Sold out</span>}
@@ -34,17 +34,18 @@ export function ProductCard({ product, priority, className }: { product: Product
         </div>
       </Link>
 
-      <div className="flex flex-1 flex-col p-4">
-        <div className="mb-1.5 flex items-center gap-2 text-[11.5px] font-medium text-muted">
+      <div className="flex flex-1 flex-col p-3 sm:p-4">
+        <div className="mb-1.5 flex flex-wrap items-center gap-x-1.5 text-[11.5px] leading-snug font-medium text-muted sm:gap-x-2">
           {product.brand && <span>{product.brand}</span>}
           {product.conditions.length > 0 && (
-            <>
-              {product.brand && <span aria-hidden>·</span>}
+            // The dot travels with the condition so a narrow card wraps it as one unit instead of leaving "Apple ·" behind.
+            <span className="whitespace-nowrap">
+              {product.brand && <span aria-hidden className="mr-1.5 sm:mr-2">·</span>}
               <span className={product.conditions.length === 1 && hasNew ? "text-success" : "text-navy-700"}>{conditionText}</span>
-            </>
+            </span>
           )}
         </div>
-        <h3 className="line-clamp-2 text-[15px] leading-snug font-semibold text-ink">
+        <h3 className="line-clamp-2 text-[14px] leading-snug font-semibold text-ink sm:text-[15px]">
           <Link href={`/p/${product.slug}`} className="after:absolute after:inset-0 after:content-[''] focus:outline-none">
             {product.name}
           </Link>
@@ -60,10 +61,10 @@ export function ProductCard({ product, priority, className }: { product: Product
         )}
 
         <div className="mt-auto pt-3">
-          <p className="text-[12px] text-muted">{product.storages.length > 1 || product.conditions.length > 1 ? "From" : " "}</p>
+          <p className="text-[11.5px] text-muted sm:text-[12px]">{product.storages.length > 1 || product.conditions.length > 1 ? "From" : " "}</p>
           <div className="flex flex-wrap items-baseline gap-x-2">
-            <span className={cn("text-[17px] font-bold", off > 0 ? "text-brand-600" : "text-ink")}>{formatNaira(product.price)}</span>
-            {off > 0 && <span className="text-[13px] text-muted line-through">{formatNaira(product.compareAtPrice!)}</span>}
+            <span className={cn("text-[16px] font-bold sm:text-[17px]", off > 0 ? "text-brand-600" : "text-ink")}>{formatNaira(product.price)}</span>
+            {off > 0 && <span className="text-[12px] text-muted line-through sm:text-[13px]">{formatNaira(product.compareAtPrice!)}</span>}
           </div>
           <CardActions product={product} />
         </div>

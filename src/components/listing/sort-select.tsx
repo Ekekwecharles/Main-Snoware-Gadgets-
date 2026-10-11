@@ -22,6 +22,7 @@ export function SortSelect({ value }: { value: string }) {
         onChange={(e) => {
           const next = new URLSearchParams(params.toString());
           next.set("sort", e.target.value);
+          next.delete("show");
           router.replace(`${pathname}?${next.toString()}`, { scroll: false });
         }}
         className="h-10 appearance-none rounded-full bg-white pr-10 pl-4 text-[14px] font-medium ring-1 ring-line outline-none hover:ring-ink focus:ring-ink"

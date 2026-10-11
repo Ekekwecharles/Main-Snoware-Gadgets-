@@ -164,12 +164,12 @@ export default async function HomePage() {
               key={c.label}
               href={c.href}
               className={cn(
-                "group relative flex aspect-[4/3] flex-col justify-between overflow-hidden rounded-[var(--radius-card)] bg-gradient-to-br p-4 transition hover:shadow-lift sm:p-5",
+                "group relative flex aspect-square flex-col justify-between overflow-hidden rounded-[var(--radius-card)] bg-gradient-to-br p-4 transition hover:shadow-lift sm:aspect-[4/3] sm:p-5",
                 c.tone,
               )}
             >
-              <div>
-                <h3 className="text-[16px] font-bold sm:text-[18px]">
+              <div className="relative">
+                <h3 className="text-[16px] leading-tight font-bold sm:text-[18px]">
                   {c.label}
                 </h3>
                 <p className="mt-0.5 text-[12.5px] opacity-70 sm:text-[13.5px]">
@@ -178,7 +178,7 @@ export default async function HomePage() {
               </div>
               <DeviceIcon
                 icon={c.icon}
-                className="absolute -right-3 -bottom-3 h-[62%] w-[62%] opacity-80 transition duration-500 group-hover:-translate-y-1 group-hover:scale-105"
+                className="absolute -right-3 -bottom-3 h-[50%] w-[50%] opacity-80 sm:h-[62%] sm:w-[62%] transition duration-500 group-hover:-translate-y-1 group-hover:scale-105"
                 strokeWidth={1}
               />
               <span className="relative inline-flex items-center gap-1 text-[13px] font-semibold">
@@ -198,11 +198,11 @@ export default async function HomePage() {
               key={p.id}
               href={p.ctaHref ?? "/shop"}
               className={cn(
-                "group relative flex min-h-[260px] flex-col overflow-hidden rounded-[var(--radius-card)] p-7 transition hover:shadow-lift sm:p-9",
+                "group relative flex min-h-[240px] flex-col overflow-hidden rounded-[var(--radius-card)] p-6 transition hover:shadow-lift sm:min-h-[260px] sm:p-9",
                 promoStyles[p.theme] ?? promoStyles.light,
               )}
             >
-              <div className="relative z-10 max-w-[70%]">
+              <div className="relative z-10 max-w-[78%] sm:max-w-[70%]">
                 {p.eyebrow && (
                   <span
                     className={cn(
@@ -213,7 +213,7 @@ export default async function HomePage() {
                     {p.eyebrow}
                   </span>
                 )}
-                <h3 className="mt-4 text-[26px] leading-tight font-extrabold sm:text-[30px]">
+                <h3 className="mt-4 text-[24px] leading-tight font-extrabold sm:text-[30px]">
                   {p.title}
                 </h3>
                 {p.subtitle && (
@@ -225,7 +225,7 @@ export default async function HomePage() {
               {p.ctaLabel && (
                 <span
                   className={cn(
-                    "relative z-10 mt-auto inline-flex w-fit items-center gap-1.5 rounded-full px-5 py-2.5 pt-2.5 text-[14px] font-semibold transition",
+                    "relative z-10 mt-auto inline-flex w-fit items-center gap-1.5 rounded-full px-5 py-2.5 text-[14px] font-semibold whitespace-nowrap transition",
                     p.theme === "light"
                       ? "bg-sky text-white"
                       : "bg-white/15 ring-1 ring-white/40 group-hover:bg-white group-hover:text-ink",
@@ -238,7 +238,7 @@ export default async function HomePage() {
               <DeviceIcon
                 icon={promoIcons[i % promoIcons.length]}
                 className={cn(
-                  "absolute -right-6 -bottom-6 h-52 w-52 transition duration-500 group-hover:-rotate-6",
+                  "absolute -right-6 -bottom-6 h-36 w-36 transition duration-500 group-hover:-rotate-6 sm:h-52 sm:w-52",
                   p.theme === "light" ? "text-sky/20" : "text-white/20",
                 )}
                 strokeWidth={1}
@@ -257,38 +257,39 @@ export default async function HomePage() {
 
       {/* Used devices feature */}
       <section className="container-x mt-20">
-        <div className="relative overflow-hidden rounded-[28px] bg-gradient-to-br from-navy-950 via-navy-900 to-navy-800 px-6 py-12 text-white sm:px-12 sm:py-16">
+        <div className="relative overflow-hidden rounded-[28px] bg-gradient-to-br from-navy-950 via-navy-900 to-navy-800 px-5 py-10 text-white sm:px-12 sm:py-16">
           <Snowflake className="absolute -top-10 -right-10 h-72 w-72 text-white/[0.06]" />
           <div className="relative grid gap-10 lg:grid-cols-[1fr_1.2fr] lg:items-center">
             <div>
               <p className="text-[13px] font-semibold tracking-[0.18em] text-brand-200 uppercase">
                 Certified pre-owned
               </p>
-              <h2 className="mt-3 text-[32px] leading-tight font-extrabold sm:text-[42px]">
+              <h2 className="mt-3 text-[28px] leading-tight font-extrabold sm:text-[42px]">
                 Flagship phones. <br className="hidden sm:block" />
                 Without the flagship price.
               </h2>
-              <p className="mt-4 max-w-md text-[15.5px] leading-relaxed text-white/70">
+              <p className="mt-4 max-w-md text-[14.5px] leading-relaxed text-white/70 sm:text-[15.5px]">
                 Choose from Boxed (like new), Open Box, UK-used, US-used and Nigerian-used devices. Every
                 unit is checked for battery health, Face ID, cameras and screen
                 quality before it goes on sale, and comes with our warranty.
               </p>
-              <div className="mt-7 flex flex-wrap gap-3">
+              {/* Side by side at every width: two equal columns on phones, natural widths from sm up. */}
+              <div className="mt-7 grid grid-cols-2 gap-2.5 sm:flex sm:gap-3">
                 <Link
                   href="/used"
-                  className="rounded-full bg-brand-600 px-6 py-3 text-[15px] font-semibold hover:bg-brand-700"
+                  className="rounded-full bg-brand-600 px-3 py-3 text-center text-[14px] font-semibold whitespace-nowrap hover:bg-brand-700 sm:px-6 sm:text-[15px]"
                 >
-                  Shop used devices
+                  Shop used<span className="hidden sm:inline"> devices</span>
                 </Link>
                 <Link
                   href="/warranty"
-                  className="rounded-full px-6 py-3 text-[15px] font-semibold ring-1 ring-white/60 hover:bg-white hover:text-navy-900"
+                  className="rounded-full px-3 py-3 text-center text-[14px] font-semibold whitespace-nowrap ring-1 ring-white/60 hover:bg-white hover:text-navy-900 sm:px-6 sm:text-[15px]"
                 >
                   How we grade
                 </Link>
               </div>
             </div>
-            <div className="grid grid-cols-3 gap-3">
+            <div className="grid grid-cols-3 gap-2 sm:gap-3">
               {[
                 {
                   label: "UK Used",
@@ -309,16 +310,16 @@ export default async function HomePage() {
                 <Link
                   key={c.label}
                   href={c.href}
-                  className="group rounded-2xl bg-white/[0.07] p-4 ring-1 ring-white/10 transition hover:bg-white/[0.12] sm:p-6"
+                  className="group rounded-2xl bg-white/[0.07] p-3 ring-1 ring-white/10 transition hover:bg-white/[0.12] sm:p-6"
                 >
                   <DeviceIcon
                     icon="phone-used"
-                    className="h-14 w-14 text-white/80 transition group-hover:-translate-y-1 sm:h-20 sm:w-20"
+                    className="h-10 w-10 text-white/80 transition group-hover:-translate-y-1 sm:h-20 sm:w-20"
                   />
-                  <p className="mt-4 text-[15px] font-bold sm:text-[17px]">
+                  <p className="mt-3 text-[14px] leading-tight font-bold sm:mt-4 sm:text-[17px]">
                     {c.label}
                   </p>
-                  <p className="mt-0.5 text-[12px] text-white/60 sm:text-[13px]">
+                  <p className="mt-1 text-[11.5px] leading-snug text-white/60 sm:mt-0.5 sm:text-[13px]">
                     {c.note}
                   </p>
                 </Link>
@@ -393,7 +394,7 @@ export default async function HomePage() {
               key={f.title}
               href={f.href}
               className={cn(
-                "group rounded-[var(--radius-card)] bg-gradient-to-br p-6 transition hover:shadow-card",
+                "group rounded-[var(--radius-card)] bg-gradient-to-br p-5 transition hover:shadow-card sm:p-6",
                 f.tone,
               )}
             >
@@ -413,20 +414,20 @@ export default async function HomePage() {
 
       {/* Social */}
       <section className="container-x mt-20">
-        <div className="flex flex-col items-center gap-6 rounded-[28px] bg-mist px-6 py-12 text-center">
+        <div className="flex flex-col items-center gap-6 rounded-[28px] bg-mist px-5 py-10 text-center sm:px-6 sm:py-12">
           <p className="text-[13px] font-semibold tracking-[0.18em] text-muted uppercase">
             Join the community
           </p>
-          <h2 className="max-w-xl text-[28px] leading-tight font-extrabold sm:text-[34px]">
+          <h2 className="max-w-xl text-[24px] leading-tight font-extrabold sm:text-[34px]">
             Unboxings, deals &amp; restocks — follow{" "}
             <span className="text-brand-600">{site.socials.handle}</span>
           </h2>
-          <div className="flex flex-wrap justify-center gap-3">
+          <div className="flex flex-wrap justify-center gap-2.5 sm:gap-3">
             <a
               href={site.socials.instagram}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#f58529] via-[#dd2a7b] to-[#8134af] px-6 py-3 text-[15px] font-semibold text-white hover:opacity-90"
+              className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#f58529] via-[#dd2a7b] to-[#8134af] px-4 py-2.5 text-[14px] font-semibold text-white sm:px-6 sm:py-3 sm:text-[15px] hover:opacity-90"
             >
               <InstagramIcon className="h-5 w-5" /> Instagram
             </a>
@@ -434,7 +435,7 @@ export default async function HomePage() {
               href={site.socials.tiktok}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-full bg-ink px-6 py-3 text-[15px] font-semibold text-white hover:bg-ink-soft"
+              className="inline-flex items-center gap-2 rounded-full bg-ink px-4 py-2.5 text-[14px] font-semibold text-white sm:px-6 sm:py-3 sm:text-[15px] hover:bg-ink-soft"
             >
               <TikTokIcon className="h-5 w-5" /> TikTok
             </a>
@@ -442,7 +443,7 @@ export default async function HomePage() {
               href={site.whatsappLink}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-6 py-3 text-[15px] font-semibold text-white hover:opacity-90"
+              className="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-4 py-2.5 text-[14px] font-semibold text-white sm:px-6 sm:py-3 sm:text-[15px] hover:opacity-90"
             >
               <WhatsAppIcon className="h-5 w-5" /> WhatsApp
             </a>

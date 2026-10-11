@@ -16,6 +16,7 @@ function useFilterNav() {
   const update = (mutate: (p: URLSearchParams) => void) => {
     const next = new URLSearchParams(params.toString());
     mutate(next);
+    next.delete("show"); // a new filter starts again from the first page of results
     startTransition(() => router.replace(`${pathname}?${next.toString()}`, { scroll: false }));
   };
 

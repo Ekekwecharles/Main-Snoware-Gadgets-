@@ -1,7 +1,7 @@
 "use server";
 
 import { and, eq, ne, sql } from "drizzle-orm";
-import { revalidatePath } from "next/cache";
+import { revalidatePath, updateTag } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 import { requireAdmin } from "@/auth";
@@ -20,6 +20,7 @@ import {
 import { cloudinaryConfigured, deleteImage, uploadImage } from "@/lib/cloudinary";
 import { sendOrderConfirmation, sendOrderStatusUpdate } from "@/lib/mail";
 import { markOrderPaid } from "@/lib/orders";
+import { CATALOG_TAG } from "@/lib/catalog";
 import { slugify } from "@/lib/utils";
 import { availabilityValues, conditionValues } from "@/lib/site";
 
@@ -31,6 +32,8 @@ async function guard() {
 
 function refreshStorefront() {
   revalidatePath("/", "layout");
+  // Cached homepage data (banners, product rows) — expire now so the admin sees their change on the next load.
+  updateTag(CATALOG_TAG);
 }
 
 /* ───────────── Products ───────────── */

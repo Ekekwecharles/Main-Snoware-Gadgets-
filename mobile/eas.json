@@ -16,9 +16,10 @@
       "distribution": "internal",
       "android": { "buildType": "apk" },
       "env": {
-        "EXPO_PUBLIC_API_URL": "https://main-snoware-gadgets.vercel.app",
+        "EXPO_PUBLIC_API_URL": "https://www.snowaregadgets.com",
         "EXPO_PUBLIC_PUSHER_KEY": "d3971f7ecae2443e7c5a",
-        "EXPO_PUBLIC_PUSHER_CLUSTER": "eu"
+        "EXPO_PUBLIC_PUSHER_CLUSTER": "eu",
+        "EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID": "714873156521-28us6f961ohr22a9kj1h2bhnfa99ljd6.apps.googleusercontent.com"
       }
     },
     "production": {
@@ -26,9 +27,10 @@
       "autoIncrement": true,
       "android": { "buildType": "app-bundle" },
       "env": {
-        "EXPO_PUBLIC_API_URL": "https://main-snoware-gadgets.vercel.app",
+        "EXPO_PUBLIC_API_URL": "https://www.snowaregadgets.com",
         "EXPO_PUBLIC_PUSHER_KEY": "d3971f7ecae2443e7c5a",
-        "EXPO_PUBLIC_PUSHER_CLUSTER": "eu"
+        "EXPO_PUBLIC_PUSHER_CLUSTER": "eu",
+        "EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID": "714873156521-28us6f961ohr22a9kj1h2bhnfa99ljd6.apps.googleusercontent.com"
       }
     }
   },

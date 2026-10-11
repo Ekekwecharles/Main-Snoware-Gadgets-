@@ -50,6 +50,7 @@ const policies: Record<string, { title: string; body: React.ReactNode }> = {
         <h2>What we collect</h2>
         <ul>
           <li>Your name, email, phone number and delivery address when you order or create an account</li>
+          <li>If you sign in with Google (on the website or the {site.name} app): your name, email address and profile picture from your Google account. We don't receive your Google password or access anything else in your account.</li>
           <li>Your order history and wishlist</li>
           <li>Basic technical data (such as browser type) used to keep the site secure and working</li>
         </ul>

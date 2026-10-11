@@ -14,7 +14,8 @@ if (!process.env.DATABASE_URL && process.env.NEXT_PHASE !== "phase-production-bu
 }
 
 // The pool connects lazily on first query, so a missing URL only fails when the DB is actually used.
-const pool = (globalForDb.pool ??= new Pool({ connectionString: process.env.DATABASE_URL }));
+// Give up on a connection that hasn't opened in 10s (by default a stalled socket hangs for a minute or more).
+const pool = (globalForDb.pool ??= new Pool({ connectionString: process.env.DATABASE_URL, connectionTimeoutMillis: 10_000 }));
 
 export const db = drizzle({ client: pool, schema });
 

@@ -1,11 +1,13 @@
 import "server-only";
-import { and, asc, eq, ilike, inArray, or, type SQL } from "drizzle-orm";
+import { unstable_cache } from "next/cache";
+import { and, asc, eq, ilike, inArray, ne, or, type SQL } from "drizzle-orm";
 import { db } from "@/db";
 import {
   banners,
   brands,
   categories,
   products,
+  productVariants,
   settings,
   deliveryZones,
 } from "@/db/schema";
@@ -35,23 +37,39 @@ export type ProductCardData = {
   /** Optional quantity limit of the default variant (null = unlimited). */
   defaultVariantStock: number | null;
   salesCount: number;
-  createdAt: Date;
+  /** Milliseconds since epoch (a number, so cards survive caching and client serialization). */
+  createdAt: number;
 };
 
 type ProductWithRelations = Awaited<ReturnType<typeof loadProducts>>[number];
 
+/** Only what a product card needs — descriptions, specs and extra photos stay on the product page. */
 async function loadProducts(where?: SQL) {
   return db.query.products.findMany({
     where: where
       ? and(eq(products.isActive, true), where)
       : eq(products.isActive, true),
+    columns: { id: true, name: true, slug: true, badge: true, salesCount: true, createdAt: true },
     with: {
-      variants: true,
-      images: { orderBy: (img, { asc }) => [asc(img.sortOrder)] },
-      brand: true,
-      category: true,
+      variants: {
+        columns: { id: true, condition: true, storage: true, color: true, colorHex: true, price: true, compareAtPrice: true, availability: true, stock: true },
+      },
+      images: { columns: { url: true }, orderBy: (img, { asc }) => [asc(img.sortOrder)], limit: 1 },
+      brand: { columns: { name: true } },
+      category: { columns: { slug: true } },
     },
   });
+}
+
+/** Tag on cached storefront data; admin edits clear it (see refreshStorefront in actions/admin.ts). */
+export const CATALOG_TAG = "catalog";
+
+/**
+ * Caches storefront reads for a minute, so most visits never wait on the database.
+ * Cached values round-trip through JSON — keep them free of Dates (cards carry createdAt as a number).
+ */
+function cached<Args extends unknown[], Result>(key: string, fn: (...args: Args) => Promise<Result>) {
+  return unstable_cache(fn, [key], { tags: [CATALOG_TAG], revalidate: 60 });
 }
 
 export function variantLabel(v: {
@@ -98,7 +116,7 @@ function toCard(p: ProductWithRelations): ProductCardData {
     defaultVariantOnOrder: cheapest?.availability === "on_order",
     defaultVariantStock: cheapest?.stock ?? null,
     salesCount: p.salesCount,
-    createdAt: p.createdAt,
+    createdAt: p.createdAt.getTime(),
   };
 }
 
@@ -274,7 +292,7 @@ export async function listProducts(opts: {
     "best-selling": (a, b) => b.salesCount - a.salesCount,
     "price-asc": (a, b) => a.price - b.price,
     "price-desc": (a, b) => b.price - a.price,
-    newest: (a, b) => b.createdAt.getTime() - a.createdAt.getTime(),
+    newest: (a, b) => b.createdAt - a.createdAt,
   };
   const sorter = sorters[filters.sort ?? "best-selling"];
   // Sold-out items always sink to the bottom so shoppers see what they can buy first.
@@ -283,7 +301,7 @@ export async function listProducts(opts: {
   return { cards, facets };
 }
 
-export async function getFeaturedProducts(limit = 8) {
+export const getFeaturedProducts = cached("featured-products", async (limit: number = 8) => {
   const rows = await loadProducts(eq(products.featured, true));
   return rows
     .map(toCard)
@@ -292,9 +310,9 @@ export async function getFeaturedProducts(limit = 8) {
         Number(b.inStock) - Number(a.inStock) || b.salesCount - a.salesCount,
     )
     .slice(0, limit);
-}
+});
 
-export async function getProductsByCategorySlug(slug: string, limit = 8) {
+export const getProductsByCategorySlug = cached("products-by-category", async (slug: string, limit: number = 8) => {
   const all = await getAllCategories();
   const root = all.find((c) => c.slug === slug);
   if (!root) return [];
@@ -308,10 +326,16 @@ export async function getProductsByCategorySlug(slug: string, limit = 8) {
         Number(b.inStock) - Number(a.inStock) || b.salesCount - a.salesCount,
     )
     .slice(0, limit);
-}
+});
 
-export async function getUsedHighlights(limit = 8) {
-  const rows = await loadProducts();
+export const getUsedHighlights = cached("used-highlights", async (limit: number = 8) => {
+  // Only products that have a pre-owned variant, instead of the whole catalogue.
+  const rows = await loadProducts(
+    inArray(
+      products.id,
+      db.select({ id: productVariants.productId }).from(productVariants).where(ne(productVariants.condition, "new")),
+    ),
+  );
   return rows
     .filter((p) => p.variants.some((v) => v.condition !== "new" && isPurchasable(v)))
     .map((p) =>
@@ -322,7 +346,7 @@ export async function getUsedHighlights(limit = 8) {
     )
     .sort((a, b) => b.salesCount - a.salesCount)
     .slice(0, limit);
-}
+});
 
 export async function searchProducts(q: string, limit = 6) {
   if (q.trim().length < 2) return [];
@@ -385,12 +409,12 @@ export async function getRelatedProducts(
 
 /* ───────────── Content & settings ───────────── */
 
-export async function getBanners(placement: "hero" | "promo") {
+export const getBanners = cached("banners", async (placement: "hero" | "promo") => {
   return db.query.banners.findMany({
     where: and(eq(banners.placement, placement), eq(banners.isActive, true)),
     orderBy: (b, { asc }) => [asc(b.sortOrder)],
   });
-}
+});
 
 export async function getBrands() {
   return db.select().from(brands).orderBy(asc(brands.name));

@@ -106,16 +106,24 @@ const promoIcons: MenuIcon[] = ["accessory", "tag", "phone-used", "laptop"];
 
 export const metadata: Metadata = { alternates: { canonical: "/" } };
 
+/** A section whose data fails to load is left out, instead of one slow or dropped query taking down the whole homepage. */
+function orEmpty<T>(section: string, data: Promise<T[]>): Promise<T[]> {
+  return data.catch((err) => {
+    console.error(`[home] couldn't load ${section}`, err);
+    return [];
+  });
+}
+
 export default async function HomePage() {
   const [hero, promos, featured, used, apple, samsung, gaming] =
     await Promise.all([
-      getBanners("hero"),
-      getBanners("promo"),
-      getFeaturedProducts(10),
-      getUsedHighlights(10),
-      getProductsByCategorySlug("apple", 10),
-      getProductsByCategorySlug("samsung", 10),
-      getProductsByCategorySlug("gaming", 10),
+      orEmpty("hero banners", getBanners("hero")),
+      orEmpty("promo banners", getBanners("promo")),
+      orEmpty("featured products", getFeaturedProducts(10)),
+      orEmpty("pre-owned highlights", getUsedHighlights(10)),
+      orEmpty("Apple products", getProductsByCategorySlug("apple", 10)),
+      orEmpty("Samsung products", getProductsByCategorySlug("samsung", 10)),
+      orEmpty("gaming products", getProductsByCategorySlug("gaming", 10)),
     ]);
 
   return (
